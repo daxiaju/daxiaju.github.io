@@ -5,15 +5,23 @@
   
 
   
-  <title>大虾居</title>
+  <title>Redis Zset 实现原理 | 大虾居</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="大虾居">
-<meta property="og:url" content="http://daxiaju.github.io/index.html">
+  <meta name="description" content="Redis TTLRedis 只在key一级上有TTL (Time to live) 机制，https://redis.io/commands/expire，有的时候我们需要把item按某种顺序排序，如排行榜或移动时间窗口，这个时候使用Sorted Set(Zset)就非常有用了。 Redis Zset 按时间过期机制_1. zadd 添加item时设置score为当前unixtime__1.1.">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis Zset 实现原理">
+<meta property="og:url" content="http://daxiaju.github.io/2019/06/28/Redis-Zset-实现原理/index.html">
 <meta property="og:site_name" content="大虾居">
+<meta property="og:description" content="Redis TTLRedis 只在key一级上有TTL (Time to live) 机制，https://redis.io/commands/expire，有的时候我们需要把item按某种顺序排序，如排行榜或移动时间窗口，这个时候使用Sorted Set(Zset)就非常有用了。 Redis Zset 按时间过期机制_1. zadd 添加item时设置score为当前unixtime__1.1.">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="https://redislabs.com/wp-content/images/academy/redis-in-action/RIA_fig9-01.svg">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Skip_list_add_element-en.gif/600px-Skip_list_add_element-en.gif">
+<meta property="og:updated_time" content="2019-06-28T06:38:37.592Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大虾居">
+<meta name="twitter:title" content="Redis Zset 实现原理">
+<meta name="twitter:description" content="Redis TTLRedis 只在key一级上有TTL (Time to live) 机制，https://redis.io/commands/expire，有的时候我们需要把item按某种顺序排序，如排行榜或移动时间窗口，这个时候使用Sorted Set(Zset)就非常有用了。 Redis Zset 按时间过期机制_1. zadd 添加item时设置score为当前unixtime__1.1.">
+<meta name="twitter:image" content="https://redislabs.com/wp-content/images/academy/redis-in-action/RIA_fig9-01.svg">
   
     <link rel="alternate" href="/atom.xml" title="大虾居" type="application/atom+xml">
   
@@ -64,9 +72,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Redis-Zset-实现原理" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Redis-Zset-实现原理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/28/Redis-Zset-实现原理/" class="article-date">
   <time datetime="2019-06-28T01:30:23.000Z" itemprop="datePublished">2019-06-28</time>
@@ -79,8 +85,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/28/Redis-Zset-实现原理/">Redis Zset 实现原理</a>
+    <h1 class="article-title" itemprop="name">
+      Redis Zset 实现原理
     </h1>
   
 
@@ -162,11 +168,9 @@ typedef struct zset {
     </footer>
   </div>
   
-</article>
-
-
+    
   
-
+</article>
 
 </section>
         
