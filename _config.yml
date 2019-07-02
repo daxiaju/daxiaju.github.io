@@ -8,7 +8,7 @@ subtitle: 谈笑有鸿儒，往来无白丁。
 description: 
 keywords:
 author: 许大虾
-language: zh
+language: zh_CN
 timezone: Asia/Shanghai
 
 # URL
@@ -54,7 +54,7 @@ index_generator:
   order_by: -date
   
 # Category & Tag
-default_category: uncategorized
+default_category: 未分类
 category_map:
 tag_map:
 
@@ -74,9 +74,26 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: amber
-theme: landscape
+theme: aria
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+
+# Hexo local search
+search:
+  path: search.xml
+  field: all
+  
+  
+# Hexo feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '

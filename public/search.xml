@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>怎样在Centos7上安装Python3.6</title>
+      <link href="/2019/07/02/how-to-install-python3-on-centos7/"/>
+      <url>/2019/07/02/how-to-install-python3-on-centos7/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-安装ius源"><a href="#1-安装ius源" class="headerlink" title="1.安装ius源"></a>1.安装ius源</h2><p><a href="https://ius.io/" target="_blank" rel="noopener">ius</a>是一个专门提供经过验证RPM包的第三方社区，很多官方RPM库没有提供的新功能可以在该网站上找到。</p><pre><code>sudo yum install -y https://centos7.iuscommunity.org/ius-release.rpm</code></pre><h2 id="2-更新YUM"><a href="#2-更新YUM" class="headerlink" title="2.更新YUM"></a>2.更新YUM</h2><pre><code>sudo yum update</code></pre><h2 id="3-安装python3包"><a href="#3-安装python3包" class="headerlink" title="3.安装python3包"></a>3.安装python3包</h2><pre><code>sudo yum install -y python36u python36u-libs python36u-devel python36u-pip</code></pre><p>然后就可以尽情使用python3了</p><pre><code>python3.6 -V# Python 3.6.8pip3 -V# pip 9.0.1 from /usr/lib/python3.6/site-packages (python 3.6)</code></pre><p>添加软链接</p><pre><code>ln -s /usr/bin/python3.6 /usr/bin/python3ln -s /usr/bin/pip3.6 /usr/bin/pip3</code></pre><p>现在可以直接使用python3和pip3命令了</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 服务器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>install_twisted_on_windows</title>
+      <link href="/2019/07/01/install-twisted-on-windows/"/>
+      <url>/2019/07/01/install-twisted-on-windows/</url>
+      
+        <content type="html"><![CDATA[<p>Twisted库是比较流行的一个异步操作库，实现了大量的网络协议，scrapy就是基于Twisted实现异步操作和网络通讯。文末有彩蛋。</p><h2 id="方法1-源代码安装"><a href="#方法1-源代码安装" class="headerlink" title="方法1.源代码安装"></a>方法1.源代码安装</h2><p>Twisted默认源代码安装需要在本地编译c代码，需要安装VC</p><pre><code>pip install twisted</code></pre><h2 id="方法2-第三方预编译包"><a href="#方法2-第三方预编译包" class="headerlink" title="方法2.第三方预编译包"></a>方法2.第三方预编译包</h2><p><a href="https://www.lfd.uci.edu网站上提供了大非官方提供的windows平台二进制python包，很多无法直接安装的库可以在这里找到平台专用包。" target="_blank" rel="noopener">https://www.lfd.uci.edu网站上提供了大非官方提供的windows平台二进制python包，很多无法直接安装的库可以在这里找到平台专用包。</a></p><p>打开该页面，Ctrl+F打开搜索框，输入要查找的包名称即可快速找到安装包。</p><p>twisted的版本如下。</p><p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted</a></p><p>截至发稿最新版本Twisted19.2.1的安装包连接如下</p><h3 id="python27-Win64"><a href="#python27-Win64" class="headerlink" title="python27 Win64"></a>python27 Win64</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp27-cp27m-win_amd64.whl</code></pre><h3 id="python27-Win32"><a href="#python27-Win32" class="headerlink" title="python27 Win32"></a>python27 Win32</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp27-cp27m-win32.whl</code></pre><h3 id="python37-Win64"><a href="#python37-Win64" class="headerlink" title="python37 Win64"></a>python37 Win64</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp37-cp37m-win_amd64.whl</code></pre><h3 id="python37-Win32"><a href="#python37-Win32" class="headerlink" title="python37 Win32"></a>python37 Win32</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp37-cp37m-win32.whl</code></pre><p>其他版本可以自行查找下载。</p><h2 id="方法3-推荐）"><a href="#方法3-推荐）" class="headerlink" title="方法3(推荐）"></a>方法3(推荐）</h2><p>官方最新提供了支持pip安装方式，如下</p><pre><code>pip install Twisted[windows_platform]</code></pre><p>一键安装，从此无烦恼。</p><h2 id="小彩蛋"><a href="#小彩蛋" class="headerlink" title="小彩蛋"></a>小彩蛋</h2><p>通过twisted可以快速建立各种简易的网络服务器，比如启动一个本地测试用的FTP服务器代码如下：</p><p>ftpserver.py:</p><pre><code># Copyright (c) Twisted Matrix Laboratories.# See LICENSE for details.&quot;&quot;&quot;An example FTP server with minimal user authentication.&quot;&quot;&quot;from twisted.protocols.ftp import FTPFactory, FTPRealm, BaseFTPRealmfrom twisted.cred.portal import Portalfrom twisted.cred.checkers import AllowAnonymousAccess, FilePasswordDBfrom twisted.internet import reactorfrom twisted.python import log, failure, filepath&quot;&quot;&quot;An example FTP server with minimal user authentication.&quot;&quot;&quot;## First, set up a portal (twisted.cred.portal.Portal). This will be used# to authenticate user logins, including anonymous logins.## Part of this will be to establish the &quot;realm&quot; of the server - the most# important task in this case is to establish where anonymous users will# have default access to. In a real world scenario this would typically# point to something like &apos;/pub&apos; but for this example it is pointed at the# current working directory.## The other important part of the portal setup is to point it to a list of# credential checkers. In this case, the first of these is used to grant# access to anonymous users and is relatively simple; the second is a very# primitive password checker.  This example uses a plain text password file# that has one username:password pair per line. This checker *does* provide# a hashing interface, and one would normally want to use it instead of# plain text storage for anything remotely resembling a &apos;live&apos; network. In# this case, the file &quot;pass.dat&quot; is used, and stored in the same directory# as the server. BAD.## Create a pass.dat file which looks like this:## =====================#   jeff:bozo#   grimmtooth:bozo2# =====================class LocalFTPRealm(BaseFTPRealm):    def __init__(self):        self.userHome = filepath.FilePath(&apos;./HOME&apos;)    def getHomeDirectory(self, avatarId):        return self.userHomep = Portal(LocalFTPRealm(),           [AllowAnonymousAccess(), FilePasswordDB(&apos;./auth&apos;, cache=True)])## Once the portal is set up, start up the FTPFactory and pass the portal to# it on startup. FTPFactory will start up a twisted.protocols.ftp.FTP()# handler for each incoming OPEN request. Business as usual in Twisted land.#f = FTPFactory(p)## You know this part. Point the reactor to port 21 coupled with the above factory,# and start the event loop.#reactor.listenTCP(21, f)reactor.run()</code></pre><p>ftp同一文件夹下创建一个auth文件，每行一个用户，用户名和密码用冒号:分割。</p><p>auth:</p><pre><code>abc:123</code></pre><p>FTP根目录对应当前文件夹下的HOME文件夹，Enjoy.</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vagrant vboxsf error的解决方法</title>
+      <link href="/2019/06/28/vagrant-vboxsf-error/"/>
+      <url>/2019/06/28/vagrant-vboxsf-error/</url>
+      
+        <content type="html"><![CDATA[<h1 id="出错情况"><a href="#出错情况" class="headerlink" title="出错情况"></a>出错情况</h1><p>以前一直用的一个vagrant环境，突然启动出现问题。<br>vagrant 运行在windows上，vagrant 启动centos7虚拟机，vagrant up时提示错误，无法将host上的文件夹映射到虚拟机里。</p><p>错误信息如下:</p><pre><code>Vagrant was unable to mount VirtualBox shared folders. This is usuallybecause the filesystem &quot;vboxsf&quot; is not available. This filesystem ismade available via the VirtualBox Guest Additions and kernel module.Please verify that these guest additions are properly installed in theguest. This is not a bug in Vagrant and is usually caused by a faultyVagrant box. For context, the command attempted was:mount -t vboxsf -o uid=1000,gid=1000 vagrant /vagrantThe error output from the command was:/sbin/mount.vboxsf: mounting failed with the error: No such device</code></pre><h2 id="处理方式"><a href="#处理方式" class="headerlink" title="处理方式"></a>处理方式</h2><p>先ssh连进guest</p><pre><code>vagrant ssh</code></pre><p>然后</p><pre><code>cd /opt/VBoxGuestAdditions-*/init  sudo ./vboxadd setup</code></pre><p>提示信息</p><pre><code>VirtualBox Guest Additions: Building the VirtualBox Guest Additions kernel modules.  This may take a while.grep: Unmatched ) or \)This system is currently not set up to build kernel modules.Please install the Linux kernel &quot;header&quot; files matching the current kernelfor adding new hardware support to the system.The distribution packages containing the headers are probably:    kernel-devel kernel-devel-3.10.0-957.21.3.el7.x86_64VirtualBox Guest Additions: Starting.VirtualBox Guest Additions: Building the VirtualBox Guest Additions kernel modules.  This may take a while.grep: Unmatched ) or \)This system is currently not set up to build kernel modules.Please install the Linux kernel &quot;header&quot; files matching the current kernelfor adding new hardware support to the system.The distribution packages containing the headers are probably:    kernel-devel kernel-devel-3.10.0-957.21.3.el7.x86_64modprobe vboxguest failedThe log file /var/log/vboxadd-setup.log may contain further information.</code></pre><p>安装kernel</p><pre><code>sudo yum install kernel-devel kernel-devel-3.10.0-957.21.3.el7.x86_64</code></pre><p>重新运行 ./vboxadd setup 提示错误</p><pre><code>VirtualBox Guest Additions: Building the VirtualBox Guest Additions kernel modules.  This may take a while.grep: Unmatched ) or \)VirtualBox Guest Additions: Look at /var/log/vboxadd-setup.log to find out what went wrongVirtualBox Guest Additions: Starting.</code></pre><p>/var/log/vboxadd-setup.log:</p><pre><code>Building the main Guest Additions module.Building the shared folder support module.Building the graphics driver module.Error building the module:Could not find the X.Org or XFree86 Window System, skipping.</code></pre><p>在虚拟机中安装xorg</p><pre><code>yum -y install xorg-x11-drivers xorg-x11-utils</code></pre><p>在host上安装vbguest插件</p><pre><code>vagrant plugin install vagrant-vbguest</code></pre><p>重新启动虚拟机，问题解决</p><pre><code>vagrant reload</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 写代码 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis Zset 实现原理</title>
+      <link href="/2019/06/28/Redis-Zset-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+      <url>/2019/06/28/Redis-Zset-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Redis-TTL"><a href="#Redis-TTL" class="headerlink" title="Redis TTL"></a>Redis TTL</h1><p>Redis 只在key一级上有TTL (Time to live) 机制，<a href="https://redis.io/commands/expire" title="Expire Command" target="_blank" rel="noopener">https://redis.io/commands/expire</a>，有的时候我们需要把item按某种顺序排序，如排行榜或移动时间窗口，这个时候使用Sorted Set(Zset)就非常有用了。</p><h1 id="Redis-Zset-按时间过期机制"><a href="#Redis-Zset-按时间过期机制" class="headerlink" title="Redis Zset 按时间过期机制"></a>Redis Zset 按时间过期机制</h1><p>_1. zadd 添加item时设置score为当前unixtime<br>__1.1. 如果只以第一次插入时间戳做删除则指定nx=true, <a href="https://redis.io/commands/zadd" target="_blank" rel="noopener">https://redis.io/commands/zadd</a><br>__1.2. 如果需要更新已经存在item时间戳为当前时间TTL则指定默认选项，score设置为当前unittime<br>__1.3. 如果每次需要延长固定时间，检查item存在时使用ZINCRBY命令<br>_2. 定时做清理任务，每次计算删除某个时间点之前的所有item  zremrangebyscore</p><h1 id="Redis-Zset-命令时间复杂度"><a href="#Redis-Zset-命令时间复杂度" class="headerlink" title="Redis Zset 命令时间复杂度"></a>Redis Zset 命令时间复杂度</h1><p>Command Complexities of Zset and Set</p><table><thead><tr><th></th><th>Zset</th><th>Set</th></tr></thead><tbody><tr><td>Add</td><td>O(log(N))</td><td>O(1)</td></tr><tr><td>Delete (1 items)</td><td>O(log(N))</td><td>O(1)</td></tr><tr><td>Iterate items by key</td><td>O(log(N)+M)</td><td>O(N)</td></tr><tr><td>Scan by score</td><td>O(log(N)+M)</td><td>N/A</td></tr></tbody></table><p>可以看出zset单个元素操作一般为Log(N)其中N为当前集合元素个数。</p><h1 id="Redis-Zset-底层结构及算法实现"><a href="#Redis-Zset-底层结构及算法实现" class="headerlink" title="Redis Zset 底层结构及算法实现"></a>Redis Zset 底层结构及算法实现</h1><p>与set无顺序存储不同，Zset按score顺序进行存储，这也是为什么基本操作都是O(log(N))复杂度。</p><p>Redis使用两种结构存储zset，在数据个数较少时使用ziplist，数量超出阈值时使用skiplist，阈值通过zset-max-ziplist-entries and zset-max-ziplist-value设置。</p><h2 id="ziplist"><a href="#ziplist" class="headerlink" title="ziplist"></a>ziplist</h2><p>ziplist使用连续空间存储双向链表，相比基于堆空间指针的链表前后向移动速度更快。</p><p><img src="https://redislabs.com/wp-content/images/academy/redis-in-action/RIA_fig9-01.svg" alt></p><p>reids list也是使用ziplist存储。</p><h2 id="skiplist"><a href="#skiplist" class="headerlink" title="skiplist"></a>skiplist</h2><p>skiplist 跳跃列表:</p><pre><code>/* ZSETs use a specialized version of Skiplists */typedef struct zskiplistNode {    sds ele;    double score;    struct zskiplistNode *backward;    struct zskiplistLevel {        struct zskiplistNode *forward;        unsigned long span;    } level[];} zskiplistNode;typedef struct zskiplist {    struct zskiplistNode *header, *tail;    unsigned long length;    int level;} zskiplist;typedef struct zset {    dict *dict;    zskiplist *zsl;} zset;</code></pre><p>跳跃列表保存一个有序排列的链表，通过采用多层存储且保持每一层链表是其上一层链表的自己，从最稀疏的层开始搜索，从而达到比链表O(N)更优的查找和插入性能O(log(N))。</p><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Skip_list_add_element-en.gif/600px-Skip_list_add_element-en.gif" alt></p><p>具体说明参见<a href="https://en.wikipedia.org/wiki/Skip_list" target="_blank" rel="noopener">wiki</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+    
+  
+</search>
