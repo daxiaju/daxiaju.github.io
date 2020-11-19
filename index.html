@@ -180,8 +180,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-11-19 11:34:34" itemprop="dateCreated datePublished" datetime="2020-11-19T11:34:34+08:00">2020-11-19</time>
+              <time title="创建时间：2020-11-19 11:34:34 / 修改时间：13:38:54" itemprop="dateCreated datePublished" datetime="2020-11-19T11:34:34+08:00">2020-11-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,6 +213,9 @@
 <p>一般vagrant会把当前文件夹映射到虚拟机中的/vagrant，实时共享。所以我们通常在宿主机修改源代码文件，在客户机中编译和运行。</p>
 <p>但是要开发ansible，默认的vagrant配置就无法满足需求了。因为ansible出于安全考虑，在运行时会检查脚本文件夹权限，如果有公共写权限的话就会忽略当前文件夹下的ansible.cfg运行。</p>
 <p><img src="/images/vagrant-ansible-persssion-ignore.png" alt></p>
+<blockquote>
+<p>[WARNING] Ansible is being run in a world writable directory (/vagrant), ignoring it as an ansible.cfg source. For more information see <a href="https://docs.ansible.com/ansible/devel/reference_appendices/config.html#cfg-in-world-writable-dir" target="_blank" rel="noopener">https://docs.ansible.com/ansible/devel/reference_appendices/config.html#cfg-in-world-writable-dir</a></p>
+</blockquote>
 <p>由于vagrant使用的使虚拟机的目录映射功能，在这个模式下无法通过chmod修改文件夹的读写权限。</p>
 <p>那么是不是就没办法了呢，非也，下面虾哥就分享一下如何能既确保源码文件夹符合ansible权限要求，又能在宿主机和客户机之间共享文件。</p>
 <h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>vagrant默认共享其实等价于隐式声明了一个sync_folder指令</p>
@@ -220,10 +224,12 @@
 <p>windows可以安装<a href="https://www.itefix.net/cwrsync?qt-cwrsync=1#qt-cwrsync" target="_blank" rel="noopener">cwrsync</a></p>
 <p>安装方法很简单，解压后把bin目录添加到path环境变量即可。</p>
 <h2 id="Vagrantfile写法"><a href="#Vagrantfile写法" class="headerlink" title="Vagrantfile写法"></a>Vagrantfile写法</h2><pre><code>config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;, owner: &quot;root&quot;, group: &quot;root&quot;, type: &quot;rsync&quot;</code></pre><p>这里本地路径，客户机内的共享路径，owner,group都可以根据自己的需要配置。</p>
+<p><img src="/images/vagrant-ansible-persssion-ignore2.png" alt></p>
 <h2 id="手动同步-自动同步"><a href="#手动同步-自动同步" class="headerlink" title="手动同步/自动同步"></a>手动同步/自动同步</h2><p>type=rsync的文件夹，默认情况下vagrant只会在启动的时候同步一次，之后的修改就不会同步了。</p>
 <p>需要手动同步的话可以运行</p>
 <pre><code>vagrant rsync</code></pre><p>还可以自动实时监听并同步</p>
-<pre><code>vagrant rsync-auto</code></pre><h2 id="反向同步"><a href="#反向同步" class="headerlink" title="反向同步"></a>反向同步</h2><p>rsync时客户机内的修改无法反映到宿主机的文件夹，即只能实现单向同步，要从客户机向宿主机同步的话可以通过一个插件实现。</p>
+<pre><code>vagrant rsync-auto</code></pre><p><img src="/images/vagrant-ansible-persssion-ignore3.png" alt></p>
+<h2 id="反向同步"><a href="#反向同步" class="headerlink" title="反向同步"></a>反向同步</h2><p>rsync时客户机内的修改无法反映到宿主机的文件夹，即只能实现单向同步，要从客户机向宿主机同步的话可以通过一个插件实现。</p>
 <p>安装插件</p>
 <pre><code>vagrant plugin install vagrant-rsync-back</code></pre><p>手动反向同步</p>
 <pre><code>vagrant rsync-back</code></pre><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
