@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Vagrant同步Ansible开发文件夹</title>
+      <link href="/2020/11/19/vagrant-ansible-develop-folder-sync/"/>
+      <url>/2020/11/19/vagrant-ansible-develop-folder-sync/</url>
+      
+        <content type="html"><![CDATA[<p>要在windows下开发*nux程序，vagrant是一个不可多得的好帮手，随时可以创建一个指定的虚拟机环境，还可以把虚拟机环境配置提交到版本控制库，跟伙伴一起分享。</p><p>一般vagrant会把当前文件夹映射到虚拟机中的/vagrant，实时共享。所以我们通常在宿主机修改源代码文件，在客户机中编译和运行。</p><p>但是要开发ansible，默认的vagrant配置就无法满足需求了。因为ansible出于安全考虑，在运行时会检查脚本文件夹权限，如果有公共写权限的话就会忽略当前文件夹下的ansible.cfg运行。</p><p><img src="/images/vagrant-ansible-persssion-ignore.png" alt></p><p>由于vagrant使用的使虚拟机的目录映射功能，在这个模式下无法通过chmod修改文件夹的读写权限。</p><p>那么是不是就没办法了呢，非也，下面虾哥就分享一下如何能既确保源码文件夹符合ansible权限要求，又能在宿主机和客户机之间共享文件。</p><h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>vagrant默认共享其实等价于隐式声明了一个sync_folder指令</p><pre><code>config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;</code></pre><p>synced_folder还有可以配置一些参数，比如type参数配置同步方式。<br>Type可以使用nfs,SMB模式，考虑到跨平台兼容性和，这里虾哥建议使用RSync模式。</p><h2 id="Rsync安装"><a href="#Rsync安装" class="headerlink" title="Rsync安装"></a>Rsync安装</h2><p>rsync 是linux下的一个用于文件同步的协议及相应的实现。</p><p>windows可以安装<a href="https://www.itefix.net/cwrsync?qt-cwrsync=1#qt-cwrsync" target="_blank" rel="noopener">cwrsync</a></p><p>安装方法很简单，解压后把bin目录添加到path环境变量即可。</p><h2 id="Vagrantfile写法"><a href="#Vagrantfile写法" class="headerlink" title="Vagrantfile写法"></a>Vagrantfile写法</h2><pre><code>config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;, owner: &quot;root&quot;, group: &quot;root&quot;, type: &quot;rsync&quot;</code></pre><p>这里本地路径，客户机内的共享路径，owner,group都可以根据自己的需要配置。</p><h2 id="手动同步-自动同步"><a href="#手动同步-自动同步" class="headerlink" title="手动同步/自动同步"></a>手动同步/自动同步</h2><p>type=rsync的文件夹，默认情况下vagrant只会在启动的时候同步一次，之后的修改就不会同步了。</p><p>需要手动同步的话可以运行</p><pre><code>vagrant rsync</code></pre><p>还可以自动实时监听并同步</p><pre><code>vagrant rsync-auto</code></pre><h2 id="反向同步"><a href="#反向同步" class="headerlink" title="反向同步"></a>反向同步</h2><p>rsync时客户机内的修改无法反映到宿主机的文件夹，即只能实现单向同步，要从客户机向宿主机同步的话可以通过一个插件实现。</p><p>安装插件</p><pre><code>vagrant plugin install vagrant-rsync-back</code></pre><p>手动反向同步</p><pre><code>vagrant rsync-back</code></pre><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul><li><a href="https://www.vagrantup.com/docs/synced-folders/basic_usage" target="_blank" rel="noopener">https://www.vagrantup.com/docs/synced-folders/basic_usage</a></li><li><a href="https://linux.die.net/man/1/rsync" target="_blank" rel="noopener">https://linux.die.net/man/1/rsync</a></li><li><a href="https://stackoverflow.com/questions/26873316/bidirectional-vagrant-rsync" target="_blank" rel="noopener">https://stackoverflow.com/questions/26873316/bidirectional-vagrant-rsync</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> 服务器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vagrant </tag>
+            
+            <tag> ansible </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用Vagrant proxyconf快速配置虚拟机代理</title>
       <link href="/2020/11/13/vagrant-proxyconf/"/>
       <url>/2020/11/13/vagrant-proxyconf/</url>
@@ -33,7 +62,7 @@
       <link href="/2020/11/11/add-git-bash-to-windows-terminal/"/>
       <url>/2020/11/11/add-git-bash-to-windows-terminal/</url>
       
-        <content type="html"><![CDATA[<p>Git-bash 是windows上常用的可以使用*nux命令行，随git一起安装，可谓居家旅行必备。</p><p><a href="https://github.com/microsoft/terminal" target="_blank" rel="noopener">Windows Terminal</a>是windows 10上的一款开源的多终端窗口，可以在一个窗口中打开不同终端，对于使用终端频繁的同学来说可以节省在多个窗口中来回跳转的不便。</p><p><img src="../images/terminal0.4.png" alt></p><p>如果能在Windows Terminal中打开Git Bash岂不是所有命令行都能放在一起了。下面虾哥就教你如何配置在Windows Terminal标签栏中开启Bash</p><p>1 打开Windows Terminal<br>2 按下 Ctrl + , 打开程序配置（程序配置是json格式文本文件，会在文本编辑器中打开）<br>3 找到 profiles &gt; list， list下面是个列表，在列表中加入选项，注意json格式，列表最后一项后面没有逗号，下面代码里包含了安装在%USERPROFILE%下的配置，可以根据自身情况修改注释信息。</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"guid"</span>: <span class="string">"&#123;00000000-0000-0000-ba54-000000000002&#125;"</span>,</span><br><span class="line">    <span class="attr">"commandline"</span>: <span class="string">"%PROGRAMFILES%/git/usr/bin/bash.exe -i -l"</span>,</span><br><span class="line">    // "commandline": "%USERPROFILE%/AppData/Local/Programs/Git/bin/bash.exe -l -i",</span><br><span class="line">    // "commandline": "%USERPROFILE%/scoop/apps/git/current/usr/bin/bash.exe -l -i",</span><br><span class="line">    "icon": "%PROGRAMFILES%/Git/mingw64/share/git/git-for-windows.ico",</span><br><span class="line">    // "icon": "%USERPROFILE%/AppData/Local/Programs/Git/mingw64/share/git/git-for-windows.ico",</span><br><span class="line">    // "icon": "%USERPROFILE%/apps/git/current/usr/share/git/git-for-windows.ico",</span><br><span class="line">    "name" : "Bash",</span><br><span class="line">    "startingDirectory" : "%USERPROFILE%",</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p><img src="../images/windowsterminalbash.png" alt></p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/56839307/adding-git-bash-to-the-new-windows-terminal" target="_blank" rel="noopener">https://stackoverflow.com/questions/56839307/adding-git-bash-to-the-new-windows-terminal</a></p>]]></content>
+        <content type="html"><![CDATA[<p>Git-bash 是windows上常用的可以使用*nux命令行，随git一起安装，可谓居家旅行必备。</p><p><a href="https://github.com/microsoft/terminal" target="_blank" rel="noopener">Windows Terminal</a>是windows 10上的一款开源的多终端窗口，可以在一个窗口中打开不同终端，对于使用终端频繁的同学来说可以节省在多个窗口中来回跳转的不便。</p><p><img src="/images/terminal0.4.png" alt></p><p>如果能在Windows Terminal中打开Git Bash岂不是所有命令行都能放在一起了。下面虾哥就教你如何配置在Windows Terminal标签栏中开启Bash</p><p>1 打开Windows Terminal<br>2 按下 Ctrl + , 打开程序配置（程序配置是json格式文本文件，会在文本编辑器中打开）<br>3 找到 profiles &gt; list， list下面是个列表，在列表中加入选项，注意json格式，列表最后一项后面没有逗号，下面代码里包含了安装在%USERPROFILE%下的配置，可以根据自身情况修改注释信息。</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"guid"</span>: <span class="string">"&#123;00000000-0000-0000-ba54-000000000002&#125;"</span>,</span><br><span class="line">    <span class="attr">"commandline"</span>: <span class="string">"%PROGRAMFILES%/git/usr/bin/bash.exe -i -l"</span>,</span><br><span class="line">    // "commandline": "%USERPROFILE%/AppData/Local/Programs/Git/bin/bash.exe -l -i",</span><br><span class="line">    // "commandline": "%USERPROFILE%/scoop/apps/git/current/usr/bin/bash.exe -l -i",</span><br><span class="line">    "icon": "%PROGRAMFILES%/Git/mingw64/share/git/git-for-windows.ico",</span><br><span class="line">    // "icon": "%USERPROFILE%/AppData/Local/Programs/Git/mingw64/share/git/git-for-windows.ico",</span><br><span class="line">    // "icon": "%USERPROFILE%/apps/git/current/usr/share/git/git-for-windows.ico",</span><br><span class="line">    "name" : "Bash",</span><br><span class="line">    "startingDirectory" : "%USERPROFILE%",</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p><img src="../images/windowsterminalbash.png" alt></p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/56839307/adding-git-bash-to-the-new-windows-terminal" target="_blank" rel="noopener">https://stackoverflow.com/questions/56839307/adding-git-bash-to-the-new-windows-terminal</a></p>]]></content>
       
       
       <categories>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.daxiaju.club/2020/11/19/vagrant-ansible-develop-folder-sync/</loc>
+    
+    <lastmod>2020-11-19T03:34:34.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.daxiaju.club/2020/11/11/add-git-bash-to-windows-terminal/</loc>
+    
+    <lastmod>2020-11-19T03:28:47.077Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.daxiaju.club/2020/11/13/vagrant-proxyconf/</loc>
     
     <lastmod>2020-11-13T02:40:45.804Z</lastmod>
@@ -23,14 +37,14 @@
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2019/07/09/python-setup-py-develop-failed/</loc>
+    <loc>http://www.daxiaju.club/2020/10/30/python-logging/</loc>
     
     <lastmod>2020-11-13T01:23:45.120Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2020/10/30/python-logging/</loc>
+    <loc>http://www.daxiaju.club/2019/07/09/python-setup-py-develop-failed/</loc>
     
     <lastmod>2020-11-13T01:23:45.120Z</lastmod>
     
@@ -107,13 +121,6 @@
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2020/02/23/download-apk-from-google-play/</loc>
-    
-    <lastmod>2020-11-13T01:23:45.117Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.daxiaju.club/2020/03/08/docker-runtime-error-on-centos7/</loc>
     
     <lastmod>2020-11-13T01:23:45.117Z</lastmod>
@@ -128,16 +135,16 @@
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2020/05/12/how-to-avoid-misusing-singleton/</loc>
+    <loc>http://www.daxiaju.club/2020/02/23/download-apk-from-google-play/</loc>
     
     <lastmod>2020-11-13T01:23:45.117Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2020/11/11/add-git-bash-to-windows-terminal/</loc>
+    <loc>http://www.daxiaju.club/2020/05/12/how-to-avoid-misusing-singleton/</loc>
     
-    <lastmod>2020-11-13T01:23:45.116Z</lastmod>
+    <lastmod>2020-11-13T01:23:45.117Z</lastmod>
     
   </url>
   

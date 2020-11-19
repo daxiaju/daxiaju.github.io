@@ -28,13 +28,13 @@
 <meta property="og:site_name" content="大虾居">
 <meta property="og:description" content="Git-bash 是windows上常用的可以使用*nux命令行，随git一起安装，可谓居家旅行必备。 Windows Terminal是windows 10上的一款开源的多终端窗口，可以在一个窗口中打开不同终端，对于使用终端频繁的同学来说可以节省在多个窗口中来回跳转的不便。  如果能在Windows Terminal中打开Git Bash岂不是所有命令行都能放在一起了。下面虾哥就教你如何配置在W">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.daxiaju.club/2020/11/11/images/terminal0.4.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/terminal0.4.png">
 <meta property="og:image" content="http://www.daxiaju.club/2020/11/11/images/windowsterminalbash.png">
-<meta property="og:updated_time" content="2020-11-13T01:23:45.116Z">
+<meta property="og:updated_time" content="2020-11-19T03:28:47.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在WindowsTerminal中添加GitBash">
 <meta name="twitter:description" content="Git-bash 是windows上常用的可以使用*nux命令行，随git一起安装，可谓居家旅行必备。 Windows Terminal是windows 10上的一款开源的多终端窗口，可以在一个窗口中打开不同终端，对于使用终端频繁的同学来说可以节省在多个窗口中来回跳转的不便。  如果能在Windows Terminal中打开Git Bash岂不是所有命令行都能放在一起了。下面虾哥就教你如何配置在W">
-<meta name="twitter:image" content="http://www.daxiaju.club/2020/11/11/images/terminal0.4.png">
+<meta name="twitter:image" content="http://www.daxiaju.club/images/terminal0.4.png">
 
 <link rel="canonical" href="http://www.daxiaju.club/2020/11/11/add-git-bash-to-windows-terminal/">
 
@@ -134,7 +134,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
 
   </li>
   </ul>
@@ -195,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-13 09:23:45" itemprop="dateModified" datetime="2020-11-13T09:23:45+08:00">2020-11-13</time>
+                <time title="修改时间：2020-11-19 11:28:47" itemprop="dateModified" datetime="2020-11-19T11:28:47+08:00">2020-11-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,7 +220,7 @@
       
         <p>Git-bash 是windows上常用的可以使用*nux命令行，随git一起安装，可谓居家旅行必备。</p>
 <p><a href="https://github.com/microsoft/terminal" target="_blank" rel="noopener">Windows Terminal</a>是windows 10上的一款开源的多终端窗口，可以在一个窗口中打开不同终端，对于使用终端频繁的同学来说可以节省在多个窗口中来回跳转的不便。</p>
-<p><img src="../images/terminal0.4.png" alt></p>
+<p><img src="/images/terminal0.4.png" alt></p>
 <p>如果能在Windows Terminal中打开Git Bash岂不是所有命令行都能放在一起了。下面虾哥就教你如何配置在Windows Terminal标签栏中开启Bash</p>
 <p>1 打开Windows Terminal<br>2 按下 Ctrl + , 打开程序配置（程序配置是json格式文本文件，会在文本编辑器中打开）<br>3 找到 profiles &gt; list， list下面是个列表，在列表中加入选项，注意json格式，列表最后一项后面没有逗号，下面代码里包含了安装在%USERPROFILE%下的配置，可以根据自身情况修改注释信息。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"guid"</span>: <span class="string">"&#123;00000000-0000-0000-ba54-000000000002&#125;"</span>,</span><br><span class="line">    <span class="attr">"commandline"</span>: <span class="string">"%PROGRAMFILES%/git/usr/bin/bash.exe -i -l"</span>,</span><br><span class="line">    // "commandline": "%USERPROFILE%/AppData/Local/Programs/Git/bin/bash.exe -l -i",</span><br><span class="line">    // "commandline": "%USERPROFILE%/scoop/apps/git/current/usr/bin/bash.exe -l -i",</span><br><span class="line">    "icon": "%PROGRAMFILES%/Git/mingw64/share/git/git-for-windows.ico",</span><br><span class="line">    // "icon": "%USERPROFILE%/AppData/Local/Programs/Git/mingw64/share/git/git-for-windows.ico",</span><br><span class="line">    // "icon": "%USERPROFILE%/apps/git/current/usr/share/git/git-for-windows.ico",</span><br><span class="line">    "name" : "Bash",</span><br><span class="line">    "startingDirectory" : "%USERPROFILE%",</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
@@ -327,17 +327,17 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

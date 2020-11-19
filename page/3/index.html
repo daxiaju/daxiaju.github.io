@@ -127,7 +127,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
 
   </li>
   </ul>
@@ -153,6 +153,116 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2019/06/28/vagrant-vboxsf-error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/28/vagrant-vboxsf-error/" class="post-title-link" itemprop="url">Vagrant vboxsf error的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-28 16:39:44" itemprop="dateCreated datePublished" datetime="2019-06-28T16:39:44+08:00">2019-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-13 09:23:45" itemprop="dateModified" datetime="2020-11-13T09:23:45+08:00">2020-11-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="出错情况"><a href="#出错情况" class="headerlink" title="出错情况"></a>出错情况</h1><p>以前一直用的一个vagrant环境，突然启动出现问题。<br>vagrant 运行在windows上，vagrant 启动centos7虚拟机，vagrant up时提示错误，无法将host上的文件夹映射到虚拟机里。</p>
+<p>错误信息如下:</p>
+<pre><code>Vagrant was unable to mount VirtualBox shared folders. This is usually
+because the filesystem &quot;vboxsf&quot; is not available. This filesystem is
+made available via the VirtualBox Guest Additions and kernel module.
+Please verify that these guest additions are properly installed in the
+guest. This is not a bug in Vagrant and is usually caused by a faulty
+Vagrant box. For context, the command attempted was:
+
+mount -t vboxsf -o uid=1000,gid=1000 vagrant /vagrant
+
+The error output from the command was:
+
+/sbin/mount.vboxsf: mounting failed with the error: No such device</code></pre><h2 id="处理方式"><a href="#处理方式" class="headerlink" title="处理方式"></a>处理方式</h2><p>先ssh连进guest</p>
+<pre><code>vagrant ssh</code></pre><p>然后</p>
+<pre><code>cd /opt/VBoxGuestAdditions-*/init  
+sudo ./vboxadd setup</code></pre><p>提示信息</p>
+<pre><code>VirtualBox Guest Additions: Building the VirtualBox Guest Additions kernel modules.  This may take a while.
+grep: Unmatched ) or \)
+This system is currently not set up to build kernel modules.
+Please install the Linux kernel &quot;header&quot; files matching the current kernel
+for adding new hardware support to the system.
+The distribution packages containing the headers are probably:
+    kernel-devel kernel-devel-3.10.0-957.21.3.el7.x86_64
+VirtualBox Guest Additions: Starting.
+VirtualBox Guest Additions: Building the VirtualBox Guest Additions kernel modules.  This may take a while.
+grep: Unmatched ) or \)
+This system is currently not set up to build kernel modules.
+Please install the Linux kernel &quot;header&quot; files matching the current kernel
+for adding new hardware support to the system.
+The distribution packages containing the headers are probably:
+    kernel-devel kernel-devel-3.10.0-957.21.3.el7.x86_64
+modprobe vboxguest failed
+The log file /var/log/vboxadd-setup.log may contain further information.</code></pre><p>安装kernel</p>
+<pre><code>sudo yum install kernel-devel kernel-devel-3.10.0-957.21.3.el7.x86_64</code></pre><p>重新运行 ./vboxadd setup 提示错误</p>
+<pre><code>VirtualBox Guest Additions: Building the VirtualBox Guest Additions kernel modules.  This may take a while.
+grep: Unmatched ) or \)
+VirtualBox Guest Additions: Look at /var/log/vboxadd-setup.log to find out what went wrong
+VirtualBox Guest Additions: Starting.</code></pre><p>/var/log/vboxadd-setup.log:</p>
+<pre><code>Building the main Guest Additions module.
+Building the shared folder support module.
+Building the graphics driver module.
+Error building the module:
+Could not find the X.Org or XFree86 Window System, skipping.</code></pre><p>在虚拟机中安装xorg</p>
+<pre><code>yum -y install xorg-x11-drivers xorg-x11-utils</code></pre><p>在host上安装vbguest插件</p>
+<pre><code>vagrant plugin install vagrant-vbguest</code></pre><p>重新启动虚拟机，问题解决</p>
+<pre><code>vagrant reload</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -357,17 +467,17 @@ typedef struct zset {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
