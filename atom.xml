@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.daxiaju.club/"/>
-  <updated>2020-11-19T05:38:54.592Z</updated>
+  <updated>2020-11-25T08:01:24.912Z</updated>
   <id>http://www.daxiaju.club/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用免费的ShareX实现录屏</title>
+    <link href="http://www.daxiaju.club/2020/11/25/use-sharex-to-record-screen/"/>
+    <id>http://www.daxiaju.club/2020/11/25/use-sharex-to-record-screen/</id>
+    <published>2020-11-25T07:58:53.000Z</published>
+    <updated>2020-11-25T08:01:24.912Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;日常工作学习中免不了需要用到截屏或录屏功能，今天就来推荐一款免费开源的截图工具，ShareX。&lt;/p&gt;
+&lt;h1 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h1&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Vagrant同步Ansible开发文件夹</title>
@@ -518,33 +541,6 @@
     
     
       <category term="服务器" scheme="http://www.daxiaju.club/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在windows上安装twisted</title>
-    <link href="http://www.daxiaju.club/2019/07/01/install-twisted-on-windows/"/>
-    <id>http://www.daxiaju.club/2019/07/01/install-twisted-on-windows/</id>
-    <published>2019-07-01T04:13:28.000Z</published>
-    <updated>2020-11-13T01:23:45.119Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Twisted库是比较流行的一个异步操作库，实现了大量的网络协议，scrapy就是基于Twisted实现异步操作和网络通讯。文末有彩蛋。&lt;/p&gt;
-&lt;h2 id=&quot;方法1-源代码安装&quot;&gt;&lt;a href=&quot;#方法1-源代码安装&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="编程" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="Windows, python" scheme="http://www.daxiaju.club/tags/Windows-python/"/>
     
   </entry>
   

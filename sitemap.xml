@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.daxiaju.club/2020/11/25/use-sharex-to-record-screen/</loc>
+    
+    <lastmod>2020-11-25T08:01:24.912Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.daxiaju.club/2020/11/19/vagrant-ansible-develop-folder-sync/</loc>
     
     <lastmod>2020-11-19T05:38:54.592Z</lastmod>
@@ -114,20 +121,6 @@
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2020/03/08/docker-runtime-error-on-centos7/</loc>
-    
-    <lastmod>2020-11-13T01:23:45.117Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.daxiaju.club/2020/02/23/download-apk-from-google-play/</loc>
-    
-    <lastmod>2020-11-13T01:23:45.117Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.daxiaju.club/2019/09/08/docker-container-timezone/</loc>
     
     <lastmod>2020-11-13T01:23:45.117Z</lastmod>
@@ -135,7 +128,21 @@
   </url>
   
   <url>
+    <loc>http://www.daxiaju.club/2020/03/08/docker-runtime-error-on-centos7/</loc>
+    
+    <lastmod>2020-11-13T01:23:45.117Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.daxiaju.club/2020/05/12/how-to-avoid-misusing-singleton/</loc>
+    
+    <lastmod>2020-11-13T01:23:45.117Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.daxiaju.club/2020/02/23/download-apk-from-google-play/</loc>
     
     <lastmod>2020-11-13T01:23:45.117Z</lastmod>
     

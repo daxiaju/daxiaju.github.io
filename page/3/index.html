@@ -127,7 +127,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a>
 
   </li>
   </ul>
@@ -153,6 +153,164 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2019/07/01/install-twisted-on-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/01/install-twisted-on-windows/" class="post-title-link" itemprop="url">在windows上安装twisted</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-01 12:13:28" itemprop="dateCreated datePublished" datetime="2019-07-01T12:13:28+08:00">2019-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-13 09:23:45" itemprop="dateModified" datetime="2020-11-13T09:23:45+08:00">2020-11-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Twisted库是比较流行的一个异步操作库，实现了大量的网络协议，scrapy就是基于Twisted实现异步操作和网络通讯。文末有彩蛋。</p>
+<h2 id="方法1-源代码安装"><a href="#方法1-源代码安装" class="headerlink" title="方法1.源代码安装"></a>方法1.源代码安装</h2><p>Twisted默认源代码安装需要在本地编译c代码，需要安装VC</p>
+<pre><code>pip install twisted</code></pre><h2 id="方法2-第三方预编译包"><a href="#方法2-第三方预编译包" class="headerlink" title="方法2.第三方预编译包"></a>方法2.第三方预编译包</h2><p><a href="https://www.lfd.uci.edu网站上提供了大非官方提供的windows平台二进制python包，很多无法直接安装的库可以在这里找到平台专用包。" target="_blank" rel="noopener">https://www.lfd.uci.edu网站上提供了大非官方提供的windows平台二进制python包，很多无法直接安装的库可以在这里找到平台专用包。</a></p>
+<p>打开该页面，Ctrl+F打开搜索框，输入要查找的包名称即可快速找到安装包。</p>
+<p>twisted的版本如下。</p>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted</a></p>
+<p>截至发稿最新版本Twisted19.2.1的安装包连接如下</p>
+<h3 id="python27-Win64"><a href="#python27-Win64" class="headerlink" title="python27 Win64"></a>python27 Win64</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp27-cp27m-win_amd64.whl</code></pre><h3 id="python27-Win32"><a href="#python27-Win32" class="headerlink" title="python27 Win32"></a>python27 Win32</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp27-cp27m-win32.whl</code></pre><h3 id="python37-Win64"><a href="#python37-Win64" class="headerlink" title="python37 Win64"></a>python37 Win64</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp37-cp37m-win_amd64.whl</code></pre><h3 id="python37-Win32"><a href="#python37-Win32" class="headerlink" title="python37 Win32"></a>python37 Win32</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp37-cp37m-win32.whl</code></pre><p>其他版本可以自行查找下载。</p>
+<h2 id="方法3-推荐）"><a href="#方法3-推荐）" class="headerlink" title="方法3(推荐）"></a>方法3(推荐）</h2><p>官方最新提供了支持pip安装方式，如下</p>
+<pre><code>pip install Twisted[windows_platform]</code></pre><p>一键安装，从此无烦恼。</p>
+<h2 id="Microsoft-Visual-C-14-0-is-required"><a href="#Microsoft-Visual-C-14-0-is-required" class="headerlink" title="Microsoft Visual C++ 14.0 is required"></a>Microsoft Visual C++ 14.0 is required</h2><p>如果在安装过程中提示错误:</p>
+<pre><code>error: Microsoft Visual C++ 14.0 is required. Get it with &quot;Microsoft Visual C++ Build Tools&quot;: https://visualstudio.microsoft.com/downloads/</code></pre><p>可以在<a href="http://go.microsoft.com/fwlink/?LinkId=691126&fixForIE=.exe." target="_blank" rel="noopener">这里</a>下载Visual C++ 2015(14.0) Build Tools.</p>
+<p>see: </p>
+<ul>
+<li><a href="https://www.scivision.dev/python-windows-visual-c-14-required/" target="_blank" rel="noopener">https://www.scivision.dev/python-windows-visual-c-14-required/</a></li>
+<li><a href="https://stackoverflow.com/questions/29846087/microsoft-visual-c-14-0-is-required-unable-to-find-vcvarsall-bat" target="_blank" rel="noopener">https://stackoverflow.com/questions/29846087/microsoft-visual-c-14-0-is-required-unable-to-find-vcvarsall-bat</a></li>
+</ul>
+<h2 id="小彩蛋"><a href="#小彩蛋" class="headerlink" title="小彩蛋"></a>小彩蛋</h2><p>通过twisted可以快速建立各种简易的网络服务器，比如启动一个本地测试用的FTP服务器代码如下：</p>
+<p>ftpserver.py:</p>
+<pre><code># Copyright (c) Twisted Matrix Laboratories.
+# See LICENSE for details.
+
+&quot;&quot;&quot;
+An example FTP server with minimal user authentication.
+&quot;&quot;&quot;
+
+from twisted.protocols.ftp import FTPFactory, FTPRealm, BaseFTPRealm
+from twisted.cred.portal import Portal
+from twisted.cred.checkers import AllowAnonymousAccess, FilePasswordDB
+from twisted.internet import reactor
+from twisted.python import log, failure, filepath
+
+&quot;&quot;&quot;
+An example FTP server with minimal user authentication.
+&quot;&quot;&quot;
+
+#
+# First, set up a portal (twisted.cred.portal.Portal). This will be used
+# to authenticate user logins, including anonymous logins.
+#
+# Part of this will be to establish the &quot;realm&quot; of the server - the most
+# important task in this case is to establish where anonymous users will
+# have default access to. In a real world scenario this would typically
+# point to something like &apos;/pub&apos; but for this example it is pointed at the
+# current working directory.
+#
+# The other important part of the portal setup is to point it to a list of
+# credential checkers. In this case, the first of these is used to grant
+# access to anonymous users and is relatively simple; the second is a very
+# primitive password checker.  This example uses a plain text password file
+# that has one username:password pair per line. This checker *does* provide
+# a hashing interface, and one would normally want to use it instead of
+# plain text storage for anything remotely resembling a &apos;live&apos; network. In
+# this case, the file &quot;pass.dat&quot; is used, and stored in the same directory
+# as the server. BAD.
+#
+# Create a pass.dat file which looks like this:
+#
+# =====================
+#   jeff:bozo
+#   grimmtooth:bozo2
+# =====================
+class LocalFTPRealm(BaseFTPRealm):
+    def __init__(self):
+        self.userHome = filepath.FilePath(&apos;./HOME&apos;)
+
+    def getHomeDirectory(self, avatarId):
+        return self.userHome
+p = Portal(LocalFTPRealm(),
+           [AllowAnonymousAccess(), FilePasswordDB(&apos;./auth&apos;, cache=True)])
+#
+# Once the portal is set up, start up the FTPFactory and pass the portal to
+# it on startup. FTPFactory will start up a twisted.protocols.ftp.FTP()
+# handler for each incoming OPEN request. Business as usual in Twisted land.
+#
+f = FTPFactory(p)
+
+#
+# You know this part. Point the reactor to port 21 coupled with the above factory,
+# and start the event loop.
+#
+reactor.listenTCP(21, f)
+reactor.run()</code></pre><p>ftp同一文件夹下创建一个auth文件，每行一个用户，用户名和密码用冒号:分割。</p>
+<p>auth:</p>
+<pre><code>abc:123</code></pre><p>FTP根目录对应当前文件夹下的HOME文件夹，Enjoy.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -467,7 +625,7 @@ typedef struct zset {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

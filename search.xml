@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>使用免费的ShareX实现录屏</title>
+      <link href="/2020/11/25/use-sharex-to-record-screen/"/>
+      <url>/2020/11/25/use-sharex-to-record-screen/</url>
+      
+        <content type="html"><![CDATA[<p>日常工作学习中免不了需要用到截屏或录屏功能，今天就来推荐一款免费开源的截图工具，ShareX。</p><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><img src="/images/sharex1.png" alt></p><p><img src="/images/sharex2.png" alt></p><p><img src="/images/sharex3.png" alt></p><p>除了基本的截图功能外，还可以在截图后自动上传，自行预设动作，有很灵活的配置潜力。</p><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>官网地址为：<a href="https://getsharex.com/" target="_blank" rel="noopener">https://getsharex.com/</a></p><p>当前最新版本下载地址如下：</p><p><a href="https://github.com/ShareX/ShareX/releases/download/v13.3.0/ShareX-13.3.0-setup.exe" target="_blank" rel="noopener">https://github.com/ShareX/ShareX/releases/download/v13.3.0/ShareX-13.3.0-setup.exe</a></p><p>安装完直接在开始菜单启动即可。</p><h1 id="录屏"><a href="#录屏" class="headerlink" title="录屏"></a>录屏</h1><h2 id="录制GIF"><a href="#录制GIF" class="headerlink" title="录制GIF"></a>录制GIF</h2><p>要录制GIF需要执行以下步骤</p><ol><li>快捷动作-屏幕录制(GIF) 或按快捷键 Ctrl + Shift + Print Screen</li><li>选择需要录制的范围，此时录制开始</li><li>录制开始后有个选择框，下面有停止按钮，点击停止结束录制。</li><li>录制完成后文件会自动出现在程序主界面。</li></ol><p><img src="/images/sharex4.gif" alt></p><h2 id="录制视频"><a href="#录制视频" class="headerlink" title="录制视频"></a>录制视频</h2><p>录制视频可以提供更高的帧数、更长的录制时间以及音频内录。ShareX录制视频使用ffmpeg库实现，并提供了内录所需的虚拟设备插件，在使用前需要进行设置。</p><h3 id="ffmpeg设置"><a href="#ffmpeg设置" class="headerlink" title="ffmpeg设置"></a>ffmpeg设置</h3><p>点击菜单 <code>动作设置 - 屏幕记录 - 屏幕录制选项</code></p><p>在<code>FFmegp路径</code>选项框右侧有<code>下载</code>按钮，点击即可自动下载。</p><p>自动下载速度较慢，可以自行下载相关程序，<a href="https://ffmpeg.org/download.html" target="_blank" rel="noopener">官网地址</a></p><p>windows直接下载地址 </p><p><a href="https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z" target="_blank" rel="noopener">https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z</a></p><p>下载并解压后把ffmpeg.exe路径填写在框里。</p><p><img src="/images/sharex5.png" alt></p><h3 id="安装虚拟设备"><a href="#安装虚拟设备" class="headerlink" title="安装虚拟设备"></a>安装虚拟设备</h3><p>要录制屏幕和音频，需要安装虚拟设备，可以通过sharex自动安装。</p><p>还是在屏幕录制选项页面 <code>动作设置 - 屏幕记录 - 屏幕录制选项</code></p><p>点击“安装捕捉器”按钮，点击下一步安装程序即可。</p><p><img src="/images/sharex6.png" alt></p><p>安装完成后，在设备中选择新安装的虚拟设备。</p><p><img src="/images/sharex5.gif" alt></p><p>这样就设置完成了。</p><h3 id="屏幕录制"><a href="#屏幕录制" class="headerlink" title="屏幕录制"></a>屏幕录制</h3><ol><li>快捷动作-屏幕录制 或按快捷键 Shift + Print Screen</li><li>选择需要录制的范围，此时录制开始</li><li>录制开始后有个选择框，下面有停止按钮，点击停止结束录制。</li><li>录制完成后文件会自动出现在程序主界面。</li></ol><p><img src="/images/sharex6.gif" alt></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vagrant同步Ansible开发文件夹</title>
       <link href="/2020/11/19/vagrant-ansible-develop-folder-sync/"/>
       <url>/2020/11/19/vagrant-ansible-develop-folder-sync/</url>
