@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>使用ansible修改系统级别的path环境变量</title>
+      <link href="/2020/11/26/modify-system-wide-path-variable-with-ansible/"/>
+      <url>/2020/11/26/modify-system-wide-path-variable-with-ansible/</url>
+      
+        <content type="html"><![CDATA[<p>使用ansible在受控节点上安装软件，经常会碰到需要修改path环境变量的问题，那么如何能有效且幂等地修改path变量呢，今天虾哥就来分享一下。</p><p>下面的一个例子，在centos 7 上安装python3之后，python3上新安装包的可执行文件会链接在/usr/local/bin下，但是默认情况下这个路径没有放在path变量中。</p><p>下面的playbook使用pip3安装uwsgi，并将/usr/local/bin添加到path变量中。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">- name:</span> <span class="string">Install</span> <span class="string">uwsgi</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Install</span> <span class="string">python3</span></span><br><span class="line"><span class="attr">      yum:</span></span><br><span class="line"><span class="attr">        name:</span> </span><br><span class="line"><span class="bullet">          -</span> <span class="string">python3</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Install</span> <span class="string">uwsgi</span></span><br><span class="line"><span class="attr">      pip:</span></span><br><span class="line"><span class="attr">        executable:</span> <span class="string">pip3</span></span><br><span class="line"><span class="attr">        name:</span> <span class="string">uwsgi</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Uwsgi</span> <span class="string">env</span></span><br><span class="line"><span class="attr">      copy:</span></span><br><span class="line"><span class="attr">        content:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          export PATH=$PATH:/usr/local/bin</span></span><br><span class="line"><span class="string"></span><span class="attr">        dest:</span> <span class="string">/etc/profile.d/uwsgi.sh</span></span><br><span class="line"><span class="attr">        mode:</span> <span class="number">644</span></span><br><span class="line"><span class="attr">      become:</span> <span class="literal">yes</span></span><br></pre></td></tr></table></figure><p>其原理非常简单，就是在<code>/etc/profile.d</code>文件夹下新建一个shell脚本，脚本中修改path变量。<br>用户在新登录时会执行这个文件夹下的所有文件，这样就获得了最新的path变量了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ansible </tag>
+            
+            <tag> linux </tag>
+            
+            <tag> python </tag>
+            
+            <tag> centos 7 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用免费的ShareX实现录屏</title>
       <link href="/2020/11/25/use-sharex-to-record-screen/"/>
       <url>/2020/11/25/use-sharex-to-record-screen/</url>
@@ -35,9 +66,9 @@
       
         <tags>
             
-            <tag> vagrant </tag>
-            
             <tag> ansible </tag>
+            
+            <tag> vagrant </tag>
             
         </tags>
       

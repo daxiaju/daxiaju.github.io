@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.daxiaju.club/"/>
-  <updated>2020-11-25T08:01:24.912Z</updated>
+  <updated>2020-11-26T07:14:05.438Z</updated>
   <id>http://www.daxiaju.club/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用ansible修改系统级别的path环境变量</title>
+    <link href="http://www.daxiaju.club/2020/11/26/modify-system-wide-path-variable-with-ansible/"/>
+    <id>http://www.daxiaju.club/2020/11/26/modify-system-wide-path-variable-with-ansible/</id>
+    <published>2020-11-26T07:14:05.000Z</published>
+    <updated>2020-11-26T07:14:05.438Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;使用ansible在受控节点上安装软件，经常会碰到需要修改path环境变量的问题，那么如何能有效且幂等地修改path变量呢，今天虾哥就来分享一下。&lt;/p&gt;
+&lt;p&gt;下面的一个例子，在centos 7
+        
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="http://www.daxiaju.club/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="ansible" scheme="http://www.daxiaju.club/tags/ansible/"/>
+    
+      <category term="linux" scheme="http://www.daxiaju.club/tags/linux/"/>
+    
+      <category term="python" scheme="http://www.daxiaju.club/tags/python/"/>
+    
+      <category term="centos 7" scheme="http://www.daxiaju.club/tags/centos-7/"/>
+    
+  </entry>
   
   <entry>
     <title>使用免费的ShareX实现录屏</title>
@@ -64,9 +97,9 @@
       <category term="服务器" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
-      <category term="vagrant" scheme="http://www.daxiaju.club/tags/vagrant/"/>
-    
       <category term="ansible" scheme="http://www.daxiaju.club/tags/ansible/"/>
+    
+      <category term="vagrant" scheme="http://www.daxiaju.club/tags/vagrant/"/>
     
   </entry>
   
@@ -515,32 +548,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>怎样在Centos7上安装Python3.6</title>
-    <link href="http://www.daxiaju.club/2019/07/02/how-to-install-python3-on-centos7/"/>
-    <id>http://www.daxiaju.club/2019/07/02/how-to-install-python3-on-centos7/</id>
-    <published>2019-07-02T07:30:45.000Z</published>
-    <updated>2020-11-13T01:23:45.117Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-安装ius源&quot;&gt;&lt;a href=&quot;#1-安装ius源&quot; class=&quot;headerlink&quot; title=&quot;1.安装ius源&quot;&gt;&lt;/a&gt;1.安装ius源&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://ius.io/&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="服务器" scheme="http://www.daxiaju.club/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-    
-      <category term="服务器" scheme="http://www.daxiaju.club/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   
