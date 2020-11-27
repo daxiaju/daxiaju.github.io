@@ -4,7 +4,7 @@
   <url>
     <loc>http://www.daxiaju.club/2020/11/26/modify-system-wide-path-variable-with-ansible/</loc>
     
-    <lastmod>2020-11-26T07:14:05.438Z</lastmod>
+    <lastmod>2020-11-27T01:01:47.285Z</lastmod>
     
   </url>
   
@@ -51,14 +51,14 @@
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2020/10/30/python-logging/</loc>
+    <loc>http://www.daxiaju.club/2019/07/09/python-setup-py-develop-failed/</loc>
     
     <lastmod>2020-11-13T01:23:45.120Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2019/07/09/python-setup-py-develop-failed/</loc>
+    <loc>http://www.daxiaju.club/2020/10/30/python-logging/</loc>
     
     <lastmod>2020-11-13T01:23:45.120Z</lastmod>
     
@@ -86,13 +86,6 @@
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2019/08/07/nginx-acme-docker/</loc>
-    
-    <lastmod>2020-11-13T01:23:45.119Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.daxiaju.club/2020/03/10/npp-plugin-manager-install/</loc>
     
     <lastmod>2020-11-13T01:23:45.119Z</lastmod>
@@ -100,14 +93,21 @@
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2019/08/17/install-both-python2-and3-on-win10/</loc>
+    <loc>http://www.daxiaju.club/2019/08/07/nginx-acme-docker/</loc>
+    
+    <lastmod>2020-11-13T01:23:45.119Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.daxiaju.club/2019/07/11/how-to-register-hostloc/</loc>
     
     <lastmod>2020-11-13T01:23:45.118Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2019/07/11/how-to-register-hostloc/</loc>
+    <loc>http://www.daxiaju.club/2019/08/17/install-both-python2-and3-on-win10/</loc>
     
     <lastmod>2020-11-13T01:23:45.118Z</lastmod>
     
@@ -149,14 +149,14 @@
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2020/05/12/how-to-avoid-misusing-singleton/</loc>
+    <loc>http://www.daxiaju.club/2019/07/02/how-to-install-python3-on-centos7/</loc>
     
     <lastmod>2020-11-13T01:23:45.117Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.daxiaju.club/2019/07/02/how-to-install-python3-on-centos7/</loc>
+    <loc>http://www.daxiaju.club/2020/05/12/how-to-avoid-misusing-singleton/</loc>
     
     <lastmod>2020-11-13T01:23:45.117Z</lastmod>
     
