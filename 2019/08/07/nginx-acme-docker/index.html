@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.daxiaju.club","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.daxiaju.net","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="前言Nginx反向代理速度快，可以自定义各种转发规则，可以说是站长的好朋友。 acme.sh支持多个域名服务商的证书生成，让站长免费获取到ssl带来的安全性，也是不可或缺的好伙伴。 本文虾哥将本着DRY原则，让站长不需要记住部署nginx和acme的若干命令，快速搭建起安全实用的ssl反向代理服务器。 1. 准备使用docker部署程序省去安装各种语言运行环境的麻烦，但docker本身还是需要准备">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Docker快速部署Nginx反代，以及ACME自动续证书">
-<meta property="og:url" content="http://www.daxiaju.club/2019/08/07/nginx-acme-docker/index.html">
+<meta property="og:url" content="http://www.daxiaju.net/2019/08/07/nginx-acme-docker/index.html">
 <meta property="og:site_name" content="大虾居">
 <meta property="og:description" content="前言Nginx反向代理速度快，可以自定义各种转发规则，可以说是站长的好朋友。 acme.sh支持多个域名服务商的证书生成，让站长免费获取到ssl带来的安全性，也是不可或缺的好伙伴。 本文虾哥将本着DRY原则，让站长不需要记住部署nginx和acme的若干命令，快速搭建起安全实用的ssl反向代理服务器。 1. 准备使用docker部署程序省去安装各种语言运行环境的麻烦，但docker本身还是需要准备">
 <meta property="og:locale" content="zh_CN">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="docker, acme.sh, nginx, https, SSL证书, SSL证书自动续期">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.daxiaju.club/2019/08/07/nginx-acme-docker/">
+<link rel="canonical" href="http://www.daxiaju.net/2019/08/07/nginx-acme-docker/">
 
 
 <script id="page-configurations">
@@ -132,7 +132,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
 
   </li>
   </ul>
@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2019/08/07/nginx-acme-docker/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2019/08/07/nginx-acme-docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -442,17 +442,17 @@ services:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

@@ -17,19 +17,19 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.daxiaju.club","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.daxiaju.net","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="大虾居">
-<meta property="og:url" content="http://www.daxiaju.club/index.html">
+<meta property="og:url" content="http://www.daxiaju.net/index.html">
 <meta property="og:site_name" content="大虾居">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="许大虾">
 <meta property="article:tag" content="分享码农点滴事。">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.daxiaju.club/">
+<link rel="canonical" href="http://www.daxiaju.net/">
 
 
 <script id="page-configurations">
@@ -128,7 +128,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
 
   </li>
   </ul>
@@ -158,7 +158,148 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2023/11/30/github-pages-custom-domain/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2023/12/01/btc-return-predict-arima/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/01/btc-return-predict-arima/" class="post-title-link" itemprop="url">使用ARIMA模型预测Bitcoin收益率</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-12-01 09:24:31 / 修改时间：11:27:16" itemprop="dateCreated datePublished" datetime="2023-12-01T09:24:31+08:00">2023-12-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/" itemprop="url" rel="index"><span itemprop="name">量化投资</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>比特币(Bitcoin)是2008年一个自称名为中本聪(Satoshi Nakamoto)的人在互联网上发布的一套加密交易协议<sup id="fnref:1" class="location-target"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://bitcoin.org/bitcoin.pdf ">1</span></a></sup>。由于比特币去中心化，发行总量固定，零信任机制等特点，吸引了众多投资者的关注。近年来，比特币价格连创新高，相关的衍生品日益完善，已经成为一种相对成熟的投资工具。然而，由于比特币价格波动较大，投资难度也相对较高，预测比特币价格成为一项重点且具有难度的问题。</p>
+<p>ARIMA（Autoregressive Integrated Moving Average）模型是金融时间序列分析中常用的工具<sup id="fnref:2" class="location-target"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Tsay, R. S. (2009). Analysis of financial time series (Vol. 543). John Wiley & Sons.">2</span></a></sup>。ARIMA模型由三部分组成，分别是AR（自回归）、I（序列差分）和MA（移动平均），可以有效捕捉数据中的自相关性和短期波动。</p>
+<p>本文将详细介绍如何使用Python中相关的程序包实现基于ARIMA模型的比特币收益率预测。</p>
+<h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><p>首先从yahoo finance上下载bitcoin日度行情数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> pandas_datareader <span class="keyword">import</span> data <span class="keyword">as</span> pdr</span><br><span class="line"><span class="keyword">import</span> yfinance <span class="keyword">as</span> yf</span><br><span class="line">yf.pdr_override()</span><br><span class="line"></span><br><span class="line">start_date = datetime(<span class="number">2015</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">end_date = datetime(<span class="number">2023</span>,<span class="number">6</span>,<span class="number">30</span>)</span><br><span class="line"></span><br><span class="line">df_btc_price = pdr.get_data_yahoo(<span class="string">&#x27;BTC-USD&#x27;</span>, start=start_date, end=end_date, interval=<span class="string">&#x27;1d&#x27;</span>)</span><br><span class="line">df_btc_price.index = df_btc_price.index.astype(<span class="string">&#x27;datetime64[ns]&#x27;</span>)</span><br><span class="line">df_btc_price.head()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/btc_return_predict_arima_1.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.plot(df_btc_price[<span class="string">&#x27;Close&#x27;</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/btc_return_predict_arima_2.png"></p>
+<p>从图中可以推测价格数据不平稳，下面做一下adf检验平稳性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.tsa.stattools <span class="keyword">import</span> adfuller</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;price time series adfuller p-value:&#x27;</span>, adfuller(df_btc_price[<span class="string">&#x27;Close&#x27;</span>])[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">price time series adfuller p-value: 0.5158389287588319</span><br></pre></td></tr></table></figure>
+
+<p>P值非常大，证明价格数据不平稳。<br>下面看一下日度收益率的平稳情况。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">returns = df_btc_price[<span class="string">&#x27;Close&#x27;</span>].pct_change().dropna()</span><br><span class="line">plt.plot(returns)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/btc_return_predict_arima_3.png"></p>
+<p>从图上看收益率序列有稳定均值，且围绕均值上下波动，波动幅度也较为稳定。下面进行adf检验。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;return timeseries adfuller p-value:&#x27;</span>, adfuller(returns)[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return timeseries adfuller p-value: 0.0</span><br></pre></td></tr></table></figure>
+
+<p>P值验证收益率序列是平稳的。关于adf检验的原理可以参考<a href="https://www.jianshu.com/p/1b9e5e5e5d9c">ADF检验</a>。</p>
+<p>下面将数据拆分为训练集和测试集，训练集主要用于模型参数优化，测试集进行样本外模型绩效评估。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">training_data_len = math.ceil(<span class="built_in">len</span>(returns) * <span class="number">.8</span>) <span class="comment"># We are using %80 of the data for training</span></span><br><span class="line"></span><br><span class="line">returns_train = returns.loc[:training_data_len]</span><br><span class="line">returns_test = returns.loc[training_data_len:]</span><br></pre></td></tr></table></figure>
+
+<h1 id="ARIMA-模型"><a href="#ARIMA-模型" class="headerlink" title="ARIMA 模型"></a>ARIMA 模型</h1><p>下面准备使用ARIMA模型建模，ARIMA模型中一共有三个参数, p, d, q:</p>
+<ul>
+<li>p: AR 部分阶数</li>
+<li>d: I 部分差分次数</li>
+<li>q: MA 部分阶数</li>
+</ul>
+<p>首先手动选取一个模型进行分析，根据Tsay(2009)，可以使用acf来选取MA部分参数q。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.graphics.tsaplots <span class="keyword">import</span> plot_acf</span><br><span class="line"></span><br><span class="line">plot_acf(returns_train)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/btc_return_predict_arima_4.png" alt="ACF 自相关分析"></p>
+<p>从图中可以看出lag为6，10时相关性较大，手动选取(0,0,6)为作为ARIMA参数测试。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.tsa.arima.model <span class="keyword">import</span> ARIMA</span><br><span class="line"></span><br><span class="line">mod = ARIMA(returns_train, order=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">6</span>))  <span class="comment">#AR(0) MA(6)</span></span><br><span class="line">res = mod.fit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print out summary information on the fit</span></span><br><span class="line"><span class="built_in">print</span>(res.summary())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print out the estimate for the constant and for theta</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;When the true theta=-0.9, the estimate of theta (and the constant) are:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(res.params)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/btc_return_predict_arima_5.png" alt="ARIMA拟合结果"></p>
+<p>6项系数标准错误在0.012-015之间，LB 检验值为0.00，p-LB为0.97，拟合结果可以接受。<br>关于statsmodels ARIMA用法可以参考官方文档<sup id="fnref:3" class="location-target"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html">3</span></a></sup> <sup id="fnref:4" class="location-target"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMAResults.html
+">4</span></a></sup>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line"><span class="keyword">from</span> statsmodels.graphics.tsaplots <span class="keyword">import</span> plot_predict</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.arima.model <span class="keyword">import</span> ARIMA</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax = returns.plot(ax=ax)</span><br><span class="line">plot_predict(res, ax=ax)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/btc_return_predict_arima_6.png" alt="ARIMA样本内测试"></p>
+<p>样本内预测值与实际值的统计情况如上，其中阴影部分为95%置信区间。</p>
+<p>预测残差如下统计信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res.plot_diagnostics(figsize = (<span class="number">15</span>, <span class="number">10</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/btc_return_predict_arima_7.png" alt="ARIMA模型预测残差分析"></p>
+<p>预测RMSE (Root mean squared error) </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"></span><br><span class="line">rms = sqrt(mean_squared_error(returns_train, res.predict()))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Training RMSE: %.3f&#x27;</span> % rms)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Training RMSE: 0.038</span><br></pre></td></tr></table></figure>
+
+<h1 id="Grid-Search-优化参数"><a href="#Grid-Search-优化参数" class="headerlink" title="Grid-Search 优化参数"></a>Grid-Search 优化参数</h1><p>为了选取最优模型，使用grid search方法遍历组合进行拟合，并选取AIC最小的模型参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">iterative_ARIMA_fit</span>(<span class="params">series</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot; Iterates within the allowed values of the p and q parameters</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns a dictionary with the successful fits.</span></span><br><span class="line"><span class="string">    Keys correspond to models.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ARrange = <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">    MArange = <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">    Diffrange = [<span class="number">0</span>]</span><br><span class="line">   </span><br><span class="line">    ARIMA_fit_results = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> AR <span class="keyword">in</span> ARrange :</span><br><span class="line">        <span class="keyword">for</span> MA <span class="keyword">in</span> MArange :</span><br><span class="line">            <span class="keyword">for</span> Diff <span class="keyword">in</span> Diffrange:</span><br><span class="line">                params = (AR,Diff,MA)</span><br><span class="line">                series.freq =<span class="string">&#x27;D&#x27;</span></span><br><span class="line">                <span class="built_in">print</span>(params)</span><br><span class="line">                model = ARIMA(series, order = params)</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    results_ARIMA = model.fit()</span><br><span class="line">                    aic = results_ARIMA.aic</span><br><span class="line">                    ARIMA_fit_results[<span class="string">&#x27;%d-%d-%d&#x27;</span> % (AR,Diff,MA)]=[aic]</span><br><span class="line">                <span class="keyword">except</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ARIMA_fit_results</span><br><span class="line"></span><br><span class="line">opt_result = iterative_ARIMA_fit(returns_train)</span><br><span class="line"></span><br><span class="line"><span class="built_in">sorted</span>(opt_result.items(), key=<span class="keyword">lambda</span> item: item[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/btc_return_predict_arima_8.png" alt="ARIMA参数寻优"></p>
+<p>选取参数 4, 0, 4进行样本外检验</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">rolling_predict</span>(<span class="params">returns_train, returns_test, order_params</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    rolling forcasting arima model</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    history = returns_train.to_list()</span><br><span class="line">    test = returns_test.to_list()</span><br><span class="line">    test_index = returns_test.index</span><br><span class="line">    predictions = []</span><br><span class="line">    actuals = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(test)):</span><br><span class="line">        model = ARIMA(history, order=order_params)</span><br><span class="line">        res = model.fit()</span><br><span class="line">        output = res.forecast()</span><br><span class="line">        yhat = output[<span class="number">0</span>]</span><br><span class="line">        predictions.append(yhat)</span><br><span class="line">        obs = test[t]</span><br><span class="line">        actuals.append(obs)</span><br><span class="line">        history.append(obs)</span><br><span class="line"></span><br><span class="line">    df_predict = pd.DataFrame(index=test_index, columns=[<span class="string">&#x27;predict&#x27;</span>, <span class="string">&#x27;actual&#x27;</span>])</span><br><span class="line">    df_predict[<span class="string">&#x27;predict&#x27;</span>] = predictions</span><br><span class="line">    df_predict[<span class="string">&#x27;actual&#x27;</span>] = actuals</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> df_predict</span><br><span class="line"></span><br><span class="line">pred_rolling = rolling_predict(returns_train, returns_test, (<span class="number">4</span>,<span class="number">0</span>,<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">pred_rolling.dropna().plot()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/btc_return_predict_arima_9.png" alt="ARIMA样本外测试"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># RMSE</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"></span><br><span class="line">rmse = sqrt(mean_squared_error(pred_rolling[<span class="string">&#x27;actual&#x27;</span>], pred_rolling[<span class="string">&#x27;predict&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;test RMSE: &#x27;</span>, rmse)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test RMSE:  0.025680854707355105</span><br></pre></td></tr></table></figure>
+
+<p>用一个简单的策略进行验证，在下一日预测收益率大于0.003时做多，否则平仓。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">test_strategy</span>(<span class="params">df_returns, open_long_threshold=<span class="number">0.005</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    test strategy, if predict &gt; threshold, open long, close otherwise.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    df_strategy = pd.DataFrame(index=df_returns.index)</span><br><span class="line">    df_strategy[<span class="string">&#x27;weight&#x27;</span>] = df_returns[<span class="string">&#x27;predict&#x27;</span>].apply(<span class="keyword">lambda</span> x: <span class="number">1.0</span> <span class="keyword">if</span> x &gt; open_long_threshold <span class="keyword">else</span> <span class="number">0.0</span>)</span><br><span class="line">    df_strategy[<span class="string">&#x27;act_return&#x27;</span>] = df_returns[<span class="string">&#x27;actual&#x27;</span>].shift(-<span class="number">1</span>)</span><br><span class="line">    df_strategy[<span class="string">&#x27;ret_contrib&#x27;</span>] = df_strategy[<span class="string">&#x27;weight&#x27;</span>] * df_strategy[<span class="string">&#x27;act_return&#x27;</span>]</span><br><span class="line">    <span class="keyword">return</span> df_strategy</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_strategy</span>(<span class="params">df_strategy</span>):</span><br><span class="line">    fig, ax = plt.subplots()</span><br><span class="line">    ax.plot(df_strategy[<span class="string">&#x27;ret_contrib&#x27;</span>].cumsum(), label=<span class="string">&#x27;strategy&#x27;</span>)</span><br><span class="line">    ax.plot(df_strategy[<span class="string">&#x27;act_return&#x27;</span>].cumsum(), color=<span class="string">&#x27;red&#x27;</span>, alpha=<span class="number">0.2</span>, label=<span class="string">&#x27;BTC&#x27;</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">df_strategy_result = test_strategy(pred_rolling, open_long_threshold=<span class="number">0.003</span>)</span><br><span class="line">plot_strategy(df_strategy_result)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/btc_return_predict_arima_10.png" alt="ARIMA策略"></p>
+<p>从回测可以看出，本策略可以今年上半年收益约10%，躲过了大部分回撤。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在本文中大虾演示了从数据分析到ARIMA建模，再到模型参数优化和模拟策略回测。ARIMA模型在比特币收益率预测上表现不错，但是由于比特币价格波动较大，预测收益率的误差也较大，需要进一步优化模型或者使用其他模型进行预测。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://bitcoin.org/bitcoin.pdf<a href="#fnref:1" rev="footnote">↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Tsay, R. S. (2009). Analysis of financial time series (Vol. 543). John Wiley &amp; Sons.<a href="#fnref:2" rev="footnote">↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html<a href="#fnref:3" rev="footnote">↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMAResults.html<a href="#fnref:4" rev="footnote">↩</a></span></li></ol></div></div>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2023/11/30/github-pages-custom-domain/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -183,7 +324,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-11-30 09:41:37 / 修改时间：10:02:52" itemprop="dateCreated datePublished" datetime="2023-11-30T09:41:37+08:00">2023-11-30</time>
+              <time title="创建时间：2023-11-30 09:41:37 / 修改时间：10:36:43" itemprop="dateCreated datePublished" datetime="2023-11-30T09:41:37+08:00">2023-11-30</time>
             </span>
 
           
@@ -200,7 +341,7 @@
           <p>Github Pages 提供了一个免费的静态文件托管服务，方便我们搭建在线技术文档，甚至是假设博客。<br>同时 Github还免费提供了 <code>xxx.github.io</code> 三级域名用于访问。但是如果我们希望自己的站点更具个性化，我们可以自己注册域名并在github上开启自定义域名。</p>
 <p>下面跟大虾一起完成设置吧。</p>
 <h1 id="一、注册域名并修改DNS记录"><a href="#一、注册域名并修改DNS记录" class="headerlink" title="一、注册域名并修改DNS记录"></a>一、注册域名并修改DNS记录</h1><p>首先在域名注册商处注册一个域名，然后修改域名的DNS记录，将域名解析到Github Pages的服务器上。</p>
-<p>添加一个C记录<code>www</code>， 解析到 <code>xxx.github.io.</code> 三级域名，注意这里xxx必须是github上注册的user或者orgnization名字。</p>
+<p>添加一个C记录<code>www</code>， 解析到 <code>xxx.github.io.</code> 三级域名，注意这里xxx必须是github上注册的user或者organization名字。</p>
 <p><img src="/images/domain_c_name.jpg" alt="image"></p>
 <h1 id="二、在Github上完成域名认证"><a href="#二、在Github上完成域名认证" class="headerlink" title="二、在Github上完成域名认证"></a>二、在Github上完成域名认证</h1><p>在github右上角点击个人图标，进入settings页面。</p>
 <p>Settings页面左侧 Code, Plan and automation栏下进入Pages页面。</p>
@@ -213,12 +354,16 @@
 <p><img src="/images/verify_domain3.jpg" alt="image"></p>
 <p>修改DNS记录可能要等几分钟只几个小时等待生效，生效后点击Verify即可完成认证。</p>
 <p><img src="/images/verify_domain4.jpg" alt="image"></p>
-<h1 id="3-在Github-Pages站点后台绑定域名"><a href="#3-在Github-Pages站点后台绑定域名" class="headerlink" title="3 在Github Pages站点后台绑定域名"></a>3 在Github Pages站点后台绑定域名</h1><p>回到指定的Github Pages站点项目后台，点击Settings。</p>
+<h1 id="三、在Github-Pages站点后台绑定域名"><a href="#三、在Github-Pages站点后台绑定域名" class="headerlink" title="三、在Github Pages站点后台绑定域名"></a>三、在Github Pages站点后台绑定域名</h1><p>回到指定的Github Pages站点项目后台，点击Settings。</p>
 <p>找到Custom domain栏，输入自己的域名，点击Save。</p>
 <p>此处设置完成后github可能需要花一些时间等待域名正确解析。</p>
 <p><img src="/images/github_pages_domain.jpg" alt="image"></p>
 <p>这里勾选HTTPS后github pages还可以为你的域名生成SSL证书，省去自己申请证书的麻烦，非常贴心。</p>
 <p>等到解析完成，通过 xxx.github.io即可访问自己的网站了。</p>
+<h1 id="四、常见问题"><a href="#四、常见问题" class="headerlink" title="四、常见问题"></a>四、常见问题</h1><h2 id="设置自定义域名不成功-NotServedByPagesError"><a href="#设置自定义域名不成功-NotServedByPagesError" class="headerlink" title="设置自定义域名不成功 NotServedByPagesError"></a>设置自定义域名不成功 NotServedByPagesError</h2><p>在Pages 页面设置自定义域名，但是始终在DNS检查，或者返回 <code>NotServedByPagesError</code> 错误，这个问题还比较常见。</p>
+<p>出现这种情况的一个原因是当设置自定义域名时，github会自动在repository创建一个CNAME文件，如果该文件已经存在，<br>则可能导致操作失败，可以手动修改或者删除这个文件。</p>
+<p>这个文件的内容就是自定义的域名。</p>
+<p><img src="/images/github_pages_domain2.jpg" alt="image"></p>
 <h1 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h1><p><a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages">https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages</a></p>
 <p><a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site</a></p>
 
@@ -240,7 +385,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2021/07/30/python-logging-for-class/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2021/07/30/python-logging-for-class/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -330,7 +475,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/26/modify-system-wide-path-variable-with-ansible/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2020/11/26/modify-system-wide-path-variable-with-ansible/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -414,7 +559,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/25/use-sharex-to-record-screen/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2020/11/25/use-sharex-to-record-screen/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -517,7 +662,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/19/vagrant-ansible-develop-folder-sync/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2020/11/19/vagrant-ansible-develop-folder-sync/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -634,7 +779,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/13/vagrant-proxyconf/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2020/11/13/vagrant-proxyconf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -732,7 +877,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/11/add-git-bash-to-windows-terminal/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2020/11/11/add-git-bash-to-windows-terminal/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -814,7 +959,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/10/30/python-logging/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2020/10/30/python-logging/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1005,7 +1150,7 @@ def main():
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/05/12/how-to-avoid-misusing-singleton/">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2020/05/12/how-to-avoid-misusing-singleton/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1123,171 +1268,6 @@ def main():
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/04/20/django-commandline-init-admin-account/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="许大虾">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大虾居">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/20/django-commandline-init-admin-account/" class="post-title-link" itemprop="url">给Django应用增加一个初始化admin管理员用户的命令行工具</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-20 10:55:23" itemprop="dateCreated datePublished" datetime="2020-04-20T10:55:23+08:00">2020-04-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="为什么要添加一个初始化超级用户的命令行入口"><a href="#为什么要添加一个初始化超级用户的命令行入口" class="headerlink" title="为什么要添加一个初始化超级用户的命令行入口"></a>为什么要添加一个初始化超级用户的命令行入口</h1><p>django提供了一系列重要而且好用的命令行工具，使用创建项目时自动生成的manage.py，<br>或者全局django-admin都可以运行这些程序。</p>
-<pre><code>python mamage.py
-
-django-admin
-</code></pre>
-<p>其中在启用了<code>django.contrib.auth</code>app之后，我们可以受用createsuperuser命令来创建超级用户。</p>
-<pre><code>python manage.py createsuperuser
-</code></pre>
-<p>这个命令通常时我们启用django身份验证功能之后要登录到admin站点必须要使用的命令。但是这个命令的<br>问题在于它只能用交互方式运行，我们无法用一个非交互式脚本来创建用户，比如我们的站点需要一键<br>安装、自动化搭建测试环境等等场景。</p>
-<p>在使用命令行之外我们也有其他选项，比如在migrations增加一个创建默认超级用户的脚本，在安装过程中<br>执行migrate从而添加默认超级用户。但这样做的问题是默认用户信息在所有环境中都是相同的，如果管理人员<br>忘记修改默认密码，可能会导致安全风险。</p>
-<p>如果有一个命令行能用无交互的方式，使用参数来指定超级用户的账号和密码，就会适应更多场景的要求。</p>
-<h1 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h1><h2 id="命令行接口的设计"><a href="#命令行接口的设计" class="headerlink" title="命令行接口的设计"></a>命令行接口的设计</h2><p>我们需要一个命令行工具，用如下的方式创建一个超级用户。</p>
-<pre><code>python manage.py initadmin --user=admin --password=YourPassword --email=abc@example.com
-</code></pre>
-<p>这个命令行还能从环境变量中读取参数信息</p>
-<pre><code>DJANGO_SU_NAME=admin DJANGO_SU_PASSWORD=YourPassword DJANGO_SU_EMAIL=abc@example.com python manage.py initadmin 
-
-或者
-
-export DJANGO_SU_NAME=admin
-export DJANGO_SU_PASSWORD=YourPassword
-export DJANGO_SU_EMAIL=abc@example.com
-python manage.py initadmin 
-</code></pre>
-<h2 id="使用django-custom-django-admin-commands框架"><a href="#使用django-custom-django-admin-commands框架" class="headerlink" title="使用django custom django-admin commands框架"></a>使用django custom django-admin commands框架</h2><p>django提供了自行扩展命令行工具的框架，添加相关代码后可以直接采用manage.py或python-admin命令行进行调用。<br>相关文档可以参考!()[<a href="https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/]">https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/]</a></p>
-<p>首先需要在自己的app中创建指定文件夹，django会从指定文件夹中加载相应模块，假设你的app名字为myapp，<br>command模块应在<code>myapp/management/commands</code>文件夹下，<br>这两个文件夹都是package，因此别忘了在<code>management</code>文件夹和<code>commands</code>文件夹都添加<code>__init__.py</code>文件，</p>
-<p>在<code>commands</code> 包下添加<code>initadmin</code>模块，即<code>initadmin.py</code></p>
-<pre><code># myapp/management/commands/initadmin.py
-import os
-from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
-
-
-class Command(BaseCommand):
-    def add_arguments(self, parser):
-        parser.add_argument(&#39;--user&#39;)
-        parser.add_argument(&#39;--password&#39;)
-        parser.add_argument(&#39;--email&#39;)
-
-    def handle(self, *args, **options):
-        admin_username = options.get(&#39;user&#39;) or os.environ.get(&#39;DJANGO_SU_NAME&#39;)
-        admin_email = options.get(&#39;email&#39;) or os.environ.get(&#39;DJANGO_SU_EMAIL&#39;)
-        admin_password = options.get(&#39;password&#39;) or os.environ.get(&#39;DJANGO_SU_PASSWORD&#39;)
-
-        if not admin_username:
-            raise Exception(&quot;No username specified.&quot;)
-
-        if not admin_email:
-            raise Exception(&#39;No email specified.&#39;)
-
-        if not admin_password:
-            raise Exception(&#39;No password specified.&#39;)
-
-        if User.objects.filter(username=admin_username).first():
-            print(f&#39;&#123;admin_username&#125; user already exists.&#39;)
-            return
-
-        admin_user = User.objects.create_superuser(username=admin_username,
-                                                   email=admin_email,
-                                                   password=admin_password)
-        admin_user.is_active = True
-        admin_user.is_admin = True
-        admin_user.save()
-        print(f&#39;&#123;admin_username&#125; user created.&#39;)
-</code></pre>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="命令行使用"><a href="#命令行使用" class="headerlink" title="命令行使用"></a>命令行使用</h2><p>如前面提到的方式使用即可，可通过命令行参数指定admin用户信息，或者使用环境变量</p>
-<pre><code>DJANGO_SU_NAME=admin DJANGO_SU_PASSWORD=YourPassword DJANGO_SU_EMAIL=abc@example.com python manage.py initadmin 
-
-DJANGO_SU_NAME=admin DJANGO_SU_PASSWORD=YourPassword DJANGO_SU_EMAIL=abc@example.com python manage.py initadmin 
-</code></pre>
-<h2 id="在docker中使用"><a href="#在docker中使用" class="headerlink" title="在docker中使用"></a>在docker中使用</h2><p>首先在entrypoint.sh 中增加检查选项，并根据选项运行命令行</p>
-<pre><code># docker-entrypoint.sh
-if [ &quot;x$DJANGO_MANAGEPY_INITADMIN&quot; = &#39;xon&#39; ]; then
-  $PYTHON manage.py initadmin
-fi
-</code></pre>
-<p>在docker运行时指定参数</p>
-<pre><code>docker run -e DJANGO_MANAGEPY_INITADMIN=on -e DJANGO_SU_NAME=admin -e DJANGO_SU_PASSWORD=YourPassword xxx
-</code></pre>
-<p>或者在docker-compose中指定参数</p>
-<pre><code>#docker-compose.yml
-version: &#39;3&#39;
-services:
-  web:
-    image: xxx
-    ports:
-      - &quot;8000:8000&quot;
-    environment:
-      DJANGO_MANAGEPY_INITADMIN: &#39;on&#39;
-      DJANGO_SU_NAME: &#39;admin&#39;
-      DJANGO_SU_PASSWORD: &#39;YourPassword&#39;
-</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1357,17 +1337,17 @@ services:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
