@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.daxiaju.club","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="为什么要添加一个初始化超级用户的命令行入口django提供了一系列重要而且好用的命令行工具，使用创建项目时自动生成的manage.py，或者全局django-admin都可以运行这些程序。 python mamage.py  django-admin  其中在启用了django.contrib.authapp之后，我们可以受用createsuperuser命令来创建超级用户。 python man">
+<meta property="og:type" content="article">
+<meta property="og:title" content="给Django应用增加一个初始化admin管理员用户的命令行工具">
+<meta property="og:url" content="http://www.daxiaju.club/2020/04/20/django-commandline-init-admin-account/index.html">
+<meta property="og:site_name" content="大虾居">
+<meta property="og:description" content="为什么要添加一个初始化超级用户的命令行入口django提供了一系列重要而且好用的命令行工具，使用创建项目时自动生成的manage.py，或者全局django-admin都可以运行这些程序。 python mamage.py  django-admin  其中在启用了django.contrib.authapp之后，我们可以受用createsuperuser命令来创建超级用户。 python man">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-20T02:55:23.000Z">
+<meta property="article:modified_time" content="2023-11-30T00:58:41.717Z">
+<meta property="article:author" content="许大虾">
+<meta property="article:tag" content="django, docker, python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.daxiaju.club/2020/04/20/django-commandline-init-admin-account/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>给Django应用增加一个初始化admin管理员用户的命令行工具 | 大虾居</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="大虾居" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">大虾居</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">谈笑有鸿儒，往来无白丁。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-编程">
+
+    <a href="/categories/%E7%BC%96%E7%A8%8B/" rel="section"><i class="fa fa-keyboard fa-fw"></i>编程</a>
+
+  </li>
+        <li class="menu-item menu-item-服务器">
+
+    <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="section"><i class="fa fa-server fa-fw"></i>服务器</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/04/20/django-commandline-init-admin-account/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          给Django应用增加一个初始化admin管理员用户的命令行工具
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-20 10:55:23" itemprop="dateCreated datePublished" datetime="2020-04-20T10:55:23+08:00">2020-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="为什么要添加一个初始化超级用户的命令行入口"><a href="#为什么要添加一个初始化超级用户的命令行入口" class="headerlink" title="为什么要添加一个初始化超级用户的命令行入口"></a>为什么要添加一个初始化超级用户的命令行入口</h1><p>django提供了一系列重要而且好用的命令行工具，使用创建项目时自动生成的manage.py，<br>或者全局django-admin都可以运行这些程序。</p>
+<pre><code>python mamage.py
+
+django-admin
+</code></pre>
+<p>其中在启用了<code>django.contrib.auth</code>app之后，我们可以受用createsuperuser命令来创建超级用户。</p>
+<pre><code>python manage.py createsuperuser
+</code></pre>
+<p>这个命令通常时我们启用django身份验证功能之后要登录到admin站点必须要使用的命令。但是这个命令的<br>问题在于它只能用交互方式运行，我们无法用一个非交互式脚本来创建用户，比如我们的站点需要一键<br>安装、自动化搭建测试环境等等场景。</p>
+<p>在使用命令行之外我们也有其他选项，比如在migrations增加一个创建默认超级用户的脚本，在安装过程中<br>执行migrate从而添加默认超级用户。但这样做的问题是默认用户信息在所有环境中都是相同的，如果管理人员<br>忘记修改默认密码，可能会导致安全风险。</p>
+<p>如果有一个命令行能用无交互的方式，使用参数来指定超级用户的账号和密码，就会适应更多场景的要求。</p>
+<h1 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h1><h2 id="命令行接口的设计"><a href="#命令行接口的设计" class="headerlink" title="命令行接口的设计"></a>命令行接口的设计</h2><p>我们需要一个命令行工具，用如下的方式创建一个超级用户。</p>
+<pre><code>python manage.py initadmin --user=admin --password=YourPassword --email=abc@example.com
+</code></pre>
+<p>这个命令行还能从环境变量中读取参数信息</p>
+<pre><code>DJANGO_SU_NAME=admin DJANGO_SU_PASSWORD=YourPassword DJANGO_SU_EMAIL=abc@example.com python manage.py initadmin 
+
+或者
+
+export DJANGO_SU_NAME=admin
+export DJANGO_SU_PASSWORD=YourPassword
+export DJANGO_SU_EMAIL=abc@example.com
+python manage.py initadmin 
+</code></pre>
+<h2 id="使用django-custom-django-admin-commands框架"><a href="#使用django-custom-django-admin-commands框架" class="headerlink" title="使用django custom django-admin commands框架"></a>使用django custom django-admin commands框架</h2><p>django提供了自行扩展命令行工具的框架，添加相关代码后可以直接采用manage.py或python-admin命令行进行调用。<br>相关文档可以参考!()[<a href="https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/]">https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/]</a></p>
+<p>首先需要在自己的app中创建指定文件夹，django会从指定文件夹中加载相应模块，假设你的app名字为myapp，<br>command模块应在<code>myapp/management/commands</code>文件夹下，<br>这两个文件夹都是package，因此别忘了在<code>management</code>文件夹和<code>commands</code>文件夹都添加<code>__init__.py</code>文件，</p>
+<p>在<code>commands</code> 包下添加<code>initadmin</code>模块，即<code>initadmin.py</code></p>
+<pre><code># myapp/management/commands/initadmin.py
+import os
+from django.core.management.base import BaseCommand
+from django.contrib.auth.models import User
+
+
+class Command(BaseCommand):
+    def add_arguments(self, parser):
+        parser.add_argument(&#39;--user&#39;)
+        parser.add_argument(&#39;--password&#39;)
+        parser.add_argument(&#39;--email&#39;)
+
+    def handle(self, *args, **options):
+        admin_username = options.get(&#39;user&#39;) or os.environ.get(&#39;DJANGO_SU_NAME&#39;)
+        admin_email = options.get(&#39;email&#39;) or os.environ.get(&#39;DJANGO_SU_EMAIL&#39;)
+        admin_password = options.get(&#39;password&#39;) or os.environ.get(&#39;DJANGO_SU_PASSWORD&#39;)
+
+        if not admin_username:
+            raise Exception(&quot;No username specified.&quot;)
+
+        if not admin_email:
+            raise Exception(&#39;No email specified.&#39;)
+
+        if not admin_password:
+            raise Exception(&#39;No password specified.&#39;)
+
+        if User.objects.filter(username=admin_username).first():
+            print(f&#39;&#123;admin_username&#125; user already exists.&#39;)
+            return
+
+        admin_user = User.objects.create_superuser(username=admin_username,
+                                                   email=admin_email,
+                                                   password=admin_password)
+        admin_user.is_active = True
+        admin_user.is_admin = True
+        admin_user.save()
+        print(f&#39;&#123;admin_username&#125; user created.&#39;)
+</code></pre>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="命令行使用"><a href="#命令行使用" class="headerlink" title="命令行使用"></a>命令行使用</h2><p>如前面提到的方式使用即可，可通过命令行参数指定admin用户信息，或者使用环境变量</p>
+<pre><code>DJANGO_SU_NAME=admin DJANGO_SU_PASSWORD=YourPassword DJANGO_SU_EMAIL=abc@example.com python manage.py initadmin 
+
+DJANGO_SU_NAME=admin DJANGO_SU_PASSWORD=YourPassword DJANGO_SU_EMAIL=abc@example.com python manage.py initadmin 
+</code></pre>
+<h2 id="在docker中使用"><a href="#在docker中使用" class="headerlink" title="在docker中使用"></a>在docker中使用</h2><p>首先在entrypoint.sh 中增加检查选项，并根据选项运行命令行</p>
+<pre><code># docker-entrypoint.sh
+if [ &quot;x$DJANGO_MANAGEPY_INITADMIN&quot; = &#39;xon&#39; ]; then
+  $PYTHON manage.py initadmin
+fi
+</code></pre>
+<p>在docker运行时指定参数</p>
+<pre><code>docker run -e DJANGO_MANAGEPY_INITADMIN=on -e DJANGO_SU_NAME=admin -e DJANGO_SU_PASSWORD=YourPassword xxx
+</code></pre>
+<p>或者在docker-compose中指定参数</p>
+<pre><code>#docker-compose.yml
+version: &#39;3&#39;
+services:
+  web:
+    image: xxx
+    ports:
+      - &quot;8000:8000&quot;
+    environment:
+      DJANGO_MANAGEPY_INITADMIN: &#39;on&#39;
+      DJANGO_SU_NAME: &#39;admin&#39;
+      DJANGO_SU_PASSWORD: &#39;YourPassword&#39;
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/django-docker-python/" rel="tag"># django, docker, python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/16/self-signed-ssl-key-for-default-server/" rel="prev" title="Nginx默认站点生成空SSL证书">
+      <i class="fa fa-chevron-left"></i> Nginx默认站点生成空SSL证书
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/12/how-to-avoid-misusing-singleton/" rel="next" title="如何避免误用Singleton模式">
+      如何避免误用Singleton模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E8%B6%85%E7%BA%A7%E7%94%A8%E6%88%B7%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%85%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">为什么要添加一个初始化超级用户的命令行入口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">如何实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.1.</span> <span class="nav-text">命令行接口的设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8django-custom-django-admin-commands%E6%A1%86%E6%9E%B6"><span class="nav-number">2.2.</span> <span class="nav-text">使用django custom django-admin commands框架</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">3.1.</span> <span class="nav-text">命令行使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8docker%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">在docker中使用</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">许大虾</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">许大虾</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '45f9cc90a91d2ad07ba3',
+      clientSecret: 'c248503686b7a4a4c89afcf5914961349df98286',
+      repo        : 'daxiaju.github.io',
+      owner       : 'daxiaju',
+      admin       : ['kevenli'],
+      id          : '611a852b07ab19c84fe2ed10f0af0ce6',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

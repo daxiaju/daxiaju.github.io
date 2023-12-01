@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.daxiaju.club","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Twisted库是比较流行的一个异步操作库，实现了大量的网络协议，scrapy就是基于Twisted实现异步操作和网络通讯。文末有彩蛋。 方法1.源代码安装Twisted默认源代码安装需要在本地编译c代码，需要安装VC pip install twisted  方法2.第三方预编译包https:&#x2F;&#x2F;www.lfd.uci.edu网站上提供了大非官方提供的windows平台二进制python包，很多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在windows上安装twisted">
+<meta property="og:url" content="http://www.daxiaju.club/2019/07/01/install-twisted-on-windows/index.html">
+<meta property="og:site_name" content="大虾居">
+<meta property="og:description" content="Twisted库是比较流行的一个异步操作库，实现了大量的网络协议，scrapy就是基于Twisted实现异步操作和网络通讯。文末有彩蛋。 方法1.源代码安装Twisted默认源代码安装需要在本地编译c代码，需要安装VC pip install twisted  方法2.第三方预编译包https:&#x2F;&#x2F;www.lfd.uci.edu网站上提供了大非官方提供的windows平台二进制python包，很多">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-01T04:13:28.000Z">
+<meta property="article:modified_time" content="2023-11-30T00:58:41.721Z">
+<meta property="article:author" content="许大虾">
+<meta property="article:tag" content="Windows, python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.daxiaju.club/2019/07/01/install-twisted-on-windows/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>在windows上安装twisted | 大虾居</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="大虾居" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">大虾居</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">谈笑有鸿儒，往来无白丁。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-编程">
+
+    <a href="/categories/%E7%BC%96%E7%A8%8B/" rel="section"><i class="fa fa-keyboard fa-fw"></i>编程</a>
+
+  </li>
+        <li class="menu-item menu-item-服务器">
+
+    <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="section"><i class="fa fa-server fa-fw"></i>服务器</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2019/07/01/install-twisted-on-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在windows上安装twisted
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-01 12:13:28" itemprop="dateCreated datePublished" datetime="2019-07-01T12:13:28+08:00">2019-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Twisted库是比较流行的一个异步操作库，实现了大量的网络协议，scrapy就是基于Twisted实现异步操作和网络通讯。文末有彩蛋。</p>
+<h2 id="方法1-源代码安装"><a href="#方法1-源代码安装" class="headerlink" title="方法1.源代码安装"></a>方法1.源代码安装</h2><p>Twisted默认源代码安装需要在本地编译c代码，需要安装VC</p>
+<pre><code>pip install twisted
+</code></pre>
+<h2 id="方法2-第三方预编译包"><a href="#方法2-第三方预编译包" class="headerlink" title="方法2.第三方预编译包"></a>方法2.第三方预编译包</h2><p><a href="https://www.lfd.uci.edu网站上提供了大非官方提供的windows平台二进制python包,很多无法直接安装的库可以在这里找到平台专用包./">https://www.lfd.uci.edu网站上提供了大非官方提供的windows平台二进制python包，很多无法直接安装的库可以在这里找到平台专用包。</a></p>
+<p>打开该页面，Ctrl+F打开搜索框，输入要查找的包名称即可快速找到安装包。</p>
+<p>twisted的版本如下。</p>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted">https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted</a></p>
+<p>截至发稿最新版本Twisted19.2.1的安装包连接如下</p>
+<h3 id="python27-Win64"><a href="#python27-Win64" class="headerlink" title="python27 Win64"></a>python27 Win64</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp27-cp27m-win_amd64.whl
+</code></pre>
+<h3 id="python27-Win32"><a href="#python27-Win32" class="headerlink" title="python27 Win32"></a>python27 Win32</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp27-cp27m-win32.whl
+</code></pre>
+<h3 id="python37-Win64"><a href="#python37-Win64" class="headerlink" title="python37 Win64"></a>python37 Win64</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp37-cp37m-win_amd64.whl
+</code></pre>
+<h3 id="python37-Win32"><a href="#python37-Win32" class="headerlink" title="python37 Win32"></a>python37 Win32</h3><pre><code>pip install https://download.lfd.uci.edu/pythonlibs/t4jqbe6o/Twisted-19.2.1-cp37-cp37m-win32.whl
+</code></pre>
+<p>其他版本可以自行查找下载。</p>
+<h2 id="方法3-推荐）"><a href="#方法3-推荐）" class="headerlink" title="方法3(推荐）"></a>方法3(推荐）</h2><p>官方最新提供了支持pip安装方式，如下</p>
+<pre><code>pip install Twisted[windows_platform]
+</code></pre>
+<p>一键安装，从此无烦恼。</p>
+<h2 id="Microsoft-Visual-C-14-0-is-required"><a href="#Microsoft-Visual-C-14-0-is-required" class="headerlink" title="Microsoft Visual C++ 14.0 is required"></a>Microsoft Visual C++ 14.0 is required</h2><p>如果在安装过程中提示错误:</p>
+<pre><code>error: Microsoft Visual C++ 14.0 is required. Get it with &quot;Microsoft Visual C++ Build Tools&quot;: https://visualstudio.microsoft.com/downloads/
+</code></pre>
+<p>可以在<a href="http://go.microsoft.com/fwlink/?LinkId=691126&fixForIE=.exe.">这里</a>下载Visual C++ 2015(14.0) Build Tools.</p>
+<p>see: </p>
+<ul>
+<li><a href="https://www.scivision.dev/python-windows-visual-c-14-required/">https://www.scivision.dev/python-windows-visual-c-14-required/</a></li>
+<li><a href="https://stackoverflow.com/questions/29846087/microsoft-visual-c-14-0-is-required-unable-to-find-vcvarsall-bat">https://stackoverflow.com/questions/29846087/microsoft-visual-c-14-0-is-required-unable-to-find-vcvarsall-bat</a></li>
+</ul>
+<h2 id="小彩蛋"><a href="#小彩蛋" class="headerlink" title="小彩蛋"></a>小彩蛋</h2><p>通过twisted可以快速建立各种简易的网络服务器，比如启动一个本地测试用的FTP服务器代码如下：</p>
+<p>ftpserver.py:</p>
+<pre><code># Copyright (c) Twisted Matrix Laboratories.
+# See LICENSE for details.
+
+&quot;&quot;&quot;
+An example FTP server with minimal user authentication.
+&quot;&quot;&quot;
+
+from twisted.protocols.ftp import FTPFactory, FTPRealm, BaseFTPRealm
+from twisted.cred.portal import Portal
+from twisted.cred.checkers import AllowAnonymousAccess, FilePasswordDB
+from twisted.internet import reactor
+from twisted.python import log, failure, filepath
+
+&quot;&quot;&quot;
+An example FTP server with minimal user authentication.
+&quot;&quot;&quot;
+
+#
+# First, set up a portal (twisted.cred.portal.Portal). This will be used
+# to authenticate user logins, including anonymous logins.
+#
+# Part of this will be to establish the &quot;realm&quot; of the server - the most
+# important task in this case is to establish where anonymous users will
+# have default access to. In a real world scenario this would typically
+# point to something like &#39;/pub&#39; but for this example it is pointed at the
+# current working directory.
+#
+# The other important part of the portal setup is to point it to a list of
+# credential checkers. In this case, the first of these is used to grant
+# access to anonymous users and is relatively simple; the second is a very
+# primitive password checker.  This example uses a plain text password file
+# that has one username:password pair per line. This checker *does* provide
+# a hashing interface, and one would normally want to use it instead of
+# plain text storage for anything remotely resembling a &#39;live&#39; network. In
+# this case, the file &quot;pass.dat&quot; is used, and stored in the same directory
+# as the server. BAD.
+#
+# Create a pass.dat file which looks like this:
+#
+# =====================
+#   jeff:bozo
+#   grimmtooth:bozo2
+# =====================
+class LocalFTPRealm(BaseFTPRealm):
+    def __init__(self):
+        self.userHome = filepath.FilePath(&#39;./HOME&#39;)
+           
+    def getHomeDirectory(self, avatarId):
+        return self.userHome
+p = Portal(LocalFTPRealm(),
+           [AllowAnonymousAccess(), FilePasswordDB(&#39;./auth&#39;, cache=True)])
+#
+# Once the portal is set up, start up the FTPFactory and pass the portal to
+# it on startup. FTPFactory will start up a twisted.protocols.ftp.FTP()
+# handler for each incoming OPEN request. Business as usual in Twisted land.
+#
+f = FTPFactory(p)
+
+#
+# You know this part. Point the reactor to port 21 coupled with the above factory,
+# and start the event loop.
+#
+reactor.listenTCP(21, f)
+reactor.run()
+</code></pre>
+<p>ftp同一文件夹下创建一个auth文件，每行一个用户，用户名和密码用冒号:分割。</p>
+<p>auth:</p>
+<pre><code>abc:123
+</code></pre>
+<p>FTP根目录对应当前文件夹下的HOME文件夹，Enjoy.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Windows-python/" rel="tag"># Windows, python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/28/vagrant-vboxsf-error/" rel="prev" title="Vagrant vboxsf error的解决方法">
+      <i class="fa fa-chevron-left"></i> Vagrant vboxsf error的解决方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/02/how-to-install-python3-on-centos7/" rel="next" title="怎样在Centos7上安装Python3.6">
+      怎样在Centos7上安装Python3.6 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%951-%E6%BA%90%E4%BB%A3%E7%A0%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">方法1.源代码安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%952-%E7%AC%AC%E4%B8%89%E6%96%B9%E9%A2%84%E7%BC%96%E8%AF%91%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">方法2.第三方预编译包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python27-Win64"><span class="nav-number">2.1.</span> <span class="nav-text">python27 Win64</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python27-Win32"><span class="nav-number">2.2.</span> <span class="nav-text">python27 Win32</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python37-Win64"><span class="nav-number">2.3.</span> <span class="nav-text">python37 Win64</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python37-Win32"><span class="nav-number">2.4.</span> <span class="nav-text">python37 Win32</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%953-%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">方法3(推荐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Microsoft-Visual-C-14-0-is-required"><span class="nav-number">4.</span> <span class="nav-text">Microsoft Visual C++ 14.0 is required</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E5%BD%A9%E8%9B%8B"><span class="nav-number">5.</span> <span class="nav-text">小彩蛋</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">许大虾</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">许大虾</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '45f9cc90a91d2ad07ba3',
+      clientSecret: 'c248503686b7a4a4c89afcf5914961349df98286',
+      repo        : 'daxiaju.github.io',
+      owner       : 'daxiaju',
+      admin       : ['kevenli'],
+      id          : 'cb202fa5e716c642c7733ea0de82ed33',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

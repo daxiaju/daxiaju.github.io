@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.daxiaju.club","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="大虾居">
+<meta property="og:url" content="http://www.daxiaju.club/index.html">
+<meta property="og:site_name" content="大虾居">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="许大虾">
+<meta property="article:tag" content="分享码农点滴事。">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.daxiaju.club/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>大虾居</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="大虾居" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">大虾居</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">谈笑有鸿儒，往来无白丁。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-编程">
+
+    <a href="/categories/%E7%BC%96%E7%A8%8B/" rel="section"><i class="fa fa-keyboard fa-fw"></i>编程</a>
+
+  </li>
+        <li class="menu-item menu-item-服务器">
+
+    <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="section"><i class="fa fa-server fa-fw"></i>服务器</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2023/11/30/github-pages-custom-domain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/30/github-pages-custom-domain/" class="post-title-link" itemprop="url">如何让github pages站点使用自定义域名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-11-30 09:41:37 / 修改时间：10:02:52" itemprop="dateCreated datePublished" datetime="2023-11-30T09:41:37+08:00">2023-11-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Github Pages 提供了一个免费的静态文件托管服务，方便我们搭建在线技术文档，甚至是假设博客。<br>同时 Github还免费提供了 <code>xxx.github.io</code> 三级域名用于访问。但是如果我们希望自己的站点更具个性化，我们可以自己注册域名并在github上开启自定义域名。</p>
+<p>下面跟大虾一起完成设置吧。</p>
+<h1 id="一、注册域名并修改DNS记录"><a href="#一、注册域名并修改DNS记录" class="headerlink" title="一、注册域名并修改DNS记录"></a>一、注册域名并修改DNS记录</h1><p>首先在域名注册商处注册一个域名，然后修改域名的DNS记录，将域名解析到Github Pages的服务器上。</p>
+<p>添加一个C记录<code>www</code>， 解析到 <code>xxx.github.io.</code> 三级域名，注意这里xxx必须是github上注册的user或者orgnization名字。</p>
+<p><img src="/images/domain_c_name.jpg" alt="image"></p>
+<h1 id="二、在Github上完成域名认证"><a href="#二、在Github上完成域名认证" class="headerlink" title="二、在Github上完成域名认证"></a>二、在Github上完成域名认证</h1><p>在github右上角点击个人图标，进入settings页面。</p>
+<p>Settings页面左侧 Code, Plan and automation栏下进入Pages页面。</p>
+<p>这里需要添加上自定义的域名并验证改域名为你所有。</p>
+<p>点击添加域名，把你的域名添加进去。注意这里只需要输入二级域名。</p>
+<p>添加完成后需要在DNS解析中加入一个TXT记录，用于验证域名所有权。</p>
+<p><img src="/images/verify_domain.jpg" alt="image"></p>
+<p><img src="/images/verify_domain2.jpg" alt="image"></p>
+<p>将该页面上提示的TXT记录和值添加到域名的DNS记录中。</p>
+<p><img src="/images/verify_domain3.jpg" alt="image"></p>
+<p>修改DNS记录可能要等几分钟只几个小时等待生效，生效后点击Verify即可完成认证。</p>
+<p><img src="/images/verify_domain4.jpg" alt="image"></p>
+<h1 id="3-在Github-Pages站点后台绑定域名"><a href="#3-在Github-Pages站点后台绑定域名" class="headerlink" title="3 在Github Pages站点后台绑定域名"></a>3 在Github Pages站点后台绑定域名</h1><p>回到指定的Github Pages站点项目后台，点击Settings。</p>
+<p>找到Custom domain栏，输入自己的域名，点击Save。</p>
+<p>此处设置完成后github可能需要花一些时间等待域名正确解析。</p>
+<p><img src="/images/github_pages_domain.jpg" alt="image"></p>
+<p>这里勾选HTTPS后github pages还可以为你的域名生成SSL证书，省去自己申请证书的麻烦，非常贴心。</p>
+<p>等到解析完成，通过 xxx.github.io即可访问自己的网站了。</p>
+<h1 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h1><p><a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages">https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages</a></p>
+<p><a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2021/07/30/python-logging-for-class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/30/python-logging-for-class/" class="post-title-link" itemprop="url">Python给每个类指定logger</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-30 09:41:48" itemprop="dateCreated datePublished" datetime="2021-07-30T09:41:48+08:00">2021-07-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>通常我们在python中使用<code>logging.getLogger(__name__)</code>方式获取logger，可以得到一个module层次的logger，但是如果我们一个module中有多个class，怎么区分是哪一个class写入的日志呢，最好能有一个class级别的logger。</p>
+<h1 id="方法一：在-init-中初始化"><a href="#方法一：在-init-中初始化" class="headerlink" title="方法一：在__init__中初始化"></a>方法一：在__init__中初始化</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Example</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.logger = logging.getLogger(self.__class__.__module__ + <span class="string">&#x27;.&#x27;</span> + self.__class__.__qualname__)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_something</span>(<span class="params">self</span>):</span><br><span class="line">        self.logger.warning(<span class="string">&#x27;do_something&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>方法一的写法需要每个类都加入重复的代码，比较啰嗦，而且调用元方法影响代码美观，所以可以考虑运用python多重继承机制，继承一个带有logger的类。</p>
+<h1 id="方法二：继承"><a href="#方法二：继承" class="headerlink" title="方法二：继承"></a>方法二：继承</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LoggingMixin</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.logger = logging.getLogger(self.__class__.__module__ + <span class="string">&#x27;.&#x27;</span> + self.__class__.__qualname__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Example</span>(LoggingMixin, Base):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Example, self).__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_something</span>(<span class="params">self</span>):</span><br><span class="line">        self.logger.info(<span class="string">&#x27;do_something&#x27;</span>)</span><br><span class="line"></span><br><span class="line">logging.basicConfig(level=logging.INFO)</span><br><span class="line">e = Example()</span><br><span class="line">e.do_something()</span><br></pre></td></tr></table></figure>
+
+<p>第二种方法更能提现OO即面向对象编程的思想，避免了重复，通过继承完成重用。</p>
+<p>但是这种方法有个缺陷，python多重继承时会只继承第一个构造函数（按MRO顺序，可以简单理解为从左到右），如果mixin写在继承顺序的左侧，则右侧的基类构造函数会失效。</p>
+<p>例如Base类也有构造函数，写成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.name = <span class="string">&#x27;abc&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>则Base的__init__始终不会被调用。</p>
+<h1 id="方法三：延迟加载logger"><a href="#方法三：延迟加载logger" class="headerlink" title="方法三：延迟加载logger"></a>方法三：延迟加载logger</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LoggingMixin</span>:</span><br><span class="line">    _logger = <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">logger</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self._logger <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            self._logger = logging.getLogger(self.__class__.__module__ + <span class="string">&#x27;.&#x27;</span> + self.__class__.__qualname__)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> self._logger</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.name = <span class="string">&#x27;abc&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Example</span>(LoggingMixin, Base):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Example, self).__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_something</span>(<span class="params">self</span>):</span><br><span class="line">        self.logger.info(<span class="string">&#x27;do_something %s&#x27;</span>, self.name)</span><br><span class="line"></span><br><span class="line">logging.basicConfig(level=logging.INFO)</span><br><span class="line">e = Example()</span><br><span class="line">e.do_something()</span><br><span class="line"></span><br><span class="line"><span class="comment"># INFO:__main__.Example:do_something</span></span><br></pre></td></tr></table></figure>
+
+<p>这样mixin中只声明成员，在调用时延迟加载，则可以不依赖构造函数，不会影响程序的继承结构。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.python.org/3/library/logging.html#logger-objects">https://docs.python.org/3/library/logging.html#logger-objects</a></p>
+<p><a href="https://stackoverflow.com/questions/2020014/get-fully-qualified-class-name-of-an-object-in-python">https://stackoverflow.com/questions/2020014/get-fully-qualified-class-name-of-an-object-in-python</a></p>
+<p><a href="https://blog.csdn.net/weixin_40636692/article/details/79940501?utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control">https://blog.csdn.net/weixin_40636692/article/details/79940501?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/26/modify-system-wide-path-variable-with-ansible/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/26/modify-system-wide-path-variable-with-ansible/" class="post-title-link" itemprop="url">使用ansible修改系统级别的path环境变量</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-26 15:14:05" itemprop="dateCreated datePublished" datetime="2020-11-26T15:14:05+08:00">2020-11-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">服务器</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用ansible在受控节点上安装软件，经常会碰到需要修改path环境变量的问题，那么如何能有效且幂等地修改path变量呢，今天虾哥就来分享一下。</p>
+<p>下面的一个例子，在centos 7 上安装python3之后，python3上新安装包的可执行文件会链接在&#x2F;usr&#x2F;local&#x2F;bin下，但是默认情况下这个路径没有放在path变量中。</p>
+<p>下面的playbook使用pip3安装uwsgi，并将&#x2F;usr&#x2F;local&#x2F;bin添加到path变量中。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">uwsgi</span></span><br><span class="line">  <span class="attr">tasks:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">python3</span></span><br><span class="line">      <span class="attr">yum:</span></span><br><span class="line">        <span class="attr">name:</span> </span><br><span class="line">          <span class="bullet">-</span> <span class="string">python3</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">uwsgi</span></span><br><span class="line">      <span class="attr">pip:</span></span><br><span class="line">        <span class="attr">executable:</span> <span class="string">pip3</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">uwsgi</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Uwsgi</span> <span class="string">env</span></span><br><span class="line">      <span class="attr">copy:</span></span><br><span class="line">        <span class="attr">content:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          export PATH=$PATH:/usr/local/bin</span></span><br><span class="line"><span class="string"></span>        <span class="attr">dest:</span> <span class="string">/etc/profile.d/uwsgi.sh</span></span><br><span class="line">        <span class="attr">mode:</span> <span class="number">644</span></span><br><span class="line">      <span class="attr">become:</span> <span class="literal">yes</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其原理非常简单，就是在<code>/etc/profile.d</code>文件夹下新建一个shell脚本，脚本中修改path变量。<br>用户在新登录时会执行这个文件夹下的所有文件，这样就获得了最新的path变量了。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://stackoverflow.com/questions/46936896/how-to-set-existing-linux-environment-variables-with-ansible">https://stackoverflow.com/questions/46936896/how-to-set-existing-linux-environment-variables-with-ansible</a></li>
+<li><a href="https://stackoverflow.com/questions/56560173/ansible-how-to-add-modify-path-variable-in-centos">https://stackoverflow.com/questions/56560173/ansible-how-to-add-modify-path-variable-in-centos</a></li>
+<li><a href="https://www.jeffgeerling.com/blog/2017/add-path-global-path-ansible">https://www.jeffgeerling.com/blog/2017/add-path-global-path-ansible</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/25/use-sharex-to-record-screen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/25/use-sharex-to-record-screen/" class="post-title-link" itemprop="url">使用免费的ShareX实现录屏</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-25 15:58:53" itemprop="dateCreated datePublished" datetime="2020-11-25T15:58:53+08:00">2020-11-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>日常工作学习中免不了需要用到截屏或录屏功能，今天就来推荐一款免费开源的截图工具，ShareX。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><img src="/images/sharex1.png"></p>
+<p><img src="/images/sharex2.png"></p>
+<p><img src="/images/sharex3.png"></p>
+<p>除了基本的截图功能外，还可以在截图后自动上传，自行预设动作，有很灵活的配置潜力。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>官网地址为：<a href="https://getsharex.com/">https://getsharex.com/</a></p>
+<p>当前最新版本下载地址如下：</p>
+<p><a href="https://github.com/ShareX/ShareX/releases/download/v13.3.0/ShareX-13.3.0-setup.exe">https://github.com/ShareX/ShareX/releases/download/v13.3.0/ShareX-13.3.0-setup.exe</a></p>
+<p>安装完直接在开始菜单启动即可。</p>
+<h1 id="录屏"><a href="#录屏" class="headerlink" title="录屏"></a>录屏</h1><h2 id="录制GIF"><a href="#录制GIF" class="headerlink" title="录制GIF"></a>录制GIF</h2><p>要录制GIF需要执行以下步骤</p>
+<ol>
+<li>快捷动作-屏幕录制(GIF) 或按快捷键 Ctrl + Shift + Print Screen</li>
+<li>选择需要录制的范围，此时录制开始</li>
+<li>录制开始后有个选择框，下面有停止按钮，点击停止结束录制。</li>
+<li>录制完成后文件会自动出现在程序主界面。</li>
+</ol>
+<p><img src="/images/sharex4.gif"></p>
+<h2 id="录制视频"><a href="#录制视频" class="headerlink" title="录制视频"></a>录制视频</h2><p>录制视频可以提供更高的帧数、更长的录制时间以及音频内录。ShareX录制视频使用ffmpeg库实现，并提供了内录所需的虚拟设备插件，在使用前需要进行设置。</p>
+<h3 id="ffmpeg设置"><a href="#ffmpeg设置" class="headerlink" title="ffmpeg设置"></a>ffmpeg设置</h3><p>点击菜单 <code>动作设置 - 屏幕记录 - 屏幕录制选项</code></p>
+<p>在<code>FFmegp路径</code>选项框右侧有<code>下载</code>按钮，点击即可自动下载。</p>
+<p>自动下载速度较慢，可以自行下载相关程序，<a href="https://ffmpeg.org/download.html">官网地址</a></p>
+<p>windows直接下载地址 </p>
+<p><a href="https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z">https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z</a></p>
+<p>下载并解压后把ffmpeg.exe路径填写在框里。</p>
+<p><img src="/images/sharex5.png"></p>
+<h3 id="安装虚拟设备"><a href="#安装虚拟设备" class="headerlink" title="安装虚拟设备"></a>安装虚拟设备</h3><p>要录制屏幕和音频，需要安装虚拟设备，可以通过sharex自动安装。</p>
+<p>还是在屏幕录制选项页面 <code>动作设置 - 屏幕记录 - 屏幕录制选项</code></p>
+<p>点击“安装捕捉器”按钮，点击下一步安装程序即可。</p>
+<p><img src="/images/sharex6.png"></p>
+<p>安装完成后，在设备中选择新安装的虚拟设备。</p>
+<p><img src="/images/sharex5.gif"></p>
+<p>这样就设置完成了。</p>
+<h3 id="屏幕录制"><a href="#屏幕录制" class="headerlink" title="屏幕录制"></a>屏幕录制</h3><ol>
+<li>快捷动作-屏幕录制 或按快捷键 Shift + Print Screen</li>
+<li>选择需要录制的范围，此时录制开始</li>
+<li>录制开始后有个选择框，下面有停止按钮，点击停止结束录制。</li>
+<li>录制完成后文件会自动出现在程序主界面。</li>
+</ol>
+<p><img src="/images/sharex6.gif"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/19/vagrant-ansible-develop-folder-sync/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/19/vagrant-ansible-develop-folder-sync/" class="post-title-link" itemprop="url">Vagrant同步Ansible开发文件夹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-19 11:34:34" itemprop="dateCreated datePublished" datetime="2020-11-19T11:34:34+08:00">2020-11-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">服务器</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>要在windows下开发*nux程序，vagrant是一个不可多得的好帮手，随时可以创建一个指定的虚拟机环境，还可以把虚拟机环境配置提交到版本控制库，跟伙伴一起分享。</p>
+<p>一般vagrant会把当前文件夹映射到虚拟机中的&#x2F;vagrant，实时共享。所以我们通常在宿主机修改源代码文件，在客户机中编译和运行。</p>
+<p>但是要开发ansible，默认的vagrant配置就无法满足需求了。因为ansible出于安全考虑，在运行时会检查脚本文件夹权限，如果有公共写权限的话就会忽略当前文件夹下的ansible.cfg运行。</p>
+<p><img src="/images/vagrant-ansible-persssion-ignore.png"></p>
+<blockquote>
+<p>[WARNING] Ansible is being run in a world writable directory (&#x2F;vagrant), ignoring it as an ansible.cfg source. For more information see <a href="https://docs.ansible.com/ansible/devel/reference_appendices/config.html#cfg-in-world-writable-dir">https://docs.ansible.com/ansible/devel/reference_appendices/config.html#cfg-in-world-writable-dir</a></p>
+</blockquote>
+<p>由于vagrant使用的使虚拟机的目录映射功能，在这个模式下无法通过chmod修改文件夹的读写权限。</p>
+<p>那么是不是就没办法了呢，非也，下面虾哥就分享一下如何能既确保源码文件夹符合ansible权限要求，又能在宿主机和客户机之间共享文件。</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>vagrant默认共享其实等价于隐式声明了一个sync_folder指令</p>
+<pre><code>config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;
+</code></pre>
+<p>synced_folder还有可以配置一些参数，比如type参数配置同步方式。<br>Type可以使用nfs,SMB模式，考虑到跨平台兼容性和，这里虾哥建议使用RSync模式。</p>
+<h2 id="Rsync安装"><a href="#Rsync安装" class="headerlink" title="Rsync安装"></a>Rsync安装</h2><p>rsync 是linux下的一个用于文件同步的协议及相应的实现。</p>
+<p>windows可以安装<a href="https://www.itefix.net/cwrsync?qt-cwrsync=1#qt-cwrsync">cwrsync</a></p>
+<p>安装方法很简单，解压后把bin目录添加到path环境变量即可。</p>
+<h2 id="Vagrantfile写法"><a href="#Vagrantfile写法" class="headerlink" title="Vagrantfile写法"></a>Vagrantfile写法</h2><pre><code>config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;, owner: &quot;root&quot;, group: &quot;root&quot;, type: &quot;rsync&quot;
+</code></pre>
+<p>这里本地路径，客户机内的共享路径，owner,group都可以根据自己的需要配置。</p>
+<p><img src="/images/vagrant-ansible-persssion-ignore2.png"></p>
+<h2 id="手动同步-自动同步"><a href="#手动同步-自动同步" class="headerlink" title="手动同步&#x2F;自动同步"></a>手动同步&#x2F;自动同步</h2><p>type&#x3D;rsync的文件夹，默认情况下vagrant只会在启动的时候同步一次，之后的修改就不会同步了。</p>
+<p>需要手动同步的话可以运行</p>
+<pre><code>vagrant rsync
+</code></pre>
+<p>还可以自动实时监听并同步</p>
+<pre><code>vagrant rsync-auto
+</code></pre>
+<p><img src="/images/vagrant-ansible-persssion-ignore3.png"></p>
+<h2 id="反向同步"><a href="#反向同步" class="headerlink" title="反向同步"></a>反向同步</h2><p>rsync时客户机内的修改无法反映到宿主机的文件夹，即只能实现单向同步，要从客户机向宿主机同步的话可以通过一个插件实现。</p>
+<p>安装插件</p>
+<pre><code>vagrant plugin install vagrant-rsync-back
+</code></pre>
+<p>手动反向同步</p>
+<pre><code>vagrant rsync-back
+</code></pre>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://www.vagrantup.com/docs/synced-folders/basic_usage">https://www.vagrantup.com/docs/synced-folders/basic_usage</a></li>
+<li><a href="https://linux.die.net/man/1/rsync">https://linux.die.net/man/1/rsync</a></li>
+<li><a href="https://stackoverflow.com/questions/26873316/bidirectional-vagrant-rsync">https://stackoverflow.com/questions/26873316/bidirectional-vagrant-rsync</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/13/vagrant-proxyconf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/13/vagrant-proxyconf/" class="post-title-link" itemprop="url">使用Vagrant proxyconf快速配置虚拟机代理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-13 10:40:45" itemprop="dateCreated datePublished" datetime="2020-11-13T10:40:45+08:00">2020-11-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>vagrant 可以通过命令行快速创建和销毁虚拟机，在多项目环境下进行开发工作时可以提高效率。</p>
+<p>但是国内网络连接某些包分发源，例如pip, redhat yum, docker时速度非常慢，在每个虚拟机中都配置一遍又很麻烦，有没有什么好办法能自动配置虚拟机里面的代理呢。</p>
+<p>今天虾哥就带大家了解一下 <a href="https://github.com/tmatilai/vagrant-proxyconf">vagrant-proxyconf</a>这款vagrant插件。</p>
+<h1 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h1><p>通过vagrant命令行安装</p>
+<pre><code>vagrant plugin install vagrant-proxyconf
+</code></pre>
+<h1 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h1><p>插件可以在Vagrantfile中配置代理服务器地址，也可以使用环境变量，由于我在不同环境都用相同的代理，因此就使用环境变量统一配置了。</p>
+<p>环境变量有4个</p>
+<ul>
+<li>VAGRANT_HTTP_PROXY<br>  ：http请求的代理</li>
+<li>VAGRANT_HTTPS_PROXY<br>  : https请求的代理</li>
+<li>VAGRANT_FTP_PROXY<br>  : ftp请求的代理</li>
+<li>VAGRANT_NO_PROXY<br>  : 哪些请求不使用代理</li>
+</ul>
+<p>Windows上配置方法为 在start窗口输入 “编辑系统环境变量” -&gt; “环境变量” -&gt; xx的用户环境变量 -&gt; 新建。输入变量名和变量的值。</p>
+<p>虾哥自己的配置是<br>VAGRANT_HTTP_PROXY&#x3D;<a href="http://10.10.2.40:58591/">http://10.10.2.40:58591</a><br>VAGRANT_HTTPS_PROXY&#x3D;<a href="http://10.10.2.40:58591/">http://10.10.2.40:58591</a><br>VAGRANT_FTP_PROXY&#x3D;socks5:&#x2F;&#x2F;10.10.2.40:51837<br>VAGRANT_NO_PROXY&#x3D;192.168.0.0&#x2F;16,127.0.0.1,10.10.0.0&#x2F;16</p>
+<h1 id="三、使用"><a href="#三、使用" class="headerlink" title="三、使用"></a>三、使用</h1><p>配置完成后，新创建的vagrant虚拟机就会自动配置http_proxy和https_proxy变量，yum和pip会自动生效。</p>
+<p>对于已经在使用的虚拟机，只需要运行<code>vagrant reload</code>，重启时插件就会自动配置代理，重启完成后就可以正常使用了。</p>
+<h2 id="docker-代理配置"><a href="#docker-代理配置" class="headerlink" title="docker 代理配置"></a>docker 代理配置</h2><p>docker 代理的配置是存储于独立文件的，如果虚拟机启动时还没有安装docker，则不会自动生成docker配置。要在安装docker之后自动配置docker代理配置，需要额外操作。</p>
+<ol>
+<li>安装docker包后，创建docker组，并将root加入docker组 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd docker</span><br><span class="line">usermod -aG docker root </span><br></pre></td></tr></table></figure></li>
+<li>可选,配置docker 自动启动  <code>systemctl --now enable docker</code></li>
+<li>重新启动vagrant，插件自动添加配置</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.docker.com/engine/install/linux-postinstall/">https://docs.docker.com/engine/install/linux-postinstall/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/11/11/add-git-bash-to-windows-terminal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/11/add-git-bash-to-windows-terminal/" class="post-title-link" itemprop="url">在WindowsTerminal中添加GitBash</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-11 22:28:30" itemprop="dateCreated datePublished" datetime="2020-11-11T22:28:30+08:00">2020-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Git-bash 是windows上常用的可以使用*nux命令行，随git一起安装，可谓居家旅行必备。</p>
+<p><a href="https://github.com/microsoft/terminal">Windows Terminal</a>是windows 10上的一款开源的多终端窗口，可以在一个窗口中打开不同终端，对于使用终端频繁的同学来说可以节省在多个窗口中来回跳转的不便。</p>
+<p><img src="/images/terminal0.4.png"></p>
+<p>如果能在Windows Terminal中打开Git Bash岂不是所有命令行都能放在一起了。下面虾哥就教你如何配置在Windows Terminal标签栏中开启Bash</p>
+<p>1 打开Windows Terminal<br>2 按下 Ctrl + , 打开程序配置（程序配置是json格式文本文件，会在文本编辑器中打开）<br>3 找到 profiles &gt; list， list下面是个列表，在列表中加入选项，注意json格式，列表最后一项后面没有逗号，下面代码里包含了安装在%USERPROFILE%下的配置，可以根据自身情况修改注释信息。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;guid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&#123;00000000-0000-0000-ba54-000000000002&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commandline&quot;</span><span class="punctuation">:</span> <span class="string">&quot;%PROGRAMFILES%/git/usr/bin/bash.exe -i -l&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// &quot;commandline&quot;: &quot;%USERPROFILE%/AppData/Local/Programs/Git/bin/bash.exe -l -i&quot;,</span></span><br><span class="line">    <span class="comment">// &quot;commandline&quot;: &quot;%USERPROFILE%/scoop/apps/git/current/usr/bin/bash.exe -l -i&quot;,</span></span><br><span class="line">    <span class="attr">&quot;icon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;%PROGRAMFILES%/Git/mingw64/share/git/git-for-windows.ico&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// &quot;icon&quot;: &quot;%USERPROFILE%/AppData/Local/Programs/Git/mingw64/share/git/git-for-windows.ico&quot;,</span></span><br><span class="line">    <span class="comment">// &quot;icon&quot;: &quot;%USERPROFILE%/apps/git/current/usr/share/git/git-for-windows.ico&quot;,</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;Bash&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;startingDirectory&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;%USERPROFILE%&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/windowsterminalbash.png"></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/56839307/adding-git-bash-to-the-new-windows-terminal">https://stackoverflow.com/questions/56839307/adding-git-bash-to-the-new-windows-terminal</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/10/30/python-logging/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/30/python-logging/" class="post-title-link" itemprop="url">便于快速使用的Python Logging脚手架</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-30 14:01:00" itemprop="dateCreated datePublished" datetime="2020-10-30T14:01:00+08:00">2020-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>python logging 是一套灵活强大的日志输出框架，具体功能在这里就不赘述了。本文通过gist上的一份共享代码介绍在各种不同使用场景下如何复用一套logging配置入口来高效地使用python logging.</p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p>原版代码受这位仁兄<a href="https://gist.github.com/kingspp/9451566a5555fb022215ca2b7b802f19">启发</a>， 做了一些改进，修改后的<a href="https://gist.github.com/kevenli/354a3c869e0e4b0b3ba557eb475d56c2">代码</a>。</p>
+<p>源代码分两部分，一部分是python入口，<code>log.py</code>可以放置在脚本文件夹下，也可以放置在包中。</p>
+<pre><code>import os
+import yaml
+import logging.config
+import logging
+import coloredlogs
+
+def setup_logging(default_path=&#39;logging.yaml&#39;, default_level=logging.INFO, env_key=&#39;LOG_CFG&#39;):
+    &quot;&quot;&quot;
+    | **@author:** Prathyush SP
+    | Logging Setup
+    &quot;&quot;&quot;
+    path = default_path
+    value = os.getenv(env_key, None)
+    if value:
+        path = value
+    if os.path.exists(path):
+        with open(path, &#39;rt&#39;) as f:
+            try:
+                config = yaml.safe_load(f.read())
+                logging.config.dictConfig(config)
+                coloredlogs.install()
+            except Exception as e:
+                print(e)
+                print(&#39;Error in Logging Configuration. Using default configs&#39;)
+                logging.basicConfig(level=default_level)
+                coloredlogs.install(level=default_level)
+    else:
+        logging.basicConfig(level=default_level)
+        coloredlogs.install(level=default_level)
+        print(&#39;Failed to load configuration file. Using default configs&#39;)
+</code></pre>
+<p>配置文件可以在部署时按需修改，解耦了日志编写逻辑和日志输出方式。配置文件用yaml格式编写，具有较好的可读性，对编辑也较为友好。默认从当前运行文件夹下加载<code>logging.yaml</code>。注意使用yaml需要安装额外的包pyaml</p>
+<pre><code>version: 1
+disable_existing_loggers: false
+
+formatters:
+    standard:
+        format: &quot;%(asctime)s - %(name)s - %(levelname)s - %(message)s&quot;
+    error:
+        format: &quot;%(levelname)s &lt;PID %(process)d:%(processName)s&gt; %(name)s.%(funcName)s(): %(message)s&quot;
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: standard
+        stream: ext://sys.stdout
+
+    info_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: INFO
+        formatter: standard
+        filename: /tmp/info.log
+        maxBytes: 10485760 # 10MB
+        backupCount: 20
+        encoding: utf8
+
+    error_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: ERROR
+        formatter: error
+        filename: /tmp/errors.log
+        maxBytes: 10485760 # 10MB
+        backupCount: 20
+        encoding: utf8
+
+    debug_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: DEBUG
+        formatter: standard
+        filename: /tmp/debug.log
+        maxBytes: 10485760 # 10MB
+        backupCount: 20
+        encoding: utf8
+
+    critical_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: CRITICAL
+        formatter: standard
+        filename: /tmp/critical.log
+        maxBytes: 10485760 # 10MB
+        backupCount: 20
+        encoding: utf8
+
+    warn_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: WARN
+        formatter: standard
+        filename: /tmp/warn.log
+        maxBytes: 10485760 # 10MB
+        backupCount: 20
+        encoding: utf8
+
+root:
+    level: NOTSET
+    handlers: [console]
+    propogate: yes
+
+loggers:
+    &lt;module&gt;:
+        level: INFO
+        handlers: [console, info_file_handler, error_file_handler, critical_file_handler, debug_file_handler, warn_file_handler]
+        propogate: no
+
+    &lt;module.x&gt;:
+        level: DEBUG
+        handlers: [info_file_handler, error_file_handler, critical_file_handler, debug_file_handler, warn_file_handler]
+        propogate: yes
+</code></pre>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h3 id="disable-existing-loggers"><a href="#disable-existing-loggers" class="headerlink" title="disable_existing_loggers"></a>disable_existing_loggers</h3><p>由于logger在程序包import时就会实例化，可能会早于对logging模块配置的时间，启用此选项可能导致config之前实例的logger没有输出操作。</p>
+<h3 id="propogate"><a href="#propogate" class="headerlink" title="propogate"></a>propogate</h3><p>可以根据需要自行编写logger，python logging logger采用包名完全限定名的全部或部分匹配，如果当前包名没有指定的logger，怎会寻找上一级包名对应的logger。logger配置上有一个propogate参数可以控制logEntry是否继续向下传送到上级包对应的logger，直至root。</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><pre><code>import logging
+from log import setup_logging
+
+logger = logging.getLogger(__name__)
+
+def main():
+    setup_logging()
+    logger.info(&#39;hello world&#39;)
+</code></pre>
+<p>命令行调试</p>
+<pre><code>python -c &quot;from log import setup_logging; setup_logging(); import logging; logger = logging.getLogger(); logger.info(&#39;abc&#39;); logger.error(&#39;error&#39;)&quot; &gt;info.txt 2&gt;err.txt
+</code></pre>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://docs.python.org/3/library/logging.config.html#module-logging.config">https://docs.python.org/3/library/logging.config.html#module-logging.config</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/05/12/how-to-avoid-misusing-singleton/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/12/how-to-avoid-misusing-singleton/" class="post-title-link" itemprop="url">如何避免误用Singleton模式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-12 14:00:18" itemprop="dateCreated datePublished" datetime="2020-05-12T14:00:18+08:00">2020-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Singleton是GoF设计模式之一，其易于理解，实现简单，因此得到广泛使用。但是在OOD<br>面向对象设计领域也有一些批评的声音，说不应该使用singleton模式，甚至有人提出<br>singleton是<a href="https://stackoverflow.com/questions/12755539/why-is-singleton-considered-an-anti-pattern">反模式(anti-pattern)</a>  。<br>虾哥认为技术本身是中性的，没有生来就错的技术(inherently bad)，作为工程师应该<br>有能力掌握技术，知道该在何时何地正确的使用何种技术。</p>
+<p>那么下面就说说singleton的性质，以及如何避免误用singleton模式。</p>
+<h1 id="Singleton的性质"><a href="#Singleton的性质" class="headerlink" title="Singleton的性质"></a>Singleton的性质</h1><p>优势:</p>
+<ol>
+<li>作为静态成员，可以在程序不同位置”便捷地”调用一个共享的对象。</li>
+<li>共享的对象有且只有一个实例。</li>
+<li>共享的对象是一个类的实例，可以使用面向对象方法进行设计，如实现接口。</li>
+</ol>
+<p>劣势:</p>
+<ol>
+<li>Singleton自身既包含行为的实现，又包含其自身的创建，违反了单一职责原则。</li>
+<li>Singleton作为全局对象，可能会隐藏一些依赖关系，如需要按指定顺序访问全局对象的两个<br>对象实际上是有依赖的。</li>
+<li>直接的依赖会构成紧耦合，导致很难进行模拟测试(stub or mock)</li>
+</ol>
+<h1 id="为什么需要使用singleton模式"><a href="#为什么需要使用singleton模式" class="headerlink" title="为什么需要使用singleton模式"></a>为什么需要使用singleton模式</h1><p><img src="https://d3i71xaburhd42.cloudfront.net/6dfb7519c69534a03a72bbfa406c284616aea54c/3-Figure2-1.png"><br><em>插图:面向对象的生命周期树</em></p>
+<p>基于面向对象思想编写的程序，其运行过程中实际上就是各种对象的生命周期不断新陈代谢的过程。<br>每个对象都有负责构建它的另一个对象，因此每个对象实例的生命周期可以看作层次结构，可以表现为树形。</p>
+<p>有的时候我们需要在树的不同位置共享同一个对象实例，用纯面向对象的方式，我们需要找到两个对象的共同祖先，<br>在祖先对象上构造需要共享的对象，并逐层传递到子孙对象上。但是如果层次结构比较深，这种方式就过于繁琐了。<br>想象一下你需要给程序中每个对象都传递一个Logger对象。</p>
+<p><img src="/images/singleton_object_ref.png"><br><em>插图:传递一个对象引用</em></p>
+<p>这种情况下我们可以构造另外一棵树，他的最原始祖先是一个全局变量或者静态成员（即它的生命周期不被其他对象拥有）。<br>这时我们可以方便的从一棵对象生命周期树的不同节点同时访问另一棵树，即可完成对象的共享。</p>
+<p>这种模式在框架设计上非常常见，即提供统一的静态入口点访问某一框架的具体功能，例如log4net中的LogManager对象。</p>
+<h1 id="如何消除或减弱singleton-的不利影响"><a href="#如何消除或减弱singleton-的不利影响" class="headerlink" title="如何消除或减弱singleton 的不利影响"></a>如何消除或减弱singleton 的不利影响</h1><p>我们假设实际的场景中类之间的关系是这样的</p>
+<p><img src="/images/singleton_classdiagram.png"></p>
+<p>这其中有两个依赖关系，即 A类依赖于Singleton类，Singleton类依赖于B类。这种类和类之间的直接依赖违反了dependency inversion原则，造成了紧密的耦合。</p>
+<p>可以使用以下一种或几种方式共用来降低负面影响。</p>
+<h2 id="依赖反转"><a href="#依赖反转" class="headerlink" title="依赖反转"></a>依赖反转</h2><p>A和Singleton之间的关系可以通过依赖反转来解决。</p>
+<p>A类只依赖于ISingleton的约定而非Singleton类的具体实现。</p>
+<p><img src="/images/singleton_a_dependency.png"><br><em>修改前</em></p>
+<p><img src="/images/singleton_a_dependency_after.png"><br><em>修改后</em></p>
+<h2 id="依赖注入-Dependency-Injection"><a href="#依赖注入-Dependency-Injection" class="headerlink" title="依赖注入 Dependency Injection"></a>依赖注入 Dependency Injection</h2><p>让使用者(client)被注入一个其依赖的对象的实例(service)，而不是让它自行构建或获取service的实例。</p>
+<pre><code>public class A
+&#123;
+    private ISingleton singleton;
+    public A(ISingleton singleton)
+    &#123;
+        this.singleton = singleton;
+    &#125;
+
+    public void Foo()
+    &#123;
+        this.singleton.Bar()
+    &#125;
+&#125;
+</code></pre>
+<h2 id="不变对象-Immutable"><a href="#不变对象-Immutable" class="headerlink" title="不变对象  Immutable"></a>不变对象  Immutable</h2><p>如果全局对象的写入和读取在顺序上有隐含条件，则该读取操作和写入操作实际上是有依赖关系的。<br>更糟糕的是这种依赖关系没有暴露出来造成不易察觉的设计问题。</p>
+<p><code>提供一个显式或隐式的初始化过程，在其生命周期中保持状态不会变化</code>，确保总是有<br>可预期的调用，以便支持单元测试。</p>
+<p>隐式初始化应从一个指定位置，如环境变量，某个(或多个)具体的配置文件路径，加载构造内部对象所需的信息。<br>则单元测试时可以通过间接的方式修改构造过程注入所需的mock对象。</p>
+<p><img src="/images/singleton_strategy.png"></p>
+<p>参见log4net config<br><a href="https://logging.apache.org/log4net/release/manual/configuration.html">https://logging.apache.org/log4net/release/manual/configuration.html</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="">https://en.wikipedia.org/wiki/Dependency_inversion_principle</a><br><a href="">https://en.wikipedia.org/wiki/Dependency_injection</a><br><a href="">https://fuzhe1989.github.io/2017/09/30/why-global-static-singleton-var-evil/</a><br><a href="">https://www.dre.vanderbilt.edu/~schmidt&#x2F;PDF&#x2F;Context-Object-Pattern.pdf</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2020/04/20/django-commandline-init-admin-account/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/20/django-commandline-init-admin-account/" class="post-title-link" itemprop="url">给Django应用增加一个初始化admin管理员用户的命令行工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-20 10:55:23" itemprop="dateCreated datePublished" datetime="2020-04-20T10:55:23+08:00">2020-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="为什么要添加一个初始化超级用户的命令行入口"><a href="#为什么要添加一个初始化超级用户的命令行入口" class="headerlink" title="为什么要添加一个初始化超级用户的命令行入口"></a>为什么要添加一个初始化超级用户的命令行入口</h1><p>django提供了一系列重要而且好用的命令行工具，使用创建项目时自动生成的manage.py，<br>或者全局django-admin都可以运行这些程序。</p>
+<pre><code>python mamage.py
+
+django-admin
+</code></pre>
+<p>其中在启用了<code>django.contrib.auth</code>app之后，我们可以受用createsuperuser命令来创建超级用户。</p>
+<pre><code>python manage.py createsuperuser
+</code></pre>
+<p>这个命令通常时我们启用django身份验证功能之后要登录到admin站点必须要使用的命令。但是这个命令的<br>问题在于它只能用交互方式运行，我们无法用一个非交互式脚本来创建用户，比如我们的站点需要一键<br>安装、自动化搭建测试环境等等场景。</p>
+<p>在使用命令行之外我们也有其他选项，比如在migrations增加一个创建默认超级用户的脚本，在安装过程中<br>执行migrate从而添加默认超级用户。但这样做的问题是默认用户信息在所有环境中都是相同的，如果管理人员<br>忘记修改默认密码，可能会导致安全风险。</p>
+<p>如果有一个命令行能用无交互的方式，使用参数来指定超级用户的账号和密码，就会适应更多场景的要求。</p>
+<h1 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h1><h2 id="命令行接口的设计"><a href="#命令行接口的设计" class="headerlink" title="命令行接口的设计"></a>命令行接口的设计</h2><p>我们需要一个命令行工具，用如下的方式创建一个超级用户。</p>
+<pre><code>python manage.py initadmin --user=admin --password=YourPassword --email=abc@example.com
+</code></pre>
+<p>这个命令行还能从环境变量中读取参数信息</p>
+<pre><code>DJANGO_SU_NAME=admin DJANGO_SU_PASSWORD=YourPassword DJANGO_SU_EMAIL=abc@example.com python manage.py initadmin 
+
+或者
+
+export DJANGO_SU_NAME=admin
+export DJANGO_SU_PASSWORD=YourPassword
+export DJANGO_SU_EMAIL=abc@example.com
+python manage.py initadmin 
+</code></pre>
+<h2 id="使用django-custom-django-admin-commands框架"><a href="#使用django-custom-django-admin-commands框架" class="headerlink" title="使用django custom django-admin commands框架"></a>使用django custom django-admin commands框架</h2><p>django提供了自行扩展命令行工具的框架，添加相关代码后可以直接采用manage.py或python-admin命令行进行调用。<br>相关文档可以参考!()[<a href="https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/]">https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/]</a></p>
+<p>首先需要在自己的app中创建指定文件夹，django会从指定文件夹中加载相应模块，假设你的app名字为myapp，<br>command模块应在<code>myapp/management/commands</code>文件夹下，<br>这两个文件夹都是package，因此别忘了在<code>management</code>文件夹和<code>commands</code>文件夹都添加<code>__init__.py</code>文件，</p>
+<p>在<code>commands</code> 包下添加<code>initadmin</code>模块，即<code>initadmin.py</code></p>
+<pre><code># myapp/management/commands/initadmin.py
+import os
+from django.core.management.base import BaseCommand
+from django.contrib.auth.models import User
+
+
+class Command(BaseCommand):
+    def add_arguments(self, parser):
+        parser.add_argument(&#39;--user&#39;)
+        parser.add_argument(&#39;--password&#39;)
+        parser.add_argument(&#39;--email&#39;)
+
+    def handle(self, *args, **options):
+        admin_username = options.get(&#39;user&#39;) or os.environ.get(&#39;DJANGO_SU_NAME&#39;)
+        admin_email = options.get(&#39;email&#39;) or os.environ.get(&#39;DJANGO_SU_EMAIL&#39;)
+        admin_password = options.get(&#39;password&#39;) or os.environ.get(&#39;DJANGO_SU_PASSWORD&#39;)
+
+        if not admin_username:
+            raise Exception(&quot;No username specified.&quot;)
+
+        if not admin_email:
+            raise Exception(&#39;No email specified.&#39;)
+
+        if not admin_password:
+            raise Exception(&#39;No password specified.&#39;)
+
+        if User.objects.filter(username=admin_username).first():
+            print(f&#39;&#123;admin_username&#125; user already exists.&#39;)
+            return
+
+        admin_user = User.objects.create_superuser(username=admin_username,
+                                                   email=admin_email,
+                                                   password=admin_password)
+        admin_user.is_active = True
+        admin_user.is_admin = True
+        admin_user.save()
+        print(f&#39;&#123;admin_username&#125; user created.&#39;)
+</code></pre>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="命令行使用"><a href="#命令行使用" class="headerlink" title="命令行使用"></a>命令行使用</h2><p>如前面提到的方式使用即可，可通过命令行参数指定admin用户信息，或者使用环境变量</p>
+<pre><code>DJANGO_SU_NAME=admin DJANGO_SU_PASSWORD=YourPassword DJANGO_SU_EMAIL=abc@example.com python manage.py initadmin 
+
+DJANGO_SU_NAME=admin DJANGO_SU_PASSWORD=YourPassword DJANGO_SU_EMAIL=abc@example.com python manage.py initadmin 
+</code></pre>
+<h2 id="在docker中使用"><a href="#在docker中使用" class="headerlink" title="在docker中使用"></a>在docker中使用</h2><p>首先在entrypoint.sh 中增加检查选项，并根据选项运行命令行</p>
+<pre><code># docker-entrypoint.sh
+if [ &quot;x$DJANGO_MANAGEPY_INITADMIN&quot; = &#39;xon&#39; ]; then
+  $PYTHON manage.py initadmin
+fi
+</code></pre>
+<p>在docker运行时指定参数</p>
+<pre><code>docker run -e DJANGO_MANAGEPY_INITADMIN=on -e DJANGO_SU_NAME=admin -e DJANGO_SU_PASSWORD=YourPassword xxx
+</code></pre>
+<p>或者在docker-compose中指定参数</p>
+<pre><code>#docker-compose.yml
+version: &#39;3&#39;
+services:
+  web:
+    image: xxx
+    ports:
+      - &quot;8000:8000&quot;
+    environment:
+      DJANGO_MANAGEPY_INITADMIN: &#39;on&#39;
+      DJANGO_SU_NAME: &#39;admin&#39;
+      DJANGO_SU_PASSWORD: &#39;YourPassword&#39;
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">许大虾</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">许大虾</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.daxiaju.club","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="编写python程序难免需要同时用到python2和python3两种环境，那么怎么才能在windows 10上同时安装两种环境呢 1 安装python2.71.1 在官方网站下载python2.7https:&#x2F;&#x2F;www.python.org&#x2F;downloads&#x2F;windows&#x2F;  1.2 运行安装程序 注意选择把python添加到path环境变量  2 安装python3.72.1 在官方网站下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Windows 10上同时运行Python2和Python3">
+<meta property="og:url" content="http://www.daxiaju.club/2019/08/17/install-both-python2-and3-on-win10/index.html">
+<meta property="og:site_name" content="大虾居">
+<meta property="og:description" content="编写python程序难免需要同时用到python2和python3两种环境，那么怎么才能在windows 10上同时安装两种环境呢 1 安装python2.71.1 在官方网站下载python2.7https:&#x2F;&#x2F;www.python.org&#x2F;downloads&#x2F;windows&#x2F;  1.2 运行安装程序 注意选择把python添加到path环境变量  2 安装python3.72.1 在官方网站下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_27.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_27_2.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_27_3.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_3.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_3_1.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_3_2.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_path.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_2.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_4.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_5.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_6.png">
+<meta property="og:image" content="http://www.daxiaju.club/images/install_python_7.png">
+<meta property="article:published_time" content="2019-08-17T09:05:36.000Z">
+<meta property="article:modified_time" content="2023-11-30T00:58:41.720Z">
+<meta property="article:author" content="许大虾">
+<meta property="article:tag" content="Windows, Python, Python2, Python3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.daxiaju.club/images/install_python.png">
+
+<link rel="canonical" href="http://www.daxiaju.club/2019/08/17/install-both-python2-and3-on-win10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>在Windows 10上同时运行Python2和Python3 | 大虾居</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="大虾居" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">大虾居</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">谈笑有鸿儒，往来无白丁。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-编程">
+
+    <a href="/categories/%E7%BC%96%E7%A8%8B/" rel="section"><i class="fa fa-keyboard fa-fw"></i>编程</a>
+
+  </li>
+        <li class="menu-item menu-item-服务器">
+
+    <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="section"><i class="fa fa-server fa-fw"></i>服务器</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.club/2019/08/17/install-both-python2-and3-on-win10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在Windows 10上同时运行Python2和Python3
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-17 17:05:36" itemprop="dateCreated datePublished" datetime="2019-08-17T17:05:36+08:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>编写python程序难免需要同时用到python2和python3两种环境，那么怎么才能在windows 10上同时安装两种环境呢</p>
+<h1 id="1-安装python2-7"><a href="#1-安装python2-7" class="headerlink" title="1 安装python2.7"></a>1 安装python2.7</h1><h2 id="1-1-在官方网站下载python2-7"><a href="#1-1-在官方网站下载python2-7" class="headerlink" title="1.1 在官方网站下载python2.7"></a>1.1 在官方网站下载python2.7</h2><p><a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></p>
+<p><img src="/images/install_python.png"></p>
+<h2 id="1-2-运行安装程序"><a href="#1-2-运行安装程序" class="headerlink" title="1.2 运行安装程序"></a>1.2 运行安装程序</h2><p><img src="/images/install_python_27.png"></p>
+<p><img src="/images/install_python_27_2.png"><br>注意选择把python添加到path环境变量</p>
+<p><img src="/images/install_python_27_3.png"></p>
+<h1 id="2-安装python3-7"><a href="#2-安装python3-7" class="headerlink" title="2 安装python3.7"></a>2 安装python3.7</h1><h2 id="2-1-在官方网站下载python3-7"><a href="#2-1-在官方网站下载python3-7" class="headerlink" title="2.1 在官方网站下载python3.7"></a>2.1 在官方网站下载python3.7</h2><p><a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></p>
+<p><img src="/images/install_python.png"></p>
+<h2 id="2-2-运行安装程序"><a href="#2-2-运行安装程序" class="headerlink" title="2.2 运行安装程序"></a>2.2 运行安装程序</h2><p><img src="/images/install_python_3.png"><br>选择自定义安装</p>
+<p><img src="/images/install_python_3_1.png"><br>安装选项里勾上pip</p>
+<p><img src="/images/install_python_3_2.png"><br>路径改为 c:\Python37，选择将路径添加到path环境变量</p>
+<h1 id="3-配置"><a href="#3-配置" class="headerlink" title="3 配置"></a>3 配置</h1><p>右键点左下角win图标-系统- 弹出窗口里点击“系统信息” - “高级系统设置” - “环境变量”</p>
+<p><img src="/images/install_python_path.png"></p>
+<p>在环境变量中确认python2和python3路径都存在。</p>
+<p><img src="/images/install_python_2.png"></p>
+<p>默认情况下python2和python3的运行程序都是python.exe，所以才出现难以共存的问题，<br>我们可以找到python2运行目录，把python.exe改名为python2.exe</p>
+<p><img src="/images/install_python_4.png"></p>
+<p>但是此时会发现python2可以运行了，但是pip2运行不了。</p>
+<p><img src="/images/install_python_5.png"><br><img src="/images/install_python_6.png"></p>
+<p>卸载pip2 </p>
+<pre><code>python2 -m pip uninstall pip
+</code></pre>
+<p>下载<a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></p>
+<pre><code>python2 get-pip.py
+</code></pre>
+<p>这样就可以了</p>
+<p><img src="/images/install_python_7.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Windows-Python-Python2-Python3/" rel="tag"># Windows, Python, Python2, Python3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/08/16/install-python-mysql-on-centos7/" rel="prev" title="怎样在Centos7上安装SQL-python">
+      <i class="fa fa-chevron-left"></i> 怎样在Centos7上安装SQL-python
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/09/08/docker-container-timezone/" rel="next" title="Docker容器设置时区">
+      Docker容器设置时区 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85python2-7"><span class="nav-number">1.</span> <span class="nav-text">1 安装python2.7</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%9C%A8%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%E4%B8%8B%E8%BD%BDpython2-7"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 在官方网站下载python2.7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E8%BF%90%E8%A1%8C%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 运行安装程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85python3-7"><span class="nav-number">2.</span> <span class="nav-text">2 安装python3.7</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%9C%A8%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%E4%B8%8B%E8%BD%BDpython3-7"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 在官方网站下载python3.7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E8%BF%90%E8%A1%8C%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 运行安装程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">3 配置</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">许大虾</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">许大虾</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '45f9cc90a91d2ad07ba3',
+      clientSecret: 'c248503686b7a4a4c89afcf5914961349df98286',
+      repo        : 'daxiaju.github.io',
+      owner       : 'daxiaju',
+      admin       : ['kevenli'],
+      id          : 'eee7b3ee85fdb0036a681c2f1dfe6b8d',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>大虾居</title>
+  
+  <subtitle>谈笑有鸿儒，往来无白丁。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.daxiaju.club/"/>
+  <updated>2023-11-30T02:02:52.217Z</updated>
+  <id>http://www.daxiaju.club/</id>
+  
+  <author>
+    <name>许大虾</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何让github pages站点使用自定义域名</title>
+    <link href="http://www.daxiaju.club/2023/11/30/github-pages-custom-domain/"/>
+    <id>http://www.daxiaju.club/2023/11/30/github-pages-custom-domain/</id>
+    <published>2023-11-30T01:41:37.000Z</published>
+    <updated>2023-11-30T02:02:52.217Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Github Pages 提供了一个免费的静态文件托管服务，方便我们搭建在线技术文档，甚至是假设博客。&lt;br&gt;同时 Github还免费提供了 &lt;code&gt;xxx.github.io&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Github" scheme="http://www.daxiaju.club/tags/Github/"/>
+    
+      <category term="Pages" scheme="http://www.daxiaju.club/tags/Pages/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python给每个类指定logger</title>
+    <link href="http://www.daxiaju.club/2021/07/30/python-logging-for-class/"/>
+    <id>http://www.daxiaju.club/2021/07/30/python-logging-for-class/</id>
+    <published>2021-07-30T01:41:48.000Z</published>
+    <updated>2023-11-30T00:58:41.724Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;通常我们在python中使用&lt;code&gt;logging.getLogger(__name__)&lt;/code&gt;方式获取logger，可以得到一个module层次的logger，但是如果我们一个module中有多个class，怎么区分是哪一个class写入的日志呢，最好能有一个
+        
+      
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Python" scheme="http://www.daxiaju.club/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用ansible修改系统级别的path环境变量</title>
+    <link href="http://www.daxiaju.club/2020/11/26/modify-system-wide-path-variable-with-ansible/"/>
+    <id>http://www.daxiaju.club/2020/11/26/modify-system-wide-path-variable-with-ansible/</id>
+    <published>2020-11-26T07:14:05.000Z</published>
+    <updated>2023-11-30T00:58:41.722Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;使用ansible在受控节点上安装软件，经常会碰到需要修改path环境变量的问题，那么如何能有效且幂等地修改path变量呢，今天虾哥就来分享一下。&lt;/p&gt;
+&lt;p&gt;下面的一个例子，在centos 7
+        
+      
+    
+    </summary>
+    
+    
+      <category term="服务器" scheme="http://www.daxiaju.club/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="ansible" scheme="http://www.daxiaju.club/tags/ansible/"/>
+    
+      <category term="linux" scheme="http://www.daxiaju.club/tags/linux/"/>
+    
+      <category term="python" scheme="http://www.daxiaju.club/tags/python/"/>
+    
+      <category term="centos 7" scheme="http://www.daxiaju.club/tags/centos-7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用免费的ShareX实现录屏</title>
+    <link href="http://www.daxiaju.club/2020/11/25/use-sharex-to-record-screen/"/>
+    <id>http://www.daxiaju.club/2020/11/25/use-sharex-to-record-screen/</id>
+    <published>2020-11-25T07:58:53.000Z</published>
+    <updated>2023-11-30T00:58:41.725Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;日常工作学习中免不了需要用到截屏或录屏功能，今天就来推荐一款免费开源的截图工具，ShareX。&lt;/p&gt;
+&lt;h1 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h1&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Vagrant同步Ansible开发文件夹</title>
+    <link href="http://www.daxiaju.club/2020/11/19/vagrant-ansible-develop-folder-sync/"/>
+    <id>http://www.daxiaju.club/2020/11/19/vagrant-ansible-develop-folder-sync/</id>
+    <published>2020-11-19T03:34:34.000Z</published>
+    <updated>2023-11-30T00:58:41.726Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;要在windows下开发*nux程序，vagrant是一个不可多得的好帮手，随时可以创建一个指定的虚拟机环境，还可以把虚拟机环境配置提交到版本控制库，跟伙伴一起分享。&lt;/p&gt;
+&lt;p&gt;一般vagrant会把当前文件夹映射到虚拟机中的&amp;#x2F;vagrant，实时共享。所以我
+        
+      
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="服务器" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="ansible" scheme="http://www.daxiaju.club/tags/ansible/"/>
+    
+      <category term="vagrant" scheme="http://www.daxiaju.club/tags/vagrant/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Vagrant proxyconf快速配置虚拟机代理</title>
+    <link href="http://www.daxiaju.club/2020/11/13/vagrant-proxyconf/"/>
+    <id>http://www.daxiaju.club/2020/11/13/vagrant-proxyconf/</id>
+    <published>2020-11-13T02:40:45.000Z</published>
+    <updated>2023-11-30T00:58:41.726Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;vagrant 可以通过命令行快速创建和销毁虚拟机，在多项目环境下进行开发工作时可以提高效率。&lt;/p&gt;
+&lt;p&gt;但是国内网络连接某些包分发源，例如pip, redhat yum,
+        
+      
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="vagrant" scheme="http://www.daxiaju.club/tags/vagrant/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在WindowsTerminal中添加GitBash</title>
+    <link href="http://www.daxiaju.club/2020/11/11/add-git-bash-to-windows-terminal/"/>
+    <id>http://www.daxiaju.club/2020/11/11/add-git-bash-to-windows-terminal/</id>
+    <published>2020-11-11T14:28:30.000Z</published>
+    <updated>2023-11-30T00:58:41.716Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Git-bash 是windows上常用的可以使用*nux命令行，随git一起安装，可谓居家旅行必备。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/microsoft/terminal&quot;&gt;Windows Terminal&lt;/a&gt;是windows
+        
+      
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Windows" scheme="http://www.daxiaju.club/tags/Windows/"/>
+    
+      <category term="Bash" scheme="http://www.daxiaju.club/tags/Bash/"/>
+    
+      <category term="Git" scheme="http://www.daxiaju.club/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>便于快速使用的Python Logging脚手架</title>
+    <link href="http://www.daxiaju.club/2020/10/30/python-logging/"/>
+    <id>http://www.daxiaju.club/2020/10/30/python-logging/</id>
+    <published>2020-10-30T06:01:00.000Z</published>
+    <updated>2023-11-30T00:58:41.724Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;python logging 是一套灵活强大的日志输出框架，具体功能在这里就不赘述了。本文通过gist上的一份共享代码介绍在各种不同使用场景下如何复用一套logging配置入口来高效地使用python logging.&lt;/p&gt;
+&lt;h2 id=&quot;源码&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Python" scheme="http://www.daxiaju.club/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何避免误用Singleton模式</title>
+    <link href="http://www.daxiaju.club/2020/05/12/how-to-avoid-misusing-singleton/"/>
+    <id>http://www.daxiaju.club/2020/05/12/how-to-avoid-misusing-singleton/</id>
+    <published>2020-05-12T06:00:18.000Z</published>
+    <updated>2023-11-30T00:58:41.719Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Singleton是GoF设计模式之一，其易于理解，实现简单，因此得到广泛使用。但是在OOD&lt;br&gt;面向对象设计领域也有一些批评的声音，说不应该使用singleton模式，甚至有人提出&lt;br&gt;singleton是&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Singleton" scheme="http://www.daxiaju.club/tags/Singleton/"/>
+    
+      <category term="设计模式" scheme="http://www.daxiaju.club/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>给Django应用增加一个初始化admin管理员用户的命令行工具</title>
+    <link href="http://www.daxiaju.club/2020/04/20/django-commandline-init-admin-account/"/>
+    <id>http://www.daxiaju.club/2020/04/20/django-commandline-init-admin-account/</id>
+    <published>2020-04-20T02:55:23.000Z</published>
+    <updated>2023-11-30T00:58:41.717Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;为什么要添加一个初始化超级用户的命令行入口&quot;&gt;&lt;a href=&quot;#为什么要添加一个初始化超级用户的命令行入口&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="django, docker, python" scheme="http://www.daxiaju.club/tags/django-docker-python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx默认站点生成空SSL证书</title>
+    <link href="http://www.daxiaju.club/2020/04/16/self-signed-ssl-key-for-default-server/"/>
+    <id>http://www.daxiaju.club/2020/04/16/self-signed-ssl-key-for-default-server/</id>
+    <published>2020-04-16T00:13:26.000Z</published>
+    <updated>2023-11-30T00:58:41.725Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;为什么要使用默认站点空证书&quot;&gt;&lt;a href=&quot;#为什么要使用默认站点空证书&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="服务器" scheme="http://www.daxiaju.club/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="Nginx, SSL" scheme="http://www.daxiaju.club/tags/Nginx-SSL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Notepad++ 插件管理器安装</title>
+    <link href="http://www.daxiaju.club/2020/03/10/npp-plugin-manager-install/"/>
+    <id>http://www.daxiaju.club/2020/03/10/npp-plugin-manager-install/</id>
+    <published>2020-03-10T07:09:33.000Z</published>
+    <updated>2023-11-30T00:58:41.723Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;新版本的NPP不再包含插件管理器，需要的话需要自行安装。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/npp_no_plugin_manager.png&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;安装方法1&quot;&gt;&lt;a href=&quot;#安装方法1&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Notepad++" scheme="http://www.daxiaju.club/tags/Notepad/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos运行Docker出错RuntimeError</title>
+    <link href="http://www.daxiaju.club/2020/03/08/docker-runtime-error-on-centos7/"/>
+    <id>http://www.daxiaju.club/2020/03/08/docker-runtime-error-on-centos7/</id>
+    <published>2020-03-08T02:21:28.000Z</published>
+    <updated>2023-11-30T00:58:41.718Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;出错信息&quot;&gt;&lt;a href=&quot;#出错信息&quot; class=&quot;headerlink&quot; title=&quot;出错信息&quot;&gt;&lt;/a&gt;出错信息&lt;/h1&gt;&lt;p&gt;在一台新装的Centos7虚拟机上运行Docker，提示错误&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ERROR: for
+        
+      
+    
+    </summary>
+    
+    
+      <category term="服务器" scheme="http://www.daxiaju.club/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="服务器" scheme="http://www.daxiaju.club/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何从Google Play下载APK</title>
+    <link href="http://www.daxiaju.club/2020/02/23/download-apk-from-google-play/"/>
+    <id>http://www.daxiaju.club/2020/02/23/download-apk-from-google-play/</id>
+    <published>2020-02-23T01:05:04.000Z</published>
+    <updated>2023-11-30T00:58:41.718Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Google Play是Android官方应用商店，App非常齐全，但是由于某些不可抗力的原因，&lt;br&gt;我们的手机不能直接使用。&lt;/p&gt;
+&lt;p&gt;下面介绍一种方法，在PC上可以从Google Play直接下载APK。本方法需要科学上网。&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://www.daxiaju.club/tags/Android/"/>
+    
+      <category term="Google Play" scheme="http://www.daxiaju.club/tags/Google-Play/"/>
+    
+      <category term="APK" scheme="http://www.daxiaju.club/tags/APK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker容器设置时区</title>
+    <link href="http://www.daxiaju.club/2019/09/08/docker-container-timezone/"/>
+    <id>http://www.daxiaju.club/2019/09/08/docker-container-timezone/</id>
+    <published>2019-09-08T00:13:26.000Z</published>
+    <updated>2023-11-30T00:58:41.717Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我们在使用一些公共镜像的时候，往往不操作build过程，跟自行维护的服务器设置时区还是有所区别的。&lt;br&gt;那么我们如何既能使用到公共镜像的便利，又能根据自己的需要设置容器的时区呢，下面就介绍相关的方法。&lt;/p&gt;
+&lt;h1 id=&quot;1-使用Date命令&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="服务器" scheme="http://www.daxiaju.club/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="Docker" scheme="http://www.daxiaju.club/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在Windows 10上同时运行Python2和Python3</title>
+    <link href="http://www.daxiaju.club/2019/08/17/install-both-python2-and3-on-win10/"/>
+    <id>http://www.daxiaju.club/2019/08/17/install-both-python2-and3-on-win10/</id>
+    <published>2019-08-17T09:05:36.000Z</published>
+    <updated>2023-11-30T00:58:41.720Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;编写python程序难免需要同时用到python2和python3两种环境，那么怎么才能在windows 10上同时安装两种环境呢&lt;/p&gt;
+&lt;h1 id=&quot;1-安装python2-7&quot;&gt;&lt;a href=&quot;#1-安装python2-7&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://www.daxiaju.club/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Windows, Python, Python2, Python3" scheme="http://www.daxiaju.club/tags/Windows-Python-Python2-Python3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>怎样在Centos7上安装SQL-python</title>
+    <link href="http://www.daxiaju.club/2019/08/16/install-python-mysql-on-centos7/"/>
+    <id>http://www.daxiaju.club/2019/08/16/install-python-mysql-on-centos7/</id>
+    <published>2019-08-16T05:48:17.000Z</published>
+    <updated>2023-11-30T00:58:41.720Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;以前要在服务器上安装python访问mysql的库是相当麻烦，既要安装mysql-devel开发包，还要安装python源码。&lt;/p&gt;
+&lt;p&gt;那么如何在在Centos7上安装MySQL-python库呢。&lt;/p&gt;
+&lt;h1 id=&quot;1-yum-安装&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="服务器" scheme="http://www.daxiaju.club/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="Centos7, Python" scheme="http://www.daxiaju.club/tags/Centos7-Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>由于找不到 MSVCR120.dll，无法继续执行代码。重新安装程序可能会解决此问题。</title>
+    <link href="http://www.daxiaju.club/2019/08/14/miss_msvcr120dll/"/>
+    <id>http://www.daxiaju.club/2019/08/14/miss_msvcr120dll/</id>
+    <published>2019-08-14T13:07:29.000Z</published>
+    <updated>2023-11-30T00:58:41.722Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;运行程序时出现以下错误&lt;br&gt;&lt;img src=&quot;/images/miss_msvcr120_dll.png&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;由于找不到
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用Docker快速部署Nginx反代，以及ACME自动续证书</title>
+    <link href="http://www.daxiaju.club/2019/08/07/nginx-acme-docker/"/>
+    <id>http://www.daxiaju.club/2019/08/07/nginx-acme-docker/</id>
+    <published>2019-08-07T07:54:40.000Z</published>
+    <updated>2023-11-30T00:58:41.723Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Nginx反向代理速度快，可以自定义各种转发规则，可以说是站长的好朋友。&lt;/p&gt;
+&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="docker, acme.sh, nginx, https, SSL证书, SSL证书自动续期" scheme="http://www.daxiaju.club/tags/docker-acme-sh-nginx-https-SSL%E8%AF%81%E4%B9%A6-SSL%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E6%9C%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>怎样获得hostloc邀请码</title>
+    <link href="http://www.daxiaju.club/2019/07/11/how-to-register-hostloc/"/>
+    <id>http://www.daxiaju.club/2019/07/11/how-to-register-hostloc/</id>
+    <published>2019-07-11T05:55:25.000Z</published>
+    <updated>2023-11-30T00:58:41.720Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Hostloc是先进最火热的VPS和站长论坛，大家在上面分享建站经验和建站资源，是非常棒的站长交流平台。&lt;/p&gt;
+&lt;p&gt;但是很多人发现网站需要邀请码才能注册，那么怎么获得邀请码呢？&lt;/p&gt;
+&lt;p&gt;可以直接在某宝购买，在某宝上搜索hostloc邀请码，1-2元一枚，在线购买直
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
