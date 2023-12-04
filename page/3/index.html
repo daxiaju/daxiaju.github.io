@@ -128,7 +128,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a>
 
   </li>
   </ul>
@@ -154,6 +154,207 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2019/08/07/nginx-acme-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/07/nginx-acme-docker/" class="post-title-link" itemprop="url">使用Docker快速部署Nginx反代，以及ACME自动续证书</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-07 15:54:40" itemprop="dateCreated datePublished" datetime="2019-08-07T15:54:40+08:00">2019-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Nginx反向代理速度快，可以自定义各种转发规则，可以说是站长的好朋友。</p>
+<p><a href="https://github.com/Neilpang/acme.sh">acme.sh</a>支持多个域名服务商的证书生成，让站长免费获取到ssl带来的安全性，也是不可或缺的好伙伴。</p>
+<p>本文虾哥将本着DRY原则，让站长不需要记住部署nginx和acme的若干命令，快速搭建起安全实用的ssl反向代理服务器。</p>
+<h1 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h1><p>使用docker部署程序省去安装各种语言运行环境的麻烦，但docker本身还是需要准备一下。</p>
+<p>下面介绍在centos7系统下安装docker 和 docker-compose的步骤。其他系统可以自行查找相关文档。</p>
+<p>##1.1 安装docker</p>
+<pre><code>sudo yum install docker -y
+</code></pre>
+<p>安装完成后启动docker</p>
+<pre><code>sudo systemctl start docker
+sudo systemctl enable docker	
+</code></pre>
+<p>##1.2安装docker-compose</p>
+<p>docker-compose是python包，通过docker-compose，docker运行镜像的各种配置可以直接写入文件，重启和修改都非常容易。</p>
+<pre><code># 通过yum安装pip官方没有直接提供rpm包，可以通过epel-release库安装
+sudo yum install epel-release
+sudo yum isntall python2-pip
+
+sudo pip isntall docker-compose
+</code></pre>
+<p>这样就安装完成了，运行docker-compose命令行</p>
+<pre><code>docker-compose --help
+</code></pre>
+<h2 id="1-3-准备程序运行目录"><a href="#1-3-准备程序运行目录" class="headerlink" title="1.3 准备程序运行目录"></a>1.3 准备程序运行目录</h2><p>在决定运行docker-compose的任意路径创建好目录，以后我们程序运行相关的文件都保存在该路径下，如&#x2F;app</p>
+<pre><code>mkdir /app
+cd /app
+</code></pre>
+<p>在运行目录下创建nginx</p>
+<h1 id="2-acme-sh-申请证书并定期更新"><a href="#2-acme-sh-申请证书并定期更新" class="headerlink" title="2. acme.sh 申请证书并定期更新"></a>2. acme.sh 申请证书并定期更新</h1><h1 id="2-1-acme-sh-申请证书"><a href="#2-1-acme-sh-申请证书" class="headerlink" title="2.1 acme.sh 申请证书"></a>2.1 acme.sh 申请证书</h1><p>在程序运行路径下创建docker-compose.yml，通过docker-compose启动docker镜像的所有参数信息都会写入到该文件中</p>
+<pre><code># /app/docker-compose.yml
+version: &#39;3&#39;
+services:
+    acme.sh:
+        image: neilpang/acme.sh
+        volumes:
+            - &quot;./acme.sh:/acme.sh:z&quot;
+        environment:
+            - CF_Key=&quot;xxx&quot;
+            - CF_Email=&quot;yyy&quot;
+        command: daemon
+</code></pre>
+<p>本文以cloudflare申请证书为例，其他域名服务商可以根据要求将相关的身份信息写入environment环境变量</p>
+<p>运行acme生成证书</p>
+<pre><code>sudo docker-compose run acme.sh --issue --dns dns_cf -d xxx.example.com
+</code></pre>
+<p>域名和dns服务商参数根据实际情况自行修改。要使用cloudflare创建证书，需要把域名的ns指向到cloudflare并在cloudflare网站上申请管理员的key。运行完成后证书会保存在.acme.sh&#x2F;xxx.example.com&#x2F;文件夹下。</p>
+<h2 id="2-2-自动更新证书"><a href="#2-2-自动更新证书" class="headerlink" title="2.2 自动更新证书"></a>2.2 自动更新证书</h2><p>这样免费申请的证书	只有3个月的有效期，通过command: daemon参数运行后，该进程会定期自动去域名服务商更新证书，再也不用为证书过期苦恼了。</p>
+<pre><code>docker-compose up -d
+</code></pre>
+<h1 id="2-Nginx"><a href="#2-Nginx" class="headerlink" title="2. Nginx"></a>2. Nginx</h1><p>Nginx提供了<a href="https://hub.docker.com/_/nginx/">官方镜像</a><br>直接使用官方镜像就可以启动nginx服务。但要想根据我们的要求运行反向代理，还得编写一个配置文件。</p>
+<p>创建&#x2F;app&#x2F;nginx&#x2F;conf文件夹</p>
+<pre><code>mkdir -p /app/nginx/conf
+</code></pre>
+<p>在该文件夹下创建proxy.conf文件</p>
+<pre><code># /app/nginx/conf/proxy.conf
+
+server &#123;
+    listen 80;
+    server_name   xxx.example.com;
+
+    return 301 https://$host;
+&#125;
+
+server &#123;
+    listen 443 ssl;
+    server_name             xxx.example.com;
+    ssl_certificate         /etc/nginx/certs/$server_name/fullchain.cer;
+    ssl_certificate_key     /etc/nginx/certs/$server_name/$server_name.key;
+    add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot; always;
+
+    location / &#123;
+        proxy_pass http://realserver;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_http_version      1.1;
+        proxy_cache_bypass      $http_upgrade;
+
+        proxy_set_header Upgrade                $http_upgrade;
+        proxy_set_header Connection             &quot;upgrade&quot;;
+        proxy_set_header Host                   $host;
+        proxy_set_header X-Forwarded-For        $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto      $scheme;
+        proxy_set_header X-Forwarded-Host       $host;
+        proxy_set_header X-Forwarded-Port       $server_port;
+
+    &#125;
+&#125;
+</code></pre>
+<p>这个配置启动了HSTS，强制使用https，增强了web服务的安全性。</p>
+<p>把xxx.example.com替换成实际的域名。 realserver是反代对应的真实服务器地址。</p>
+<p>要禁用直接用ip地址访问可以增加一个server节：</p>
+<pre><code>server &#123;
+    listen 80 default_server;
+    return 444;
+&#125;
+</code></pre>
+<p>nginx在docker-compose中配置如下：</p>
+<pre><code>nginx:
+    image: nginx
+    ports:
+        - &quot;80:80&quot;
+        - &quot;443:443&quot;
+    volumes:
+        - &quot;./acme.sh:/etc/nginx/certs&quot;
+        - &quot;./nginx/conf:/etc/nginx/conf.d:z&quot;
+        - &quot;./nginx/log/:/var/log/nginx/:z&quot;
+    environment:
+        - ENV=production
+</code></pre>
+<p>通过docker-compose启动一组容器</p>
+<pre><code>docker-compose up -d
+</code></pre>
+<p>大功告成。</p>
+<p>最后完整版的docker-compose文件如下：</p>
+<pre><code># /app/docker-compose.yml
+version: &#39;3&#39;
+services:
+    acme.sh:
+        image: neilpang/acme.sh
+        volumes:
+            - &quot;./acme.sh:/acme.sh:z&quot;
+        environment:
+            - CF_Key=&quot;xxx&quot;
+            - CF_Email=&quot;yyy&quot;
+        command: daemon
+    nginx:
+        image: nginx
+        network_mode: host
+        ports:
+            - &quot;80:80&quot;
+            - &quot;443:443&quot;
+        volumes:
+            - &quot;./acme.sh:/etc/nginx/certs&quot;
+            - &quot;./nginx/conf:/etc/nginx/conf.d:z&quot;
+            - &quot;./nginx/log/:/var/log/nginx/:z&quot;
+        environment:
+            - ENV=production
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -969,7 +1170,7 @@ typedef struct zset &#123;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -979,7 +1180,7 @@ typedef struct zset &#123;
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

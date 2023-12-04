@@ -128,7 +128,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a>
 
   </li>
   </ul>
@@ -154,6 +154,134 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2023/12/04/grpc-python-async-stream/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="许大虾">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大虾居">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/04/grpc-python-async-stream/" class="post-title-link" itemprop="url">gRPC Python 异步方式实现事件流订阅</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-12-04 13:50:31 / 修改时间：14:20:37" itemprop="dateCreated datePublished" datetime="2023-12-04T13:50:31+08:00">2023-12-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>gRPC是google提供的一套基于HTTP&#x2F;2和protobuf的RPC框架，支持多种语言，包括python。<br>由于基于protobuf的二进制序列化机制和HTTP&#x2F;2多路复用的特性，gRPC在性能上有很大的优势，适合于高并发低延迟的场景。<br>gRPC的python实现支持同步和异步两种方式，本文中大虾将介绍如何在python上以异步方式实现客户端和服务端，<br>并支持下行数据流的订阅。</p>
+<h1 id="实现一个异步的Request-Reply调用的服务器和客户端"><a href="#实现一个异步的Request-Reply调用的服务器和客户端" class="headerlink" title="实现一个异步的Request&#x2F;Reply调用的服务器和客户端"></a>实现一个异步的Request&#x2F;Reply调用的服务器和客户端</h1><p>首先需要安装gRPC库，截止发稿时最新版本为<code>1.58.0</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install grpcio grpcio-tools</span><br></pre></td></tr></table></figure>
+
+<p>再编写一个helloworld的proto文件，gRPC根据proto文件来生成客户端和服务端的代码，下面是一个简单的helloworld.proto文件。<br>具体proto文件的语法可以参考<a href="https://developers.google.com/protocol-buffers/docs/proto3">官方文档</a>。</p>
+<p>protos&#x2F;helloworld.proto</p>
+<figure class="highlight proto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> helloworld;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The greeting service definition.</span></span><br><span class="line"><span class="keyword">service </span><span class="title class_">Greeter</span> &#123;</span><br><span class="line">  <span class="comment">// Sends a greeting</span></span><br><span class="line">  <span class="function"><span class="keyword">rpc</span> SayHello (HelloRequest) <span class="keyword">returns</span> (HelloReply) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The request message containing the user&#x27;s name.</span></span><br><span class="line"><span class="keyword">message </span><span class="title class_">HelloRequest</span> &#123;</span><br><span class="line">  <span class="type">string</span> name = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The response message containing the greetings</span></span><br><span class="line"><span class="keyword">message </span><span class="title class_">HelloReply</span> &#123;</span><br><span class="line">  <span class="type">string</span> message = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本示例中定义了两个数据类型HelloRequest和HelloReply，分别对应发送请求和相应的数据结构。<br>另外还有一个rpc服务Greeter，包含一个SayHello方法，接收HelloRequest类型的参数，返回HelloReply类型的数据。</p>
+<p>proto文件编写完成后运行gRPC命令行工具生成相关的类。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m grpc_tools.protoc -I protos --python_out=. --pyi_out=. --grpc_python_out=. protos/helloworld.proto</span><br></pre></td></tr></table></figure>
+
+<p>生成命令完成后会在项目当前文件夹下生成helloworld_pb2_grpc.py和helloworld_pb2.py两个文件，分别包含了客户端和服务端需要用到的类。</p>
+<p>下面编写服务器程序。</p>
+<p>async_greeter_server.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> grpc</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2_grpc</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Greeter</span>(helloworld_pb2_grpc.GreeterServicer):</span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">SayHello</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        request: helloworld_pb2.HelloRequest,</span></span><br><span class="line"><span class="params">        context: grpc.aio.ServicerContext,</span></span><br><span class="line"><span class="params">    </span>) -&gt; helloworld_pb2.HelloReply:</span><br><span class="line">        <span class="keyword">return</span> helloworld_pb2.HelloReply(message=<span class="string">&quot;Hello, %s!&quot;</span> % request.name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">serve</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    server = grpc.aio.server()</span><br><span class="line">    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)</span><br><span class="line">    listen_addr = <span class="string">&quot;[::]:50051&quot;</span></span><br><span class="line">    server.add_insecure_port(listen_addr)</span><br><span class="line">    logging.info(<span class="string">&quot;Starting server on %s&quot;</span>, listen_addr)</span><br><span class="line">    <span class="keyword">await</span> server.start()</span><br><span class="line">    <span class="keyword">await</span> server.wait_for_termination()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    logging.basicConfig(level=logging.INFO)</span><br><span class="line">    asyncio.run(serve())</span><br></pre></td></tr></table></figure>
+
+<p>客户端程序, async_greeter_client.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> grpc</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2_grpc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">run</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">with</span> grpc.aio.insecure_channel(<span class="string">&quot;localhost:50051&quot;</span>) <span class="keyword">as</span> channel:</span><br><span class="line">        stub = helloworld_pb2_grpc.GreeterStub(channel)</span><br><span class="line">        response = <span class="keyword">await</span> stub.SayHello(helloworld_pb2.HelloRequest(name=<span class="string">&quot;you&quot;</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Greeter client received: &quot;</span> + response.message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    logging.basicConfig()</span><br><span class="line">    asyncio.run(run())</span><br></pre></td></tr></table></figure>
+
+<p>运行python async_greeter_server.py启动服务器，再运行python async_greeter_client.py启动客户端，可以看到客户端收到了服务器返回的数据。</p>
+<h1 id="在服务器实现一个流请求"><a href="#在服务器实现一个流请求" class="headerlink" title="在服务器实现一个流请求"></a>在服务器实现一个流请求</h1><p>protos&#x2F;helloworld.proto</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">package helloworld;</span><br><span class="line"></span><br><span class="line">service Greeter &#123;</span><br><span class="line">  rpc SayHello (HelloRequest) returns (HelloReply) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  rpc SayHelloStreamReply (HelloRequest) returns (stream HelloReply) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// The request message containing the user&#x27;s name.</span><br><span class="line">message HelloRequest &#123;</span><br><span class="line">  string name = 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// The response message containing the greetings</span><br><span class="line">message HelloReply &#123;</span><br><span class="line">  string message = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Greeter服务上增加一个方法SayHelloStreamReply，接受一个HelloRequest参数，返回一个HelloReply类型的流。</p>
+<p>服务器程序中实现SayHelloStreamReply方法，每隔1秒向客户端返回一个HelloReply. </p>
+<p>async_greeter_server.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> grpc</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2_grpc</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Greeter</span>(helloworld_pb2_grpc.GreeterServicer):</span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">SayHello</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        request: helloworld_pb2.HelloRequest,</span></span><br><span class="line"><span class="params">        context: grpc.aio.ServicerContext,</span></span><br><span class="line"><span class="params">    </span>) -&gt; helloworld_pb2.HelloReply:</span><br><span class="line">        <span class="keyword">return</span> helloworld_pb2.HelloReply(message=<span class="string">&quot;Hello, %s!&quot;</span> % request.name)</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">SayHelloStreamReply</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        request: helloworld_pb2.HelloRequest,</span></span><br><span class="line"><span class="params">        context: grpc.aio.ServicerContext,</span></span><br><span class="line"><span class="params">    </span>) -&gt; helloworld_pb2.HelloReply:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10000</span>):</span><br><span class="line">            <span class="keyword">await</span> asyncio.sleep(<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">yield</span> helloworld_pb2.HelloReply(message=<span class="string">&quot;Hello, %s! %d&quot;</span> % (request.name, i))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">serve</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    server = grpc.aio.server()</span><br><span class="line">    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)</span><br><span class="line">    listen_addr = <span class="string">&quot;[::]:50051&quot;</span></span><br><span class="line">    server.add_insecure_port(listen_addr)</span><br><span class="line">    logging.info(<span class="string">&quot;Starting server on %s&quot;</span>, listen_addr)</span><br><span class="line">    <span class="keyword">await</span> server.start()</span><br><span class="line">    <span class="keyword">await</span> server.wait_for_termination()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    logging.basicConfig(level=logging.INFO)</span><br><span class="line">    asyncio.run(serve())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>客户端程序 async_greeter_client.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> grpc</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2_grpc</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">run</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    name = sys.argv[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="string">&quot;world&quot;</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">with</span> grpc.aio.insecure_channel(<span class="string">&quot;localhost:50051&quot;</span>) <span class="keyword">as</span> channel:</span><br><span class="line">        stub = helloworld_pb2_grpc.GreeterStub(channel)</span><br><span class="line">        response = <span class="keyword">await</span> stub.SayHello(helloworld_pb2.HelloRequest(name=name))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Greeter client received: &quot;</span> + response.message)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">with</span> grpc.aio.insecure_channel(<span class="string">&quot;localhost:50051&quot;</span>) <span class="keyword">as</span> channel:</span><br><span class="line">        stub = helloworld_pb2_grpc.GreeterStub(channel)</span><br><span class="line"></span><br><span class="line">        request = helloworld_pb2.HelloRequest(name=name)</span><br><span class="line">        response_stream = stub.SayHelloStreamReply(request)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">async</span> <span class="keyword">for</span> res <span class="keyword">in</span> response_stream:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Greeter client received:&quot;</span>, res.message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    logging.basicConfig()</span><br><span class="line">    asyncio.run(run())</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="服务器从一个业务服务中获取流并返回给客户端"><a href="#服务器从一个业务服务中获取流并返回给客户端" class="headerlink" title="服务器从一个业务服务中获取流并返回给客户端"></a>服务器从一个业务服务中获取流并返回给客户端</h1><p>这样就实现向客户端输出流了。</p>
+<p>但是有时候我们需要这个服务从其他服务的状态中获取信息再返回给客户端。怎么办呢。</p>
+<p>增加一个CustomerCenter业务单元，如果有顾客进店<code>client_enter</code>则把客户登记上，<br>以后每个1秒钟向所有客户发送一个消息。消息存储在客户名字为key的字典中，值对象<br>是一个asyncio.Queue对象。这个对象可以让Greeter服务用coroutine方式订阅消息。</p>
+<p>async_greeter_server.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> grpc</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2</span><br><span class="line"><span class="keyword">import</span> helloworld_pb2_grpc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomerCenter</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.clients = &#123;&#125;</span><br><span class="line">        <span class="comment"># store each client&#x27;s message in queue</span></span><br><span class="line">        self.client_queues = defaultdict(asyncio.Queue)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">start</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># start center</span></span><br><span class="line">        <span class="comment"># for each second elapsed, it will send a message to all clients</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">await</span> asyncio.sleep(<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span> client_name <span class="keyword">in</span> self.clients.keys():</span><br><span class="line">                <span class="keyword">await</span> self.client_queues[client_name].put(<span class="string">&quot;hello &quot;</span> + client_name + <span class="string">&quot;, it&#x27;s &quot;</span> + datetime.now().strftime(<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">client_enter</span>(<span class="params">self, client_name</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        a client enter</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.clients[client_name] = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">client_leave</span>(<span class="params">self, client_name</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        a client leave the center</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;client %s is leaving.&#x27;</span> % client_name)</span><br><span class="line">        self.clients.pop(client_name)</span><br><span class="line">        self.client_queues.pop(client_name)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_queue</span>(<span class="params">self, client_name</span>):</span><br><span class="line">        <span class="keyword">return</span> self.client_queues[client_name]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Greeter</span>(helloworld_pb2_grpc.GreeterServicer):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, customer_center:CustomerCenter</span>):</span><br><span class="line">        self.customer_center = customer_center</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">SayHello</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        request: helloworld_pb2.HelloRequest,</span></span><br><span class="line"><span class="params">        context: grpc.aio.ServicerContext,</span></span><br><span class="line"><span class="params">    </span>) -&gt; helloworld_pb2.HelloReply:</span><br><span class="line">        <span class="keyword">return</span> helloworld_pb2.HelloReply(message=<span class="string">&quot;Hello, %s!&quot;</span> % request.name)</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">SayHelloStreamReply</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        request: helloworld_pb2.HelloRequest,</span></span><br><span class="line"><span class="params">        context: grpc.aio.ServicerContext,</span></span><br><span class="line"><span class="params">    </span>) -&gt; helloworld_pb2.HelloReply:</span><br><span class="line">        self.customer_center.client_enter(request.name)</span><br><span class="line">        queue = self.customer_center.get_queue(request.name)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            message = <span class="keyword">await</span> queue.get()</span><br><span class="line">            <span class="keyword">yield</span> helloworld_pb2.HelloReply(message=message)       </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">serve</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    server = grpc.aio.server()</span><br><span class="line">    customer_center = CustomerCenter()</span><br><span class="line">    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(customer_center), server)</span><br><span class="line">    listen_addr = <span class="string">&quot;[::]:50051&quot;</span></span><br><span class="line">    server.add_insecure_port(listen_addr)</span><br><span class="line">    logging.info(<span class="string">&quot;Starting server on %s&quot;</span>, listen_addr)</span><br><span class="line">   </span><br><span class="line">    <span class="comment"># start customer center</span></span><br><span class="line">    asyncio.create_task(customer_center.start())</span><br><span class="line">    <span class="keyword">await</span> server.start()</span><br><span class="line">    <span class="keyword">await</span> server.wait_for_termination()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    logging.basicConfig(level=logging.INFO)</span><br><span class="line">    asyncio.run(serve())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="处理客户端断开链接事件"><a href="#处理客户端断开链接事件" class="headerlink" title="处理客户端断开链接事件"></a>处理客户端断开链接事件</h1><p>到这里可以发现一个问题，如果客户端关闭了，下次再打开时，离开期间也会生成事件，服务器并<br>没有发现客户已经离开。</p>
+<p>可以捕获asyncio.CancelledError异常来获取客户端断开事件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">SayHelloStreamReply</span>(<span class="params"></span></span><br><span class="line"><span class="params">    self,</span></span><br><span class="line"><span class="params">    request: helloworld_pb2.HelloRequest,</span></span><br><span class="line"><span class="params">    context: grpc.aio.ServicerContext,</span></span><br><span class="line"><span class="params"></span>) -&gt; helloworld_pb2.HelloReply:</span><br><span class="line">    self.customer_center.client_enter(request.name)</span><br><span class="line">    queue = self.customer_center.get_queue(request.name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            message = <span class="keyword">await</span> queue.get()</span><br><span class="line">            <span class="keyword">yield</span> helloworld_pb2.HelloReply(message=message)</span><br><span class="line">    <span class="keyword">except</span> asyncio.CancelledError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;client <span class="subst">&#123;request.name&#125;</span> disconnected.&#x27;</span>)</span><br><span class="line">        self.customer_center.client_leave(request.name)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ python async_greeter_server.py</span><br><span class="line">INFO:root:Starting server on [::]:50051</span><br><span class="line">client you disconnected.</span><br><span class="line">client you is leaving.</span><br><span class="line">client you disconnected.</span><br><span class="line">client you is leaving.</span><br></pre></td></tr></table></figure>
+
+<h1 id="多态事件类型"><a href="#多态事件类型" class="headerlink" title="多态事件类型"></a>多态事件类型</h1><p>有的时候我们希望一个订阅接口成为总线，客户端进行一次调用即可收到不同类型的消息，即多态机制。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">package helloworld;</span><br><span class="line"></span><br><span class="line">// The greeting service definition.</span><br><span class="line">service Greeter &#123;</span><br><span class="line">  // Sends a greeting</span><br><span class="line">  rpc SayHello (HelloRequest) returns (HelloReply) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  rpc SayHelloStreamReply (HelloRequest) returns (stream HelloReply) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  rpc SayHelloBidiStream (stream HelloRequest) returns (stream HelloReply) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  rpc SayHelloStream2 (HelloRequest) returns (stream GreetingMessage) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// The request message containing the user&#x27;s name.</span><br><span class="line">message HelloRequest &#123;</span><br><span class="line">  string name = 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// The response message containing the greetings</span><br><span class="line">message HelloReply &#123;</span><br><span class="line">  string message = 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message GreetingMessage &#123;</span><br><span class="line">  oneof shape_type &#123;</span><br><span class="line">  	FirstGreetingMessage firstGreetingMessage = 1;</span><br><span class="line">  	TimerGreetingMessage timerGreetingMessage = 2;</span><br><span class="line">  	GoodbyeGreetingMessage goodbyeGreetingMessage = 3;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message FirstGreetingMessage &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message TimerGreetingMessage &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message GoodbyeGreetingMessage &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里在proto中定义了一个主消息类型GreetingMessage，它的主要作用时作为下面三个具体消息类型<br><code>FirstGreetingMessage</code>, <code>TimerGreetingMessage</code>, <code>GoodbyeGreetingMessage</code>的容器，<br>这样一个rpc服务可以返回GreetingMessage的stream即可。</p>
+<p>服务器程序中依次返回 FirstGreetingMessage, TimerGreetingMessage, GoodbyeGreetingMessage消息。</p>
+<p>async_greeter_server.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">SayHelloStream2</span>(<span class="params"></span></span><br><span class="line"><span class="params">    self,</span></span><br><span class="line"><span class="params">    request: helloworld_pb2.HelloRequest,</span></span><br><span class="line"><span class="params">    context: grpc.aio.ServicerContext,</span></span><br><span class="line"><span class="params"></span>) -&gt; helloworld_pb2.HelloReply:</span><br><span class="line">    <span class="keyword">yield</span> helloworld_pb2.GreetingMessage(firstGreetingMessage=helloworld_pb2.FirstGreetingMessage())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        <span class="keyword">await</span> asyncio.sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">yield</span> helloworld_pb2.GreetingMessage(timerGreetingMessage=helloworld_pb2.TimerGreetingMessage())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">yield</span> helloworld_pb2.GreetingMessage(goodbyeGreetingMessage=helloworld_pb2.GoodbyeGreetingMessage())</span><br></pre></td></tr></table></figure>
+
+<p>客户端使用GreetingMessage对象的HasField函数检查具体是那种类型消息，并分别做相应处理。</p>
+<p>async_greeter_client.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">run</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="comment"># retreve client name from command line.</span></span><br><span class="line">    name = sys.argv[<span class="number">1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="string">&quot;world&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">with</span> grpc.aio.insecure_channel(<span class="string">&quot;localhost:50051&quot;</span>) <span class="keyword">as</span> channel:</span><br><span class="line">        stub = helloworld_pb2_grpc.GreeterStub(channel)</span><br><span class="line">        response = <span class="keyword">await</span> stub.SayHello(helloworld_pb2.HelloRequest(name=name))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Greeter client received: &quot;</span> + response.message)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">with</span> grpc.aio.insecure_channel(<span class="string">&quot;localhost:50051&quot;</span>) <span class="keyword">as</span> channel:</span><br><span class="line">        stub = helloworld_pb2_grpc.GreeterStub(channel)</span><br><span class="line"></span><br><span class="line">        request = helloworld_pb2.HelloRequest(name=name)</span><br><span class="line"></span><br><span class="line">        response_stream2 = stub.SayHelloStream2(request)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">async</span> <span class="keyword">for</span> res <span class="keyword">in</span> response_stream2:</span><br><span class="line">            res:helloworld_pb2.GreetingMessage = res</span><br><span class="line">            <span class="keyword">if</span> res.HasField(<span class="string">&#x27;firstGreetingMessage&#x27;</span>):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;firstGreetingMessage received:&quot;</span>, res.firstGreetingMessage)</span><br><span class="line">            <span class="keyword">elif</span> res.HasField(<span class="string">&#x27;timerGreetingMessage&#x27;</span>):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;timerGreetingMessage received:&quot;</span>, res.timerGreetingMessage)</span><br><span class="line">            <span class="keyword">elif</span> res.HasField(<span class="string">&#x27;goodbyeGreetingMessage&#x27;</span>):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;goodbyeGreetingMessage received:&quot;</span>, res.goodbyeGreetingMessage)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;unknown message received.&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ python async_greeter_client.py hello</span><br><span class="line">Greeter client received: Hello, hello!</span><br><span class="line">firstGreetingMessage received:</span><br><span class="line">timerGreetingMessage received:</span><br><span class="line">timerGreetingMessage received:</span><br><span class="line">timerGreetingMessage received:</span><br><span class="line">timerGreetingMessage received:</span><br><span class="line">timerGreetingMessage received:</span><br><span class="line">goodbyeGreetingMessage received:</span><br></pre></td></tr></table></figure>
+
+<p>这样一个基于协程异步运行的消息订阅服务就基本上完成了。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://stackoverflow.com/questions/68491834/handle-client-side-cancellation-in-grpc-python-asyncio<a href="#fnref:1" rev="footnote">↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://grpc.github.io/grpc/python/grpc_asyncio.html#grpc.aio.ServicerContext<a href="#fnref:2" rev="footnote">↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://grpc.io/docs/languages/python/quickstart/<a href="#fnref:3" rev="footnote">↩</a></span></li></ol></div></div>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1146,128 +1274,6 @@ def main():
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.daxiaju.net/2020/05/12/how-to-avoid-misusing-singleton/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="许大虾">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大虾居">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/12/how-to-avoid-misusing-singleton/" class="post-title-link" itemprop="url">如何避免误用Singleton模式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-12 14:00:18" itemprop="dateCreated datePublished" datetime="2020-05-12T14:00:18+08:00">2020-05-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-11-30 08:58:41" itemprop="dateModified" datetime="2023-11-30T08:58:41+08:00">2023-11-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Singleton是GoF设计模式之一，其易于理解，实现简单，因此得到广泛使用。但是在OOD<br>面向对象设计领域也有一些批评的声音，说不应该使用singleton模式，甚至有人提出<br>singleton是<a href="https://stackoverflow.com/questions/12755539/why-is-singleton-considered-an-anti-pattern">反模式(anti-pattern)</a>  。<br>虾哥认为技术本身是中性的，没有生来就错的技术(inherently bad)，作为工程师应该<br>有能力掌握技术，知道该在何时何地正确的使用何种技术。</p>
-<p>那么下面就说说singleton的性质，以及如何避免误用singleton模式。</p>
-<h1 id="Singleton的性质"><a href="#Singleton的性质" class="headerlink" title="Singleton的性质"></a>Singleton的性质</h1><p>优势:</p>
-<ol>
-<li>作为静态成员，可以在程序不同位置”便捷地”调用一个共享的对象。</li>
-<li>共享的对象有且只有一个实例。</li>
-<li>共享的对象是一个类的实例，可以使用面向对象方法进行设计，如实现接口。</li>
-</ol>
-<p>劣势:</p>
-<ol>
-<li>Singleton自身既包含行为的实现，又包含其自身的创建，违反了单一职责原则。</li>
-<li>Singleton作为全局对象，可能会隐藏一些依赖关系，如需要按指定顺序访问全局对象的两个<br>对象实际上是有依赖的。</li>
-<li>直接的依赖会构成紧耦合，导致很难进行模拟测试(stub or mock)</li>
-</ol>
-<h1 id="为什么需要使用singleton模式"><a href="#为什么需要使用singleton模式" class="headerlink" title="为什么需要使用singleton模式"></a>为什么需要使用singleton模式</h1><p><img src="https://d3i71xaburhd42.cloudfront.net/6dfb7519c69534a03a72bbfa406c284616aea54c/3-Figure2-1.png"><br><em>插图:面向对象的生命周期树</em></p>
-<p>基于面向对象思想编写的程序，其运行过程中实际上就是各种对象的生命周期不断新陈代谢的过程。<br>每个对象都有负责构建它的另一个对象，因此每个对象实例的生命周期可以看作层次结构，可以表现为树形。</p>
-<p>有的时候我们需要在树的不同位置共享同一个对象实例，用纯面向对象的方式，我们需要找到两个对象的共同祖先，<br>在祖先对象上构造需要共享的对象，并逐层传递到子孙对象上。但是如果层次结构比较深，这种方式就过于繁琐了。<br>想象一下你需要给程序中每个对象都传递一个Logger对象。</p>
-<p><img src="/images/singleton_object_ref.png"><br><em>插图:传递一个对象引用</em></p>
-<p>这种情况下我们可以构造另外一棵树，他的最原始祖先是一个全局变量或者静态成员（即它的生命周期不被其他对象拥有）。<br>这时我们可以方便的从一棵对象生命周期树的不同节点同时访问另一棵树，即可完成对象的共享。</p>
-<p>这种模式在框架设计上非常常见，即提供统一的静态入口点访问某一框架的具体功能，例如log4net中的LogManager对象。</p>
-<h1 id="如何消除或减弱singleton-的不利影响"><a href="#如何消除或减弱singleton-的不利影响" class="headerlink" title="如何消除或减弱singleton 的不利影响"></a>如何消除或减弱singleton 的不利影响</h1><p>我们假设实际的场景中类之间的关系是这样的</p>
-<p><img src="/images/singleton_classdiagram.png"></p>
-<p>这其中有两个依赖关系，即 A类依赖于Singleton类，Singleton类依赖于B类。这种类和类之间的直接依赖违反了dependency inversion原则，造成了紧密的耦合。</p>
-<p>可以使用以下一种或几种方式共用来降低负面影响。</p>
-<h2 id="依赖反转"><a href="#依赖反转" class="headerlink" title="依赖反转"></a>依赖反转</h2><p>A和Singleton之间的关系可以通过依赖反转来解决。</p>
-<p>A类只依赖于ISingleton的约定而非Singleton类的具体实现。</p>
-<p><img src="/images/singleton_a_dependency.png"><br><em>修改前</em></p>
-<p><img src="/images/singleton_a_dependency_after.png"><br><em>修改后</em></p>
-<h2 id="依赖注入-Dependency-Injection"><a href="#依赖注入-Dependency-Injection" class="headerlink" title="依赖注入 Dependency Injection"></a>依赖注入 Dependency Injection</h2><p>让使用者(client)被注入一个其依赖的对象的实例(service)，而不是让它自行构建或获取service的实例。</p>
-<pre><code>public class A
-&#123;
-    private ISingleton singleton;
-    public A(ISingleton singleton)
-    &#123;
-        this.singleton = singleton;
-    &#125;
-
-    public void Foo()
-    &#123;
-        this.singleton.Bar()
-    &#125;
-&#125;
-</code></pre>
-<h2 id="不变对象-Immutable"><a href="#不变对象-Immutable" class="headerlink" title="不变对象  Immutable"></a>不变对象  Immutable</h2><p>如果全局对象的写入和读取在顺序上有隐含条件，则该读取操作和写入操作实际上是有依赖关系的。<br>更糟糕的是这种依赖关系没有暴露出来造成不易察觉的设计问题。</p>
-<p><code>提供一个显式或隐式的初始化过程，在其生命周期中保持状态不会变化</code>，确保总是有<br>可预期的调用，以便支持单元测试。</p>
-<p>隐式初始化应从一个指定位置，如环境变量，某个(或多个)具体的配置文件路径，加载构造内部对象所需的信息。<br>则单元测试时可以通过间接的方式修改构造过程注入所需的mock对象。</p>
-<p><img src="/images/singleton_strategy.png"></p>
-<p>参见log4net config<br><a href="https://logging.apache.org/log4net/release/manual/configuration.html">https://logging.apache.org/log4net/release/manual/configuration.html</a></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="">https://en.wikipedia.org/wiki/Dependency_inversion_principle</a><br><a href="">https://en.wikipedia.org/wiki/Dependency_injection</a><br><a href="">https://fuzhe1989.github.io/2017/09/30/why-global-static-singleton-var-evil/</a><br><a href="">https://www.dre.vanderbilt.edu/~schmidt&#x2F;PDF&#x2F;Context-Object-Pattern.pdf</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1337,7 +1343,7 @@ def main():
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1347,7 +1353,7 @@ def main():
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

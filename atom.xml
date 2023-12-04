@@ -6,7 +6,7 @@
   <link href="http://www.daxiaju.net/atom.xml" rel="self"/>
   
   <link href="http://www.daxiaju.net/"/>
-  <updated>2023-12-01T03:27:16.982Z</updated>
+  <updated>2023-12-04T06:20:37.250Z</updated>
   <id>http://www.daxiaju.net/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gRPC Python 异步方式实现事件流订阅</title>
+    <link href="http://www.daxiaju.net/2023/12/04/grpc-python-async-stream/"/>
+    <id>http://www.daxiaju.net/2023/12/04/grpc-python-async-stream/</id>
+    <published>2023-12-04T05:50:31.000Z</published>
+    <updated>2023-12-04T06:20:37.250Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="编程" scheme="http://www.daxiaju.net/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="python" scheme="http://www.daxiaju.net/tags/python/"/>
+    
+    <category term="gRPC" scheme="http://www.daxiaju.net/tags/gRPC/"/>
+    
+    <category term="asyncio" scheme="http://www.daxiaju.net/tags/asyncio/"/>
+    
+  </entry>
   
   <entry>
     <title>使用ARIMA模型预测Bitcoin收益率</title>
@@ -516,30 +545,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>使用Docker快速部署Nginx反代，以及ACME自动续证书</title>
-    <link href="http://www.daxiaju.net/2019/08/07/nginx-acme-docker/"/>
-    <id>http://www.daxiaju.net/2019/08/07/nginx-acme-docker/</id>
-    <published>2019-08-07T07:54:40.000Z</published>
-    <updated>2023-11-30T00:58:41.723Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Nginx反向代理速度快，可以自定义各种转发规则，可以说是站长的好朋友。&lt;/p&gt;
-&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="docker, acme.sh, nginx, https, SSL证书, SSL证书自动续期" scheme="http://www.daxiaju.net/tags/docker-acme-sh-nginx-https-SSL%E8%AF%81%E4%B9%A6-SSL%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E6%9C%9F/"/>
     
   </entry>
   

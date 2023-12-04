@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.daxiaju.net/2023/12/04/grpc-python-async-stream/</loc>
+    
+    <lastmod>2023-12-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.daxiaju.net/2023/12/01/btc-return-predict-arima/</loc>
     
     <lastmod>2023-12-01</lastmod>
@@ -256,7 +265,7 @@
 
   <url>
     <loc>http://www.daxiaju.net/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -264,203 +273,217 @@
   
   <url>
     <loc>http://www.daxiaju.net/tags/Redis/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Android/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Google-Play/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/APK/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Windows/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Bash/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Git/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/django-docker-python/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Docker/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Centos7-Python/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Singleton/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Windows-Python-Python2-Python3/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/docker-acme-sh-nginx-https-SSL%E8%AF%81%E4%B9%A6-SSL%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E6%9C%9F/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Windows-python/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Notepad/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/ansible/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/linux/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/python/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/centos-7/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Nginx-SSL/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Python/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/vagrant/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/%E5%86%99%E4%BB%A3%E7%A0%81/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Github/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Pages/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/Bitcoin/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/tags/ARIMA/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.daxiaju.net/tags/gRPC/</loc>
+    <lastmod>2023-12-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.daxiaju.net/tags/asyncio/</loc>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -469,28 +492,28 @@
   
   <url>
     <loc>http://www.daxiaju.net/categories/%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/categories/%E7%BC%96%E7%A8%8B/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.daxiaju.net/categories/%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/</loc>
-    <lastmod>2023-12-01</lastmod>
+    <lastmod>2023-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

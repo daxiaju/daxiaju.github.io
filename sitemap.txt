@@ -1,3 +1,4 @@
+http://www.daxiaju.net/2023/12/04/grpc-python-async-stream/
 http://www.daxiaju.net/2023/12/01/btc-return-predict-arima/
 http://www.daxiaju.net/2023/11/30/github-pages-custom-domain/
 http://www.daxiaju.net/categories/index.html
@@ -56,6 +57,8 @@ http://www.daxiaju.net/tags/Github/
 http://www.daxiaju.net/tags/Pages/
 http://www.daxiaju.net/tags/Bitcoin/
 http://www.daxiaju.net/tags/ARIMA/
+http://www.daxiaju.net/tags/gRPC/
+http://www.daxiaju.net/tags/asyncio/
 http://www.daxiaju.net/categories/%E7%BC%96%E7%A8%8B/
 http://www.daxiaju.net/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/
 http://www.daxiaju.net/categories/%E7%BC%96%E7%A8%8B/%E6%9C%8D%E5%8A%A1%E5%99%A8/
